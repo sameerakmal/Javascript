@@ -169,6 +169,10 @@
 
 <img src = "img/js3.png">
 
+## Window Heirarchy
+<img src = "img/js7.png">
+
+
 ## ❓ FAQ
 
 ### 1️⃣ What is the MIME type for script?
@@ -231,8 +235,50 @@
 ---
 
 ### 🔍 JavaScript `properties` vs `textContent`
+
 <img src = "img/js6.png">
 
+#### 💻 Related Code
+[dom-heirarchy-code.html](javascript-examples/dom-heirarchy-code.html)
+
 ---
+### ⚠️ Disadvantage of Using DOM Hierarchy for Targeting Elements
+
+- If we target elements using **DOM hierarchy**, the code might **break** when the DOM structure is altered or changed.
+
+
+- ✅ Solution : Use **ID** to target the element directly and reliably:
+  ```javascript
+  document.getElementById("myElement");
+  ```
+
+
+### 🆔 Targeting Elements Using ID Selector
+
+- We use the method:
+  ```javascript
+  const oneElement = document.getElementById('idname');
+  ```
+- If there are multiple elements with the **same ID**, the method will return only the first matching element.
+  ```javascript
+  document.getElementById("idname");
+  ```
+
+### 🎨 Style Binding to HTML Elements
+
+- To bind a single CSS property to an element:
+  ```javascript
+  element.style.property = "value";
+  ```
+- ✅ To set multiple CSS properties in one line:
+  ```javascript
+  element.style.cssText = "cssKey1: value1; cssKey2: value2;";
+
+  element.style.cssText = "color: blue; background-color: yellow;";
+  ```
+
+#### 💻 Related Code
+[multiple-id-code.html](javascript-examples/multiple-id-code.html)
+
 
 
