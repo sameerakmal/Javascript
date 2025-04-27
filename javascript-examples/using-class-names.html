@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="box" id="main"> 
+        <p class="box">Hello</p>
+        <p class="box">World</p>
+    </div>
+</body>
+</html>
+
+<script type="text/javascript">
+    // Select elements with class 'box' (returns HTMLCollection, not a real array)
+    let elements = document.getElementsByClassName("box");
+    
+    // Log type and HTMLCollection
+    console.log(typeof elements);
+    console.log(elements);
+    
+    // Apply color using normal for loop (works because HTMLCollection is iterable by index)
+    for (let i = 0; i < elements.length; i++) {
+        elements[i].style.color = 'green';
+    }
+
+    // Convert HTMLCollection to real array
+    // because forEach cannot be used directly on objects like HTMLCollection
+    // Array.from(elements);
+
+    // Use forEach to loop through the array
+    Array.from(elements).forEach((value, index, arr) => {
+        console.log(index); // current index
+        console.log(value); // current element
+        console.log(arr);   // full array
+
+        // Important: order of parameters must be (element, index, array)
+        // Names can be anything, but order should be same
+        
+        // Apply multiple styles using cssText
+        value.style.cssText = 'background-color: red; font-family: sans-serif;';
+    });
+</script>

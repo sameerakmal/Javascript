@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <script type="text/javascript">
+        function addItem() {
+            // Using querySelectorAll (Static DOM) - NodeList
+            const itemLengthUsingQuerySelector = document.querySelectorAll(".item");
+
+            // Using getElementsByClassName (Dynamic DOM) - HTMLCollection
+            const itemLengthUsingClassName = document.getElementsByClassName("item");
+
+            // Select the parent div to append new item
+            const div = document.querySelector("div");
+
+            // Create a new paragraph element for the new item
+            const pElement = document.createElement("p");
+            pElement.className = "item";  // Add the 'item' class to the new p element
+            pElement.textContent = "Item 3";  // Set the text content of the new item
+
+            // Append the new item to the div
+            div.appendChild(pElement);
+
+            // Log the length of 'item' class elements using both methods
+            console.log("Length using querySelectorAll (Static DOM): ", itemLengthUsingQuerySelector.length);
+            console.log("Length using getElementsByClassName (Dynamic DOM): ", itemLengthUsingClassName.length);
+        }
+    </script>
+</head>
+<body>
+    <div id="container">
+        <p class="item">Item 1</p>
+        <p class="item">Item 2</p>
+    </div>
+
+    <!-- Button to trigger the addItem function -->
+    <button onclick="addItem()">Add item</button>
+</body>
+</html>

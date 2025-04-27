@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>querySelector vs querySelectorAll</title>
+    <style>
+        .btn {
+            background-color: lightblue;
+            padding: 10px;
+            margin: 5px;
+        }
+    </style>
+</head>
+<body>
+    <h2>querySelector vs querySelectorAll</h2>
+
+    <!-- Buttons with the same class -->
+    <button class="btn">Button 1</button>
+    <button class="btn">Button 2</button>
+    <button class="btn">Button 3</button>
+
+    <script type="text/javascript">
+        // Using querySelector() to select the first matching element
+        firstButton = document.querySelector(".btn");
+        console.log("First button text:", firstButton.textContent);  // Logs first button text
+
+        // Using querySelectorAll() to select all matching elements
+        allButtons = document.querySelectorAll(".btn");
+        allButtons.forEach(function(button) {
+            console.log("Button text:", button.textContent);  // Logs all button texts
+        });
+    </script>
+</body>
+</html>

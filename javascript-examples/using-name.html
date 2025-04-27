@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- Radio buttons with the same name attribute -->
+    <label><input type="radio" name="car" value="Toyota"> Toyota</label>
+    <label><input type="radio" name="car" value="Honda"> Honda</label>
+    <label><input type="radio" name="car" value="BMW"> BMW</label>
+
+    <script type="text/javascript">
+        // Get all radio buttons with name 'car'
+        var carElements = document.getElementsByName("car");
+
+        // Loop through each radio button and log its value
+        carElements.forEach(function(car) {
+            console.log(car.value);  // Logs the value of each radio button
+        });
+    </script>
+</body>
+</html>

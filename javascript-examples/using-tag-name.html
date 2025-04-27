@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    
+    <!-- JavaScript function is defined in the <head>, but won't run until the button is clicked -->
+    <script type="text/javascript">
+        // Function to apply styles to <li> elements when called
+        function changeEffects(){
+            // Get all <li> elements
+            liElements = document.getElementsByTagName("li");
+            
+            // Convert the HTMLCollection to an array and apply style to each <li> element
+            [...liElements].forEach(function(value){
+                // Applying multiple styles using cssText
+                value.style.cssText = 'margin : 25px; color : goldenrod;';
+            })
+        }
+    </script>
+</head>
+<body>
+    <h3>My shopping list</h3>
+    <ul>
+        <li>Iphone</li>
+        <li>Samsung</li>
+        <li>OnePlus</li>
+    </ul>
+    
+    <!-- Button that triggers the changeEffects() function when clicked -->
+    <button onclick="changeEffects()">Highlight text</button>
+</body>
+</html>
