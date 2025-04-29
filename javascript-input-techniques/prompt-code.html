@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script type="text/javascript">
+        // Function to create a folder
+        function createFolder(){
+            // Prompt user to enter folder name, default value is "New folder"
+            input = prompt("Enter the folder name : ", "New folder");
+
+            // If user clicks 'Cancel', the input will be null
+            if(input == null){
+                // Display a message indicating cancel was clicked
+                document.querySelector("h3").textContent = "User has clicked cancel button";
+            }
+            // If the user clicked OK but didn't change the default value ("New folder")
+            else if(input == "New folder"){
+                // Display message indicating no folder name was provided
+                document.querySelector("h3").textContent = "Without entering the folder name, user has clicked OK button";
+            }
+            else{
+                // If a valid folder name was entered, update the content and change the tag to <h1>
+                document.querySelector("h3").outerHTML = '<h1 style = "color : green;"> Folder name :' +input+ "</h1>";
+            }
+        }
+    </script>
+</head>
+<body>
+    <!-- Button that triggers folder creation -->
+    <button onclick="createFolder()">Create Folder</button>
+    
+    <!-- Placeholder for displaying messages -->
+    <h3></h3>
+</body>
+</html>

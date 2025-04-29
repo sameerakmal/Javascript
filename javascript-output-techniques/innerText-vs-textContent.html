@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <script type="text/javascript">
+        function content() {
+            // Get and log text using textContent (shows all text, even hidden)
+            console.log(document.getElementById("ele").textContent);
+
+            // Get and log text using innerText (ignores hidden text, respects styling like display: none)
+            console.log(document.getElementById("ele").innerText);
+        }
+    </script>
+</head>
+<body>
+    <div id="ele">
+        <!-- 'hidden' span has display: none; -->
+        <p>This is a <span style="display: none;">hidden</span> word</p>
+        <p>Another line</p>
+    </div>
+
+    <!-- Button to trigger content() function -->
+    <button onclick="content()">Click for content</button>
+</body>
+</html>

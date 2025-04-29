@@ -237,7 +237,7 @@
 
 <img src = "img/js6.png">
 
-- 💻 Related Code : 
+> 💻 Related Code : 
 [dom-heirarchy-code.html](javascript-examples/dom-heirarchy-code.html)
 
 ---
@@ -276,7 +276,7 @@
   element.style.cssText = "color: blue; background-color: yellow;";
   ```
 
-- 💻 Related Code : 
+> 💻 Related Code : 
 [multiple-id-code.html](javascript-examples/multiple-id-code.html)
 
 
@@ -292,7 +292,7 @@
     ```javascript
     const arrayElements = Array.from(htmlCollection);
     ```
-  - 💻 Related Code : 
+  > 💻 Related Code : 
   [using-class-names](javascript-examples/using-class-names.html)
 
 - 2️⃣ **Accessing by Tag Name 🏷️**  
@@ -302,13 +302,13 @@
     ```javascript
     const arrayElements = [...htmlCollection];
     ```
-  - 💻 Related Code : 
+  > 💻 Related Code : 
   [using-tag-names](javascript-examples/using-tag-name.html)
 
 - 3️⃣ **Accessing by Name 🏷️**  
   - `document.getElementsByName()` returns a **NodeList**.  
   - While working with **NodeList**, you can directly use **`forEach()`** without any conversion.
-  - 💻 Related Code : 
+  > 💻 Related Code : 
   [using-name](javascript-examples/using-name.html)
 
 > 🔔 **Note:** *Instead of remembering all these methods, you can use a method called*  
@@ -317,7 +317,7 @@
 > 
 > - `querySelector(cssSelector)` returns an **Element** 🔍  
 > - `querySelectorAll(cssSelector)` returns a **NodeList** 📑
-> - 💻 Related Code : 
+> > 💻 Related Code : 
   [query-selector](javascript-examples/query-selector.html)
 
 ### 🔄 Working with Iterator: `forEach`
@@ -363,18 +363,21 @@
 - Reflects changes **automatically**.
 - If new elements are added or removed, the collection **updates itself**.
 - Example: `getElementsByClassName()` returns an **HTMLCollection**, which is **live**.
-
-- 💻 Related Code : 
+---
+> 💻 Related Code : 
   [static-dynamic-dom](javascript-examples/static-dynamic-dom.html)
 
+
 ### JavaScript Output Operations 💬
-- **a.** `alert()` 🚨
-- **b.** `confirm()` ✅❌
-- **c.** `document.write()` | `document.writeln()` 📝
-- **d.** `innerHTML` | `outerHTML` 🔄
-- **e.** `innerText` | `outerText` 📝
-- **f.** `textContent` 🖋️
-- **g.** `console.XXXXX()` [log(), warn(), error(), info(), debug()] 🖥️
+
+- 1️⃣ **`alert()`** 🚨  
+- 2️⃣ **`confirm()`** ✅❌  
+- 3️⃣ **`document.write()` | `document.writeln()`** 📝  
+- 4️⃣ **`innerHTML` | `outerHTML`** 🔄  
+- 5️⃣ **`innerText` | `outerText`** 📝  
+- 6️⃣ **`textContent`** 🖋️  
+- 7️⃣ **`console.XXXXX()`** [log(), warn(), error(), info(), debug()] 🖥️
+
 
 ---
 
@@ -396,5 +399,130 @@
 ##### Limitation 🚫
 - ❌ No styling can be added to the message.
 
-- 💻 Related Code : 
-  [confirm-code.html](javascript-examples/confirm-code.html)
+> 💻 Related Code : 
+  [confirm-code.html](javascript-output-techniques\confirm-code.html)
+---
+#### 3️⃣ `document.write(msg)` 📝
+
+- Accepts `msg` as a **string** or **HTML elements**.
+- Directly writes content into the HTML document.
+
+---
+
+##### Limitation 🚫
+- `document.write()` can behave **unexpectedly** if used **after** the page has finished loading — it can overwrite the entire document.
+
+
+##### ⚙️ Output Behavior of `document.write()`
+
+###### 🔍 What Happens When You Click the Button?
+
+- 🧨 The entire existing page (including the button, heading, etc.) gets **wiped out**.
+- Only the content inside `document.write(...)` is displayed.
+
+###### ❓ Why Does This Happen?
+
+- After the page finishes loading, `document.write()` acts like:
+  > "Let me 🧹 rebuild the entire document from scratch now!"
+
+> 💻 Related Code : 
+  [document-write-code.html](javascript-output-techniques/document-write-code.html)
+---
+#### 4️⃣ `innerHTML` vs `outerHTML` 🧱
+
+- **`innerHTML`**: Adds the element as a **child** to the targeted container or element. 👶  
+- **`outerHTML`**: **Replaces** the entire targeted element with the newly provided one. 🔁
+
+> 💻 Related Code : 
+  [innerHtml-vs-outerHtml.html](javascript-output-techniques/innerHtml-vs-outerHtml.html)
+---
+#### 5️⃣  `innerText` vs `outerText` ✍️
+
+- Works like `innerHTML` and `outerHTML` ✅  
+- But only for **text content** — no HTML or styles allowed 🛑
+> 💻 Related Code : 
+  [innerText-vs-outerText.html](javascript-output-techniques/innerText-vs-outerText.html)
+---
+
+#### 6️⃣ `textContent` 🖋️
+
+- Used to get or set the **text content** of an element.
+- Returns all the text within an element, **including text from hidden elements**.
+- Does **not parse HTML**—purely works with plain text.
+- Ideal when you're working with content programmatically and **don't need styling awareness**.
+---
+
+##### 📌 Difference: `innerText` vs `textContent`
+
+- **`textContent`**  
+  ✔️ Returns **all text**, including from **hidden elements**  
+  ✔️ **Faster** and better for **raw text**  
+  ✔️ Ignores CSS layout and visibility  
+
+- **`innerText`**  
+  ✔️ Returns only **visible text**  
+  ✔️ Respects **CSS visibility** and **layout**  
+  ✔️ Includes **line breaks and spacing** as shown on screen  
+
+> ⚠️ Use `textContent` for performance.  
+> 🎯 Use `innerText` for accurate, visible representation.
+
+---
+#### 7️⃣🧾 Logs
+
+- Logs refer to the **actions performed by the end user**.  
+To **track user behavior or activity**, we use logs in JavaScript (commonly via `console.log()` or other logging tools).
+
+<img src = "img/js8.png">
+
+> 💻 Related Code : 
+  [console-log.html](javascript-output-techniques/console-log.html)
+---
+
+### JavaScript Input Mechanism ✍️
+
+- 1️⃣ **`prompt()`** 💬  
+- 2️⃣ **`queryString`** 🔗  
+- 3️⃣ **`formelements`** 📝
+
+#### 1️⃣ `prompt()` 📥
+
+
+- 🧾 **Return Type:** `string` (or `null`)
+
+  ```javascript
+  prompt("MSG", [default msg]);
+  ```
+
+##### 🧪 **Behavior:**
+
+- ✅ If user enters data and clicks OK → `'data'` (string)
+- ⚠️ If user doesn’t enter anything but clicks OK → `''` (empty string)
+- ❌ If user clicks Cancel or presses ESC (with or without entering data) → `null`
+
+<img src = "img/js9.png">
+
+
+> 💻 Related Code : 
+  [prompt-code.html](javascript-input-techniques/prompt-code.html)
+
+
+#### 2️⃣ `queryString` 🔗
+
+- A combination of **URL + queryParameters (Key, Value)**  
+- To collect the query string, we use the **BOM (Browser Object Model)**:
+
+  ```javascript
+  const queryString = location.search;
+  ```
+- Query string data is received as a string
+- You can use string methods to process it:
+  - slice(start)
+  - indexOf('')
+> 💻 Related Code : 
+  [query-string-code.html](javascript-input-techniques/query-string-code.html)
+
+
+
+
+  

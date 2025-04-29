@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7" crossorigin="anonymous">
+  <style>
+    .modal-body {
+      display: flex;
+      background-color: black;
+      justify-content: space-around;
+    }
+
+    .summary {
+      width: 400px;
+      height: 300px;
+    }
+
+    .modal-dialog {
+      height: 200px;
+    }
+  </style>
+
+  <script type="text/javascript">
+    function bookTicket() {
+
+      movie = document.getElementById("lstMovie").value;
+      screen = "";
+      poster = document.getElementById("poster");
+
+      document.getElementById("lblMovie").textContent = movie;
+      document.getElementById("lblLocation").textContent = document.getElementById("lstLocation").value;
+      document.getElementById("lblDate").textContent = document.getElementById("lstDate").value;
+      document.getElementById("lblTime").textContent = document.getElementById("lstTime").value;
+      document.getElementById("lblSeat").textContent = document.getElementById("lstSeat").value;
+
+      if (movie == "HIT 3") {
+        screen = "SCREEN 2";
+        poster.src = "../img/512px-HIT_-_The_Third_Case.webp";
+      }
+      else {
+        screen = "SCREEN 1";
+        poster.src = "../img/salaar-movie-poster-prabhas-mj3j7sa8kxeq96qr.webp";
+      }
+      document.getElementById("lblScreen").textContent = screen;
+      document.getElementById("summary").style.display = "block";
+
+    }
+  </script>
+</head>
+
+<body>
+  <!-- Button trigger modal -->
+  <button type="button" class="btn btn-danger m-3" data-bs-toggle="modal" data-bs-target="#booking">
+    Quick Booking
+  </button>
+
+  <!-- Modal -->
+  <div class="modal fade" id="booking" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-fullscreen">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalLabel">Quick Booking</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div class="dropdown">
+            <select id="lstMovie" class="form-select">
+              <option>Select Movie</option>
+              <option>HIT 3</option>
+              <option>Salaar</option>
+            </select>
+          </div>
+          <div class="dropdown">
+            <select id="lstLocation" class="form-select">
+              <option>Select Location</option>
+              <option>Inox WhiteField</option>
+              <option>Nexus</option>
+            </select>
+          </div>
+          <div class="dropdown">
+            <select id="lstDate" class="form-select">
+              <option>Select Date</option>
+              <option>29/04/2025</option>
+              <option>30/04/2025</option>
+            </select>
+          </div>
+          <div class="dropdown">
+            <select id="lstTime" class="form-select">
+              <option>Select Time</option>
+              <option>11:00 AM</option>
+              <option>2:00 PM</option>
+              <option>6:30 PM</option>
+            </select>
+          </div>
+          <div class="dropdown">
+            <select id="lstSeat" class="form-select">
+              <option>Select Seats</option>
+              <option>1</option>
+              <option>2</option>
+              <option>3</option>
+            </select>
+          </div>
+          <div>
+            <button type="button" class="btn btn-danger" data-bs-dismiss="modal" onclick="bookTicket()">Book</button>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="summary" style="display: none;">
+    <h3 style="background-color: black; color: white; padding: 10px; width: fit-content; margin-top: 10px;">Booking
+      Summary</h3>
+    <img id="poster" src="" width="300" height="400">
+
+    <dl class="">
+      <div class="d-flex">
+        <dt>Movie :</dt>
+        <dd id="lblMovie" class="ms-3"></dd>
+      </div>
+      <div class="d-flex">
+        <dt>Location :</dt>
+        <dd id="lblLocation" class="ms-3"></dd>
+      </div>
+      <div class="d-flex">
+        <dt>Date :</dt>
+        <dd id="lblDate" class="ms-3"></dd>
+      </div>
+      <div class="d-flex">
+        <dt>Time :</dt>
+        <dd id="lblTime" class="ms-3"></dd>
+      </div>
+      <div class="d-flex">
+        <dt>Screen : </dt>
+        <dd id="lblScreen" class="ms-3"></dd>
+      </div>
+      <div class="d-flex">
+        <dt>Seat :</dt>
+        <dd id="lblSeat" class="ms-3"></dd>
+      </div>
+
+    </dl>
+
+    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#booking">
+        Modify booking
+    </button>
+
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-k6d4wzSIapyDyv1kpU366/PK5hCdSbCRGRCMv+eplOQJWyd1fbcAu9OCUj5zNLiq"
+    crossorigin="anonymous"></script>
+</body>
+
+</html>
