@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script type="text/javascript">
+        var x = 1;  // Global variable x, with a value of 1
+        a();        // Calling function a()
+        b();        // Calling function b()
+
+        // Function a is called
+        function a(){
+            var x = 10;  // Local variable x within function a (does not overwrite global x)
+            console.log(x);  // Logs 10 because we're referring to the local x inside function a
+            console.log("global "+ window.x);  // Logs global x (1), because we're accessing the global variable through window object
+        }
+
+        // Function b is called
+        function b(){
+            var x = 100;  // Local variable x within function b (does not affect global x)
+            console.log(x);  // Logs 100 because we're referring to the local x inside function b
+        }
+
+        console.log(x);  // Logs 1, because the global x is still 1 (the local variables x in functions a and b do not overwrite this)
+    </script>
+</body>
+</html>

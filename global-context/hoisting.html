@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hoisting Demo</title>
+</head>
+<body>
+  <script type="text/javascript">
+    // Variable and function hoisting in JavaScript
+
+    console.log(x); // Output: undefined (due to hoisting of variable `x` as `var`)
+    console.log(getName()); // Output: "PWioi Javascript" (because function declarations are hoisted with definitions)
+    getName(); // Output: "PWioi Javascript"
+
+    // getName1(); // ❌ Uncommenting this line will throw a TypeError: getName1 is not a function
+    console.log(getName2); // Output: undefined (getName2 is declared using var, so it's hoisted but uninitialized at this point)
+
+    // Variable and function declarations
+    var x = 3;
+
+    // Function declaration - hoisted completely (both name and body)
+    function getName() {
+      console.log("PWioi Javascript");
+    }
+
+    // Function expression (assigned to a variable) - only variable `getName1` is hoisted (not the function itself)
+    var getName1 = function() {
+      console.log("PWIOI React");
+    };
+
+    // Arrow function expression - also not hoisted (only variable is hoisted)
+    var getName2 = () => {
+      console.log("PWIOI MongoDB");
+    };
+
+    // These function expressions can now be called after the point of declaration
+    getName1(); // Output: "PWIOI React"
+    getName2(); // Output: "PWIOI MongoDB"
+  </script>
+</body>
+</html>

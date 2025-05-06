@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script type="text/javascript">
+        // Declaring a global variable 'b' with value 3
+        var b = 3;
+
+        // Function 'a' that demonstrates the behavior of 'this' and global object manipulation
+        function a(){
+            // Logs the value of 'b' from the local scope (which is global in this case)
+            console.log(b);         // Outputs: 3 (global 'b')
+
+            // Logs the value of 'b' using 'this'. In non-strict mode, 'this' refers to the global object (window in browser)
+            console.log(this.b);    // Outputs: 3 (global 'b', since 'this' refers to global object in non-strict mode)
+
+            // Logs the value of 'b' directly from the global window object
+            console.log(window.b);  // Outputs: 3 (global 'b' through 'window' object)
+
+            // Modifies the global variable 'b' via the window object
+            window.b = 100;         // Changes the global 'b' to 100
+        }
+
+        // Calling function 'a'
+        a();  // This will execute the above logs and modify the global 'b'
+
+        // Logs the value of 'b' in the global scope after modifying it through window.b
+        console.log(b);  // Outputs: 100 (after the modification through 'window.b')
+    </script>
+</body>
+</html>

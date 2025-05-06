@@ -500,7 +500,7 @@ To **track user behavior or activity**, we use logs in JavaScript (commonly via 
 - ⚠️ If user doesn’t enter anything but clicks OK → `''` (empty string)
 - ❌ If user clicks Cancel or presses ESC (with or without entering data) → `null`
 
-<img src = "img/js9.png">
+<img src = "img/js9.png" width = "300">
 
 
 > 💻 Related Code : 
@@ -522,7 +522,102 @@ To **track user behavior or activity**, we use logs in JavaScript (commonly via 
 > 💻 Related Code : 
   [query-string-code.html](javascript-input-techniques/query-string-code.html)
 
+--- 
+## 🌐 Global Execution Context
+
+### 🚀 How JavaScript Program is Executed (or How JavaScript Runs in the Browser)
+
+- When JavaScript is loaded into the browser's engine, it forms an **Execution Engine** ⚙️
+
+- Inside the **Execution Context**, there are two main areas:
+
+  - 🧠 **Memory (Variable Environment)** – stores variables and function declarations  
+  - 🔁 **Code Execution (Thread of Execution)** – executes code line by line
+---
+
+### 🖥️ JavaScript in Browser Engine  
+
+<img src = "img/js10.png">
+
+---
+
+### 📦 Execution Context Stack
+* First, a **Global Execution Context (GEC)** is created automatically 🌐  
+  Then, whenever a function is invoked, a **new Execution Context** is created and pushed onto the **Call Stack**, as shown below:
+
+<img src = "img/js11.png">
+
+---
+
+#### 📝 Additional Points:
+
+* JavaScript is **synchronous and single-threaded** 🧵 — it can only execute one command at a time in a specific order.
+
+* The **Call Stack** 📚 keeps track of execution contexts — the one on top is always the currently running context.
+
+* The **Execution Context** is created in two phases:
+  1. 🔍 **Memory Creation Phase** – variables and functions are stored in memory (hoisted).
+  2. ▶️ **Code Execution Phase** – code runs line by line using the stored memory.
+
+
+#### ⚓ Hoisting
+
+- Hoisting is a phenomenon in JavaScript where **variables and functions can be used before they are initialized**.
+- If a `var` variable holds a **function expression** or an **arrow function**, it **cannot** be used before initialization.
+- Trying to do so will result in a **`TypeError`**.
+
+> 🔔 **Note:**  
+> ✅ `undefined` is printable.  
+> ❌ `null` and `void` are not printable as meaningful output.
+
+<img src = "img\js13.png">
+
+> 💻 Related Code : 
+  [hoisting.html](global-context/hoisting.html)
+### 🔍 Lexical Environment & Scope Chain
+
+- **Lexical Environment** 🧠  
+  Memory of its own container + memory of its parent container
+
+- **Scope Chain** 🔗  
+  Refers to the chain of lexical environments used to identify the variable or function to access
+
+<img src = "img\js12.png">
+
+> 💻 Related Code : 
+  [variable-overriding.html](global-context/variable-overriding.html)
+
+> [window.html](global-context/window.html)
+
+### 🧠 `var` vs `let` vs `const`
+
+#### 🟡 `var`
+- ✅ Supports **hoisting** (initialized as `undefined`)
+- 🔁 **Redeclaration** is allowed
+- 🔄 **Reassignment** is allowed
+- 📦 Function-scoped
+- 🧥 Supports **shadowing**
+
+---
+
+#### 🔵 `let`
+- ⚠️ Supports **hoisting**, but in **Temporal Dead Zone (TDZ)**  
+-  ❌ Cannot be accessed before initialization  
+- 🧨 Throws `ReferenceError`
+- 🚫 Redeclaration is **not allowed**
+- 🔄 **Reassignment** is allowed
+- 📦 Block-scoped
+- 🧥 Supports **shadowing**
+
+---
+
+#### 🔴 `const`
+- ⚠️ Supports **hoisting**, but in **Temporal Dead Zone (TDZ)**  
+- ❌ Cannot be accessed before initialization
+- 🚫 **Redeclaration** is not allowed
+- 🚫 **Reassignment** is not allowed → ❌ Throws `TypeError`
+- 📦 Block-scoped
+- 🧥 Supports **shadowing**
 
 
 
-  
