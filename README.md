@@ -620,4 +620,39 @@ To **track user behavior or activity**, we use logs in JavaScript (commonly via 
 - 🧥 Supports **shadowing**
 
 
+### 🔁 Comparison of `var`, `let`, and `const`
+
+| Feature                        | `var`                              | `let`                                   | `const`                                 |
+|-------------------------------|-------------------------------------|------------------------------------------|------------------------------------------|
+| 🔍 Scope                      | Function-scoped                    | Block-scoped                            | Block-scoped                            |
+| 🚀 Hoisting                   | Yes (initialized as `undefined`)   | Yes (but not initialized)         | Yes (but not initialized)         |
+| 🔁 Can be Reassigned          | Yes                                | Yes                                     | ❌ No                                    |
+| 🔁 Can be Redeclared          | Yes                                | ❌ No                                    | ❌ No                                    |
+| ⚠️ Temporal Dead Zone (TDZ)   | ❌ No                               | ✅ Yes                                   | ✅ Yes                                   |
+| 🔄 Use in Loops               | ❌ Not safe (due to function scope)                 | ✅ Safe                                  | ✅ Safe (if no reassignment)            |
+| Global object property | Yes (if declared globally) | No | No |
+
+### 🧾 Rules to Name a Variable in JavaScript
+
+1. 🔤 Name must start with an alphabet, `_`, or `$`.
+2. ⚙️ `_` is often used for configuration or internal constructs.  
+   - Example:  
+     `var productName;` → Fully implemented  
+     `var _productName;` → Not yet implemented
+3. ❌ Avoid special characters in variable names (as per ECMAScript standards).
+4. 🔡 Names can be alphanumeric.  
+   - Example: `var product2020;`
+5. 🔠 Variable names are **case-sensitive**.
+6. 🔢 Name length can be up to **255 characters**.
+7. 🧩 Avoid using single-letter or overly long variable names.
+8. 🚫 Do not use **reserved keywords** (45 total in JavaScript).
+9. 🐪 Always use **camelCase**, and names should describe their purpose.  
+   - Bad: `var u = "sachin";`  
+   - Good: `var userName = "sachin";`
+
+<img src = "img\js14.png">
+
+> Note : 
+> Javascript object = {k : v} convert js object yo JSON : json.stringify()
+> JSON Object = {k : v} convert string representation to JSON to js object : JSON.parse()
 
