@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script type="text/javascript">
+        // Prompting user to enter their age
+        let age = prompt("Enter the age");
+
+        // If user clicks 'Cancel' (age is null)
+        if(age == null){
+            console.log("No age entered, you pressed cancel button");
+        }
+        // If user presses OK without entering any value (empty string)
+        else if(age == ''){
+            console.log("Please enter the correct age, you havent typed anything");
+        }
+        // If the entered value is not a number
+        else if(isNaN(age)){
+            console.log("Please enter the correct age");
+        }
+        // If input is valid (a number)
+        else{
+            console.log("Age is : " + age);
+        }
+    </script>
+</body>
+</html>

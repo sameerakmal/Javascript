@@ -632,6 +632,9 @@ To **track user behavior or activity**, we use logs in JavaScript (commonly via 
 | 🔄 Use in Loops               | ❌ Not safe (due to function scope)                 | ✅ Safe                                  | ✅ Safe (if no reassignment)            |
 | Global object property | Yes (if declared globally) | No | No |
 
+> 💻 Related Code : 
+  [dataTypes.html](global-context/dataTypes.html)
+
 ### 🧾 Rules to Name a Variable in JavaScript
 
 1. 🔤 Name must start with an alphabet, `_`, or `$`.
@@ -652,7 +655,146 @@ To **track user behavior or activity**, we use logs in JavaScript (commonly via 
 
 <img src = "img\js14.png">
 
-> Note : 
-> Javascript object = {k : v} convert js object yo JSON : json.stringify()
-> JSON Object = {k : v} convert string representation to JSON to js object : JSON.parse()
+> 🔔 **Note:**
+> - JavaScript object: `{key: value}` → Convert to JSON string using `JSON.stringify()`
+> - JSON string: `"{key: value}"` → Convert to JavaScript object using `JSON.parse()`
+> - 💻 Related Code: [json.html](global-context/json.html)
 
+
+## 🔢 Number Type in JavaScript
+
+JavaScript stores all numbers (whether typed by the user or written in code) using the  
+**IEEE 754 double-precision floating point format (64-bit float)**.
+
+### 🧮 Bit Allocation
+
+| 🧩 Bits     | 🧠 Purpose                          |
+|------------|------------------------------------|
+| 1 bit      | Sign (0 = positive, 1 = negative)  |
+| 11 bits    | Exponent (with bias of 1023)       |
+| 52 bits    | Mantissa / fractional digits       |
+
+### 📚 Number Concepts in JavaScript
+
+| 📘 Concept                | 💡 JavaScript Behavior         |
+|--------------------------|-------------------------------|
+| Max Safe Integer         | `2^53 - 1`                    |
+| Precision above limit    | ❌ Lost                       |
+| Alternative for big nums | ✅ Use `BigInt`               |
+
+
+> 🔔 **Note:**
+Since number is floating point type it leads to precision issues
+
+### 💡 BigInt in JavaScript
+
+To store any large integer number **with precision**, we use `BigInt`. It's especially helpful when numbers exceed the safe integer limit of JavaScript (`2^53 - 1`).
+
+---
+
+### ⚠️ Precision Issue Example
+
+```javascript
+console.log(0.1 + 0.2); 
+// Output: 0.30000000000000004 🤯
+```
+
+### 🤔 What If You Need Large Integers?
+
+If numbers exceed **53-bit precision**, JavaScript introduces `BigInt` to handle them **without losing precision**.
+
+```javascript
+let c = 9007199254740993n;
+
+console.log(c);             // 9007199254740993n ✅
+console.log(c == c + 1n);   // false 👏 No loss of precision!
+```
+
+### 🔍 Example #1: Handling Large Integers
+
+```javascript
+let a = 9007199254740991;       // Max safe integer in JS
+let b = 9007199254740992;       // Unsafe with Number
+let c = 9007199254740993n;      // Safe with BigInt
+
+console.log(a);         // 9007199254740991
+console.log(b);         // 9007199254740992
+console.log(c);         // 9007199254740993n
+console.log(c + 1n);    // 9007199254740994n
+
+console.log(a === a + 1);    // true ❌ Precision lost
+console.log(c === c + 1n);   // false ✅ Precision retained
+```
+
+### 🔢 Converting Data from String to Number
+
+- To convert the data from **String format** to **Number type**, we have 3 mechanisms:
+
+  1. `parseInt()` | `parseFloat()`
+  2. `Number()`
+
+---
+
+#### 1️⃣ `Number(input)`
+
+- It expects the data to strictly be in **number format**. If any special symbols are part of the data, it will return `NaN` (Not-a-Number).
+
+---
+
+#### 2️⃣ `parseInt(input)`
+
+- It expects the input to be in **string format**.
+- It returns the number up to the point it encounters a special character.
+- If the first symbol itself is a special character, it returns `NaN`.
+
+
+### 🤔 `isNaN(input)` vs `Number.isNaN(input)`
+
+---
+
+### ✅ `isNaN(input)`
+
+- Converts the input into a number using `Number()`.
+- If the result is `NaN`, it returns `true`; otherwise, it returns `false`.
+
+```javascript
+isNaN("abc");     // true  ➡️  "abc" becomes NaN
+isNaN("123");     // false ➡️  "123" becomes 123
+```
+> 💻 Related Code : 
+  [isNaN.html](Data-types\isNaN.html)
+
+### 🔍 `Number.isNaN(input)`
+
+- It **doesn't perform any conversion** on the input.
+- It simply checks whether the input is **strictly `NaN`**.
+- Returns `true` if the input is `NaN`; otherwise, returns `false`.
+
+```javascript
+Number.isNaN(NaN);      // true ✅
+Number.isNaN("NaN");    // false ❌ (string, not actual NaN)
+Number.isNaN(undefined); // false ❌
+```
+
+> 🔔 **Note:** While performing `'+'` operation if one of the operand is NaN then the output would be `'NaN'`
+
+<img src = "img\js15.png">
+
+> 💻 Related Code : 
+  [arithmeticOperations.html](Data-types/arithmeticOperations.html)
+### 📊 Country, Locale Code & Currency Code
+
+| Country           | Locale Code | Currency Code | Example Amount (45,000) |
+|------------------|-------------|----------------|--------------------------|
+| United States     | `en-US`     | USD            | 45,000.00                |
+| Germany           | `de-DE`     | EUR            | 45.000,00                |
+| Japan             | `ja-JP`     | JPY            | ￥45,000                 |
+| India             | `en-IN`     | INR            | ₹45,000.00               |
+| United Kingdom    | `en-GB`     | GBP            | £45,000.00               |
+| Canada            | `en-CA`     | CAD            | CA$45,000.00             |
+| Algeria (example) | `ar-DZ`     | DZD            | 45 000,00 DA             |
+
+> 💻 Related Code : 
+  [localeString.html](Data-types/localeString.html)
+
+> 🚀 **Mini Project**: [emi-calculator.html](Data-types/emi-calculator.html)

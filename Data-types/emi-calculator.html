@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EMI Calculator</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7" crossorigin="anonymous">
+    <style type="text/css">
+        
+    </style>
+</head>
+<body>
+    <h1 style="display: flex; justify-content: center; background-color: black; color: white; padding: 5px;">Personal Loan EMI Calculator</h1>
+    <div class="d-flex justify-content-around">
+        <div>
+            <h3 class="d-inline">Amount you need ₹</h3>
+            <input type="text" id="textBox1"> 
+
+            <div class="ms-5 mt-4">
+                <span>₹50,000</span>
+                <input type="range" name="" id="amount" min="50000" max="1000000" onchange="changeAmount()">
+                <span>₹10,00,000</span>
+            </div>
+        </div>
+
+        <div>
+            <h3 class="d-inline">for</h3>
+            <input type="text" class="d-inline w-25" id="textBox2">
+            <h3 class="d-inline">years</h3>
+
+            <div class="ms-5 mt-4">
+                <span>1</span>
+                <input type="range"   min="1" max="5" id="years" onchange="changeYears()" >
+                <span>5</span>
+            </div>
+        </div>
+
+        <div>
+            <h3 class="d-inline">interest-rate</h3>
+            <input type="text" class="d-inline w-25" id="textBox3">
+            <h3 class="d-inline">%</h3>
+
+            <div class="ms-5 mt-4">
+                <span>10.25%</span>
+                <input type="range" name="" id="int" min="10.25" max="18.45" onchange="changeInt()">
+                <span>18.45%</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="float-end">
+        <button class="btn btn-primary m-5" onclick="calculate()">Calculate</button>
+    </div>
+
+    <div class="d-flex justify-content-center" style="margin-top: 200px; visibility: hidden;" id="txt">
+        <h1>Your EMI amount is <span class="text-danger" id="emiAmt"></span> for <span id="timeSpan"></span> months</h1>
+    </div>
+
+    <script type="text/javascript">
+        let p;
+        let t;
+        let r;
+        function changeAmount(){
+            let amt = document.getElementById("amount");
+            p = amt.value;
+            document.getElementById("textBox1").value = p;
+        }
+        function changeYears(){
+            let amt = document.getElementById("years");
+            t = amt.value;
+            document.getElementById("textBox2").value = t;
+        }
+        function changeInt(){
+            let amt = document.getElementById("int");
+            r = amt.value;
+            document.getElementById("textBox3").value = r;
+            
+        }
+        
+        
+        function calculate(){
+            let E = (p * r * Math.pow(1 + r, t)) / (Math.pow(1 + r, t) - 1);
+            document.getElementById("emiAmt").textContent = E.toFixed(2);
+            document.getElementById("timeSpan").textContent = t;
+            document.getElementById("txt").style.visibility = "visible";
+        }
+
+    </script>
+</body>
+</html>

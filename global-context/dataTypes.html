@@ -7,27 +7,35 @@
 </head>
 <body>
     <script type="text/javascript">
+        // Declare a string
         let str = "Shashu";
-        console.log(str);
-        str[2] = 'X';
-        console.log(typeof str);
+        console.log(str);  // Output: "Shashu"
 
+        // Trying to change a character in the string (strings are immutable in JavaScript)
+        str[2] = 'X';  // This will not change the original string
+        console.log(typeof str);  // Output: "string"
+
+        // Primitive data type (number) cannot hold properties
         let myData = 10;
-        myData.id = "Roll_number";
-        console.log(myData);
-        
+        myData.id = "Roll_number";  // This will be ignored because 'myData' is not an object
+        console.log(myData);  // Output: 10
+
+        // Create an object with an initial key-value pair
         let obj = {id : 10};
-        console.log(obj);
+        console.log(obj);  // Output: {id: 10}
 
+        // Add a new property 'name' to the object
         obj.name = "Salaar";
-        console.log(obj);
+        console.log(obj);  // Output: {id: 10, name: "Salaar"}
 
-        obj.id = {country : "KHN", type : "bommaKathi"}
-        console.log(obj);
-        console.log(typeof obj);
+        // Overwrite the 'id' property with a nested object
+        obj.id = {country : "KHN", type : "bommaKathi"};
+        console.log(obj);  // Output: {id: {country: "KHN", type: "bommaKathi"}, name: "Salaar"}
+        console.log(typeof obj);  // Output: "object"
 
+        // Delete the 'id' property from the object
         delete obj.id;
-        console.log(obj);        
+        console.log(obj);  // Output: {name: "Salaar"}
     </script>
 </body>
 </html>
