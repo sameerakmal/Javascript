@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script type="text/javascript">
+        // Function to validate the OTP entered by the user
+        function validateOtp(){
+            // Get the input field by ID
+            const data = document.getElementById("otp");
+
+            // Get the message display area by ID
+            const msg = document.getElementById("msg");
+
+            // Store the value entered in the input field
+            let otpValue = data.value;
+    
+            // Check if the entered OTP matches the correct value
+            if(otpValue === '1234'){
+                // If OTP is correct, set message text to "OTP VALID"
+                // fontcolor, fontsize, bold are old-school HTML methods
+                msg.innerHTML = 'OTP VALID'.fontcolor('green').fontsize(16).bold();
+            }
+            else{
+                // If OTP is incorrect, set message text to "OTP INVALID"
+                msg.textContent = 'OTP INVALID';
+
+                // Apply red color and styling using CSS
+                msg.style.cssText = 'color: red; font-size: 16px; font-family: Brush Script MT;';
+            }
+        }
+    </script>
+
+    <dl>
+        <dt>Enter OTP</dt>
+        <dd>
+            <!-- OTP input field, onblur calls validateOtp when input loses focus -->
+            <input type="text" size="5" id="otp" onblur="validateOtp()">
+        </dd>
+
+        <!-- This <dd> is where the validation message will appear -->
+        <dd id="msg"></dd>
+    </dl>
+</body>
+</html>

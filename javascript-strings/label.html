@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <script type="text/javascript">
+        // Prompt the user to enter their user type (e.g., ADMIN, GUEST, RegularUser)
+        let userType = prompt("Enter the userType", "ADMIN|GUEST|RegularUser");
+
+        // Prompt the user to enter a label name for the input field (e.g., EMAIL, PASSWORD, DATE)
+        let labelName = prompt("Enter the labelName", "EMAIL|PASSWORD|DATE");
+
+        // Prompt the user to specify the type of input (e.g., email, password, date)
+        let type = prompt("Enter the type of input", "EMAIL|DATE|PASSWORD");
+
+        // Prompt the user to enter the text that should appear on the button
+        let btnText = prompt("Enter the button text");
+
+        // Use template literals to create an HTML structure dynamically
+        let template = `
+            <h2>${userType}</h2> <!-- Displays the user type as a heading -->
+            <dl>
+                <dt>${labelName}</dt> <!-- Displays the label name -->
+                <dd>
+                    <input type=${type.toLowerCase()}> <!-- Input field of specified type (converted to lowercase) -->
+                </dd>
+            </dl>
+            <button>${btnText}</button> <!-- Button with user-defined text -->
+        `;
+
+        // Write the generated HTML template to the document
+        document.write(template);
+    </script>
+</head>
+<body>
+</body>
+</html>

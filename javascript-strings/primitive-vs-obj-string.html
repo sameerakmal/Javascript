@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script type="text/javascript">
+        let str1 = 'sachin'; // Primitive string
+
+        let str2 = new String('dhoni'); // String object
+
+        // Calling a method on the primitive string
+        console.log(str1.toUpperCase()); // Internally converts str1 to a String object temporarily
+
+        // Demonstration of how it works internally (not actually how JS does it, but conceptually)
+        // let temp = new String(str1); //(temp is only used for temporary purpose)
+        // temp.toUpperCase(); // Similar internal behavior
+
+        str1.country = 'IND'; // Adding property to a primitive (won't persist)
+        console.log(str1);    // Still just 'sachin'
+
+        // Adding property to a String object (supported)
+        str2.country = 'IND';
+        console.log(str2);    // Shows as object with country property
+
+    </script>
+</body> 
+</html>

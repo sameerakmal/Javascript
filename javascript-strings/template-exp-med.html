@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script type="text/javascript">
+        // Function to collect user input and display a message with age status
+        function doTask() {
+            // Prompt the user to enter their name
+            let userName = prompt("Enter User Name");
+
+            // Prompt the user to enter their age
+            let userAge = prompt("Enter User Age");
+
+            // Display a message using template literals with a ternary operator for "Major"/"Minor"
+            document.write(`Hello ${userName} Your age is ${userAge} and Status ${userAge > 18 ? "Major" : "Minor"} <br>`);
+        }
+
+        // A function that returns a greeting message for a given user
+        function doOneMoreTask(user){
+            return `Hello ${user}`;
+        }
+
+        /**
+         * Tagged template function:
+         * `strings` is an array of string literals from the template.
+         * `value` is the expression inside the `${}` in the template.
+         */
+        function printByHighlighting(strings, value){
+            console.log('call is made'); // just to indicate that the tagged function is called
+            // Return the combined string with <b> tags around the dynamic value
+            return `${strings[0]} <b> ${value} </b> ${strings[1]}`;
+        }
+
+        // Call the function to execute it when the page loads
+        doTask();
+
+        // Display a greeting message for 'Dhoni'
+        document.write(`Greeting MSG : ${doOneMoreTask('Dhoni')} <br>`);
+
+        // Define a variable to be highlighted
+        let name = 'javascript';
+
+        // Use the tagged template function to insert <b> around the dynamic value
+        document.write(printByHighlighting`Learn ${name} from PWIOI`);
+    </script>
+</body>
+</html>

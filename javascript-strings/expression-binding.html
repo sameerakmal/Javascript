@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script type="text/javascript">
+        // Function to prompt user input and display a greeting
+        function doTask() {
+            // Prompt the user to enter their name
+            let userName = prompt("Enter User Name");
+
+            // Prompt the user to enter their age
+            let userAge = prompt("Enter User Age");
+
+            // Display greeting using string concatenation (double quotes)
+            document.write("Hello " + userName + "Your age is " + userAge + "<br>");
+
+            // Display greeting using string concatenation (single quotes)
+            document.write('Hello ' + userName + 'Your age is ' + userAge + '<br>');
+
+            // Display greeting using template literals (recommended for readability)
+            document.write(`Hello ${userName} Your age is ${userAge}`); // expression binding using template syntax
+        }
+
+        // Call the function to execute it when the page loads
+        doTask(); 
+    </script>
+</body>
+</html>

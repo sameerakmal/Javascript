@@ -798,3 +798,77 @@ Number.isNaN(undefined); // false ❌
   [localeString.html](Data-types/localeString.html)
 
 > 🚀 **Mini Project**: [emi-calculator.html](Data-types/emi-calculator.html)
+
+### 📚 String in JavaScript
+
+Strings in JavaScript can be created in **three ways**:
+
+1. `" "` – Double quotes  
+2. `' '` – Single quotes (used internally by the JS engine)  
+3. `` ` ` `` – Backticks (used by developers for **template literals** and string interpolation)
+
+---
+
+> 💻 **Related Code**:  [core-string.html](javascript-strings/core-string.html)
+
+#### 🔍 Primitive vs Object String in JavaScript
+
+- In JavaScript, strings can be created in two ways:
+
+---
+
+##### 1️⃣ **Primitive String**
+
+```js
+let str1 = "sachin";  // Created using string literal
+console.log(typeof str1);  // Output: string
+```
+
+- ✅ Lightweight
+
+- ✅ Faster performance
+
+- ✅ Recommended for most use cases
+
+- ✅ Directly usable in string operations
+
+##### 2️⃣ String Object
+
+```js
+let str2 = new String("dhoni");  // Created using String constructor
+console.log(typeof str2);  // Output: object
+```
+- ❌ Heavier, as it is an object
+
+- ❌ Not recommended for comparisons due to object behavior
+
+- ⚠️ Can lead to unexpected behavior in equality checks
+
+> 💻 **Related Code**:  [core-string.html](javascript-strings/primitive-vs-obj-string.html)
+
+#### 📏 Length of a String
+
+```js
+let str1 = 'sachin';                  // Primitive string
+let str2 = new String('dhoni');       // String object created using String constructor
+
+console.log(str1);                    // Outputs: sachin (primitive)
+console.log(str2);                    // Outputs: [String: 'dhoni'] (String object)
+
+console.log(str1.length);             // Outputs: 6 — length of the primitive string
+console.log(str2.length);             // Outputs: 5 — length of the string inside the String object
+```
+
+#### 🧵 Working with Backticks `` ` ``
+
+- Backticks (`` ` ``) in JavaScript are used to create **template literals**, which allow:
+
+  - **Multi-line strings**
+  - **String interpolation** using `${}`
+
+> 💻 **Related Code**: 
+>> [expression-binding.html](javascript-strings/expression-binding.html) <br>
+>> [template-exp-med.html](javascript-strings/template-exp-med.html) <br>
+>> [label.html](javascript-strings/label.html)
+
+> 🚀 **Mini Project**: [otp-verification.html](javascript-strings/otp-verification.html)
