@@ -844,20 +844,8 @@ console.log(typeof str2);  // Output: object
 
 - ⚠️ Can lead to unexpected behavior in equality checks
 
-> 💻 **Related Code**:  [core-string.html](javascript-strings/primitive-vs-obj-string.html)
+> 💻 **Related Code**:  [primitive-vs-obj-string.html](javascript-strings/primitive-vs-obj-string.html)
 
-#### 📏 Length of a String
-
-```js
-let str1 = 'sachin';                  // Primitive string
-let str2 = new String('dhoni');       // String object created using String constructor
-
-console.log(str1);                    // Outputs: sachin (primitive)
-console.log(str2);                    // Outputs: [String: 'dhoni'] (String object)
-
-console.log(str1.length);             // Outputs: 6 — length of the primitive string
-console.log(str2.length);             // Outputs: 5 — length of the string inside the String object
-```
 
 #### 🧵 Working with Backticks `` ` ``
 
@@ -872,3 +860,130 @@ console.log(str2.length);             // Outputs: 5 — length of the string ins
 >> [label.html](javascript-strings/label.html)
 
 > 🚀 **Mini Project**: [otp-verification.html](javascript-strings/otp-verification.html)
+
+
+## 🔗 Binding in JavaScript
+
+**Binding**  
+- The process of attaching a variable with its value at runtime is referred to as **Binding**.
+
+---
+
+### 🔄 Data Binding
+
+- Binding a variable with a value in output:
+
+  ```js
+  let userName = 'sachin';
+  document.write(`${userName}`);   // Outputs: sachin
+  document.write(`${username}`);   // ReferenceError (case-sensitive)
+  ```
+> 📝 Use `${variableName}` for dynamic content injection with template literals.
+
+### 🎨 Style Binding
+
+**Style Binding**  
+- The process of attaching style-related details in an *inline* manner to an element is referred to as **style binding**.
+
+  ```js
+  // Set a single style property
+  document.getElementById("myDiv").style.color = 'blue';
+
+  // Set multiple styles using cssText
+  document.getElementById("myDiv").style.cssText = 'background-color: yellow; font-size: 20px;';
+  ```
+> 💡 Style binding is useful when you want to dynamically apply styles directly via JavaScript without modifying external CSS.
+
+### 🧩 Class Binding
+
+**Class Binding**  
+- The process of attaching a class associated with a style to an element is referred to as **class binding**.
+
+```js
+// Apply a user-defined or library CSS class to an element
+document.getElementById("myElement").className = 'highlighted';
+```
+
+> 🎯 This is useful for dynamically switching or applying CSS styles using predefined classes from your stylesheet or a UI framework.
+
+### ⚡ What is an Event?
+
+**Event**  
+- Anything that happens on a webpage is referred to as an **event**. Events allow web pages to respond to user interactions or browser actions.
+
+#### 🔥 Common Events:
+
+- `onclick` → Triggered when any element is clicked (e.g., a button).
+- `onchange` → Triggered when the value of an input element is changed by the user.
+- `onblur` → Triggered when an element loses focus.
+- `onload` → Triggered when the page finishes loading in the browser.
+
+> 💡 Events are the backbone of dynamic behavior in web applications.
+
+
+### 🧵 String Formatting Methods in JavaScript
+
+JavaScript provides several built-in string methods to format and style strings for display in HTML.
+
+---
+
+#### 🔠 Common Methods:
+
+| Method             | Description                      | Returns     |
+|--------------------|----------------------------------|-------------|
+| `bold()`           | Makes the text **bold**          | HTML string |
+| `italics()`        | Makes the text *italic*          | HTML string |
+| `fontsize(number)` | Sets the font size               | HTML string |
+| `fontcolor(string)`| Sets the font color              | HTML string |
+| `toUpperCase()`    | Converts string to uppercase     | String      |
+
+---
+
+#### 🧪 Example:
+
+```js
+let str = 'sachin';
+let str1 = str.toUpperCase();            // 'SACHIN'
+let str2 = str1.bold();                  // '<b>SACHIN</b>'
+let str3 = str2.fontcolor('red');        // '<font color="red"><b>SACHIN</b></font>'
+
+document.write(str3);                    // Displays formatted output in red and bold
+```
+
+#### 🔗 Method Chaining:
+```js
+document.write(str.toUpperCase().bold().fontcolor('red'));
+```
+
+> 💡 Method chaining allows applying multiple transformations in a single line.
+
+### ❗ JavaScript Error Types – Comparison Table
+
+| **ReferenceError**                                       | **SyntaxError**                                         | **TypeError**                                  |
+|----------------------------------------------------------|---------------------------------------------------------|-------------------------------------------------|
+| 🔹 Variable is **not defined**                           | 🔹 Variable is already declared using `let` or `const`  | 🔹 Assignment to a constant variable (`const`)  |
+| 🔹 Accessing variable **before initialization** (`let`, `const`) → Temporal Dead Zone (TDZ) |                                                         |                                                 |
+| 🔹 Using a variable that is **not in scope**             |                                                         |                                                 |
+
+#### 📏 Length of a String
+- It counts the number of characters present in a given string.
+```js
+let str1 = 'sachin';                  // Primitive string
+let str2 = new String('dhoni');       // String object created using String constructor
+
+console.log(str1);                    // Outputs: sachin (primitive)
+console.log(str2);                    // Outputs: [String: 'dhoni'] (String object)
+
+console.log(str1.length);             // Outputs: 6 — length of the primitive string
+console.log(str2.length);             // Outputs: 5 — length of the string inside the String object
+
+console.log(str1.length()); //TypeError
+```
+
+> 💻 **Related Code**: 
+>> [upg-otp.html](javascript-strings/upg-otp.html) <br>
+>> [validate-username.html](javascript-strings/validate-username.html) 
+
+> 🚀 **Mini Projects**: 
+>> [change-theme.html](javascript-strings/change-theme.html) <br>
+>>[remaining-chars.html](javascript-strings/remaining-chars.html)

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <!-- Bootstrap CSS for styling -->
+    <link rel="stylesheet" href="/Web dev mastery/node_modules/bootstrap/dist/css/bootstrap.css">
+
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="/Web dev mastery/node_modules/bootstrap-icons/font/bootstrap-icons.css">
+
+    <script type="text/javascript">
+        // Function to change the theme of the login form
+        function changeTheme() {
+            const checkbox = document.getElementById("checkbox");     // Get the theme toggle checkbox
+            const frmLogin = document.getElementById("form-login");   // Get the login form container
+            const loginBtn = document.getElementById("loginBtn");     // Get the login button
+
+            // If checkbox is checked, apply dark theme styles
+            if (checkbox.checked) {
+                frmLogin.className = "w-25 border border-3 rounded p-4 bg-dark text-light";
+                loginBtn.className = "btn btn-light w-100";
+            }
+            // Else, revert to light theme
+            else {
+                frmLogin.className = "w-25 border border-3 rounded p-4 bg-light text-dark";
+                loginBtn.className = "btn btn-dark w-100";
+            }
+        }
+    </script>
+</head>
+<body class="container-fluid d-flex justify-content-center align-items-center" style="height: 100vh;">
+    
+    <!-- Login form container -->
+    <form action="" class="w-25 border border-3 rounded p-4 bg-light text-dark" id="form-login">
+        
+        <!-- Theme toggle switch -->
+        <div class="form-switch">
+            <input type="checkbox" id="checkbox" class="form-check-input" onchange="changeTheme()"> Dark Theme
+        </div>
+
+        <!-- Form title with Bootstrap icon -->
+        <h2><span class="bi bi-person-fill"> User Login</span></h2>
+
+        <!-- Username and Password input fields -->
+        <dl>
+            <dt>User Name</dt>
+            <dd><input type="text" class="form-control"></dd>
+
+            <dt>Password</dt>
+            <dd><input type="password" class="form-control"></dd>
+        </dl>
+
+        <!-- Login button -->
+        <button class="btn btn-dark w-100" id="loginBtn">Login</button>
+    </form>
+</body>
+</html>

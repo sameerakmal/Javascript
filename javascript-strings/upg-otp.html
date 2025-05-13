@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <!-- CSS class for styling valid OTP message -->
+    <style type="text/css">
+        .valid-style {
+            font-family: Algerian;
+            font-size: 16px;
+            color: green;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+    <script type="text/javascript">
+        // Function to validate the OTP entered by the user
+        function validateOtp() {
+            // Get the OTP input element
+            const data = document.getElementById("otp");
+
+            // Get the element where the validation message will be displayed
+            const msg = document.getElementById("msg");
+
+            // Get the entered OTP value
+            let otpValue = data.value;
+    
+            // If the OTP matches '1234', display valid message
+            if (otpValue === '1234') {
+                msg.innerHTML = 'OTP VALID'; // Set message content
+                msg.className = 'valid-style'; // Apply the CSS class for valid OTP
+            } else {
+                // For invalid OTP, show "OTP INVALID" with inline styles
+                msg.textContent = 'OTP INVALID';
+                msg.style.cssText = 'color: red; font-size: 16px; font-family: Brush Script MT;';
+            }
+        }
+
+        // Function to convert the entered username to uppercase when input loses focus
+        function convertToUpperCase() {
+            const user = document.getElementById("userName");
+            user.value = user.value.toUpperCase(); // Convert and update the value
+        }
+    </script>
+
+    <!-- Form-like structure using definition list (dl, dt, dd) -->
+    <dl>
+        <dt>Enter Username</dt>
+        <dd>
+            <!-- Converts username to uppercase on blur (focus lost) -->
+            <input type="text" id="userName" placeholder="ENTER IN UPPERCASE" onblur="convertToUpperCase()">
+        </dd>
+
+        <dt>Enter OTP</dt>
+        <dd>
+            <!-- OTP input field, triggers validation on blur -->
+            <input type="text" size="5" id="otp" onblur="validateOtp()">
+        </dd>
+
+        <!-- Message display area for OTP validation -->
+        <dd id="msg"></dd>
+    </dl>
+
+</body>
+</html>

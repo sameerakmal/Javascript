@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <script type="text/javascript">
+        // Function to validate the user name input
+        function validateUserName() {
+            // Get the input element by its ID
+            const user = document.getElementById("txtUser");
+
+            // Get the element to display validation messages
+            const msg = document.getElementById("error-msg");
+
+            // Calculate the length of the entered username
+            let count = user.value.length;
+
+            // Check if username is empty
+            if (count == 0) {
+                msg.innerHTML = 'Name Required'.fontcolor('red'); // old-school HTML formatting
+            }
+            // Check if username is too short (less than 4 characters)
+            else if (count < 4) {
+                msg.innerHTML = 'Name is too short'.fontcolor('red');
+            }
+            // If input is valid (4 or more characters)
+            else {
+                msg.innerHTML = 'You are doing fine'.fontcolor('green');
+            }
+        }
+    </script>
+</head>
+<body>
+
+    <!-- User input area using <dl> (definition list) -->
+    <dl>
+        <dt>User Name</dt>
+        <dd>
+            <!-- Input field with onkeyup event to validate while typing -->
+            <input type="text" id="txtUser" onkeyup="validateUserName()">
+        </dd>
+
+        <!-- Area to display validation messages -->
+        <dd id="error-msg"></dd>
+    </dl>
+
+</body>
+</html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    
+    <script type="text/javascript">
+        // Function to verify the number of characters typed in the textarea
+        function verifyChars() {
+            // Get the textarea element by ID
+            const comments = document.getElementById("userComments");
+
+            // Get the element to display remaining characters
+            const msg = document.getElementById("msg");
+
+            // Set the maximum number of characters allowed
+            let noOfChars = 20;
+
+            // Get the number of characters typed by the user
+            let typedCharacter = comments.value.length;
+
+            // Update the message to show how many characters are remaining
+            msg.innerHTML = `${noOfChars - typedCharacter} Remaining `.bold().fontcolor('red');
+        }
+    </script>
+</head>
+<body>
+
+    <!-- Container to group the comment section -->
+    <fieldset style="width:250px">
+        <legend>Your comments</legend>
+        
+        <!-- Instruction for the user -->
+        <samp>Note: max 20 characters</samp>
+        <br><br>
+
+        <!-- Textarea input for user comments -->
+        <!-- onkeyup triggers verifyChars() as user types -->
+        <!-- maxlength limits the characters to 20 -->
+        <!-- autofocus puts cursor in this field when page loads -->
+        <textarea id="userComments" rows="4" cols="20" onkeyup="verifyChars()" maxlength="20" autofocus></textarea>
+        
+        <!-- Paragraph to display remaining character count -->
+        <p id="msg"></p>
+    </fieldset>
+
+</body>
+</html>
