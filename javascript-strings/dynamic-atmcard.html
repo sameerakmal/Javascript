@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Card & Email Validator</title>
+
+    <!-- Bootstrap for styling (optional) -->
+    <link rel="stylesheet" href="/Web dev mastery/node_modules/bootstrap/dist/css/bootstrap.css">
+    <link rel="stylesheet" href="/Web dev mastery/node_modules/bootstrap-icons/font/bootstrap-icons.css">
+
+    <script type="text/javascript">
+        // Function to detect card type
+        function verifyCard() {
+            const cardNum = document.getElementById("cardNum");  // Get card number input
+            const img = document.getElementById("photo");         // Image element to display logo
+
+            // Visa cards start with '4'
+            if (cardNum.value.startsWith('4')) {
+                img.src = '../javascript-strings/img/visa.png'; // Load Visa image
+            } else {
+                img.src = '../javascript-strings/img/mastercard.png'; // Load Mastercard image
+            }
+        }
+
+        // Function to verify if email ends with "@gmail.com"
+        function verifyemail() {
+            const mail = document.getElementById("txtEmail");     // Get email input
+            const errormsg = document.getElementById("gmailError"); // Error display element
+
+            if (mail.value.endsWith("@gmail.com")) {
+                errormsg.innerHTML = ''; // Valid Gmail address
+            } else {
+                errormsg.innerHTML = 'Only Gmail is allowed'.fontcolor('red'); // Show error
+            }
+        }
+    </script>
+</head>
+<body class="p-4">
+
+    <h3>Your Card Number</h3>
+    <div class="input-group mb-3">
+        <input type="text" id="cardNum" class="form-control" placeholder="Enter card number" onblur="verifyCard()">
+        <img width="40" height="40" id="photo" alt="Card Type">
+    </div>
+
+    <h3>Your Gmail Account</h3>
+    <div class="mb-3">
+        <input type="text" id="txtEmail" class="form-control" placeholder="Enter Gmail address" onblur="verifyemail()">
+        <h5 id="gmailError"></h5>
+    </div>
+
+</body>
+</html>

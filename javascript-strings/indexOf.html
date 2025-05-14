@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <script type="text/javascript">
+        // Function to verify email format and ensure it's a Gmail address
+        function verifyEmail() {
+            const mail = document.getElementById("txtEmail");  // Get the email input field
+            const msg = document.getElementById("errormsg");   // Get the element to show error message
+
+            let flag = mail.value.indexOf('@');  // Check if '@' exists in the email
+
+            if(flag == -1){
+                // If '@' is not found, it's an invalid email
+                msg.innerHTML = 'Invalid Email'.fontcolor('red');
+            }
+            else{
+                // Check if email ends with '@gmail.com'
+                flag = mail.value.endsWith('@gmail.com');
+                if(flag){
+                    msg.innerHTML = ''; // Clear message if it's a valid Gmail
+                }
+                else{
+                    // Show error if it's not a Gmail address
+                    msg.innerHTML = 'Only Gmail is allowed'.fontcolor('red');
+                }
+            }
+        }
+    </script>
+</head>
+<body>
+    <!-- Input field to accept Gmail and show validation message -->
+    <dl>
+        <dt>Gmail</dt>
+        <dd><input type="text" name="" id="txtEmail" onblur="verifyEmail()"></dd>
+        <dd id="errormsg"></dd> <!-- Error message will be displayed here -->
+    </dl>
+</body>
+</html>

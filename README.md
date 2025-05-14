@@ -987,3 +987,143 @@ console.log(str1.length()); //TypeError
 > 🚀 **Mini Projects**: 
 >> [change-theme.html](javascript-strings/change-theme.html) <br>
 >>[remaining-chars.html](javascript-strings/remaining-chars.html)
+
+### 📚 String Methods in JavaScript
+
+| **Method**           | **Returns** | **Description**                                  |
+|----------------------|-------------|--------------------------------------------------|
+| `length`             | `number`    | Returns the number of characters in a string     |
+| `startsWith(string)` | `boolean`   | Checks if the string starts with the given value |
+| `endsWith(string)`   | `boolean`   | Checks if the string ends with the given value   |
+
+---
+
+#### 1️⃣ `startsWith()`
+
+```js
+let str = 'IPL2025';
+console.log(str.startsWith('IPL')); // true
+
+let str = 'IPL2025';
+console.log(str.startsWith('ipl')); // false (case-sensitive)
+```
+#### 2️⃣ `endsWith()`
+
+```js
+let str = 'sachin@gmail.com';
+console.log(str.endsWith('@gmail.com')); // true
+
+let str = 'sachin@gmail.com';
+console.log(str.endsWith('@yahoo.com')); // false
+```
+
+> 💻 **Related Code**: 
+> [dynamic-atmcard.html](javascript-strings/dynamic-atmcard.html)
+
+### 🔡 `charAt()` and `charCodeAt()` in JavaScript
+
+| **Method**             | **Returns**        | **Description**                                    |
+|------------------------|--------------------|----------------------------------------------------|
+| `charAt(index)`        | `string` (1 char)  | Returns the character at the specified index       |
+| `charCodeAt(index)`    | `number` (ASCII)   | Returns the UTF-16 code of the character at index  |
+
+---
+
+#### 🔢 ASCII Reference (for alphabets)
+
+- `a` to `z` → ASCII **97 to 122**
+- `A` to `Z` → ASCII **65 to 90**
+
+---
+
+  ```js
+  let str = 'sachin';
+
+  console.log(str.charAt(0));       // Output: 's'
+  console.log(str.charCodeAt(0));   // Output: 115
+  ```
+> 💻 **Related Code**: 
+> [username-uppercase.html](javascript-strings/username-uppercase.html)
+
+#### 🔍 indexOf(string): number
+
+- ✅ If the specified string is present, it returns the index of that character.
+- ❌ Otherwise, it returns `-1`.
+
+  ```js
+  let str = 'javascript';
+
+  console.log(str.indexOf('script')); // 4
+  console.log(str.indexOf('Java'));   // -1 (case-sensitive)
+  ```
+> 💻 **Related Code**: 
+> [indexOf.html](javascript-strings/indexOf.html)
+
+#### ✂️ slice(starting, ending)
+
+- `slice()` is used to extract the characters between the specified indices.
+
+  ```js
+  slice(start, end)  // Returns characters between start and end [end-1]
+  ```
+- Rule: Forward direction extraction. The end index must be greater than the start index.
+Parameters.
+  ```js
+  slice(start)  // Returns from start to the end
+  ```
+
+#### 📋 Parameters:
+
+- **startIndex** (required): The position where extraction begins (inclusive).  
+  If negative, it is treated as `array.length + startIndex`.
+
+- **endIndex** (optional): The position where extraction stops (exclusive).  
+  If omitted, it extracts till the end.  
+  If negative, it is treated as `array.length + endIndex`.
+
+---
+
+> 🔔 Note on `slice(start, end)`:
+> - `NaN` → `0`
+> - `null` → `0`
+> - `undefined` → No parameter
+> - `true` → `1`
+> - `false` → `0`
+
+> 💻 **Related Code**: 
+> [slice.js](javascript-strings/slice.js)
+
+### 📖 substring()
+
+- `substring()` is used to read the characters between the given index range.
+
+  ```js
+  substring(startIndex, endIndex)  // endIndex can be -ve or +ve
+  substring(startIndex)            // Returns from startIndex to endIndex-1
+  ```
+  ```js
+  str.substring(7);     // From index 7 till the end of the string
+  str.substring(7, 15); // From index 7 till index 14 of the string
+  str.substring(7, 0);  // From index 0 till index 6 of the string
+  ```
+#### 📋 Parameters:
+- **startIndex** (required): The index where extraction begins (inclusive).
+- **endIndex** (optional): The index where extraction stops (exclusive).  
+  If omitted, the substring extends to the end of the string.
+
+---
+
+#### 🔑 Key Points:
+- If `startIndex` is greater than `endIndex`, they are swapped.
+- If `startIndex` or `endIndex` is negative or `NaN`, they are treated as `0`.
+- If `endIndex` is omitted, it extracts up to the end of the string.
+
+
+### ✂️ `slice()` vs `substring()` in JavaScript
+
+| **Feature**                         | **`slice()`**                     | **`substring()`**                  |
+|------------------------------------|----------------------------------|------------------------------------|
+| Supports negative indices?         | ✅ Yes                            | ❌ No (negative values treated as 0) |
+| Swaps indices if `start > end`?    | ❌ No                             | ✅ Yes                              |
+| Takes length instead of end index? | ❌ No                             | ❌ No                               |
+| Recommended for use?               | ✅ Yes                            | ✅ Yes                              |

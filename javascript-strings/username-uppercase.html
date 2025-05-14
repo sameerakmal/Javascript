@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <script type="text/javascript">
+        // Function to verify that the username starts with an uppercase letter
+        function verifyCase(){
+            const user = document.getElementById("txtUser");    // Input field for username
+            const msg = document.getElementById("errormsg");    // Element to display error message
+
+            // Check if the first character's ASCII code is between 65 and 90 (i.e., uppercase A-Z)
+            let flag = user.value.charCodeAt(0) >= 65 && user.value.charCodeAt(0) <= 90;
+
+            if(flag){
+                msg.innerHTML = ''; // Clear message if condition is satisfied
+            }
+            else{
+                // Show error message with styling if first character is not uppercase
+                msg.innerHTML = 'Username must start with uppercase';
+                msg.style.cssText = 'font-size : 16px; font-weight : bold; color : red; font-family : Algerian';
+            }
+        }
+    </script>
+</head>
+<body>
+    <!-- User input and error message display -->
+    <dl>
+        <dt>Username</dt>
+        <dd><input type="text" name="" id="txtUser" onblur="verifyCase()"></dd>
+        <dd id="errormsg">
+        </dd>
+    </dl>
+</body>
+</html>
