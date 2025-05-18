@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script type="text/javascript">
+        // Function to verify if the username starts with an uppercase letter
+        function verifyCase(){
+            const username =  document.getElementById("txtUsername"); // Get the input element
+            const msg = document.getElementById("error-msg"); // Get the element to display error message
+
+            // Check if the first character's ASCII code is in the range of uppercase letters
+            let flag = username.value.charCodeAt(0) >= 65 && username.value.charCodeAt(0) <= 90;
+
+            if (flag) {
+                // If valid, clear any error message
+                msg.innerHTML = '';
+            } else {
+                // If invalid, show styled error message
+                msg.innerHTML = 'Must start with UpperCase';
+                msg.style.cssText = 'font-size: 16px; font-weight: bold; color:red; font-family:Algerian';
+            }
+        }
+    </script>
+</head>
+<body>
+    <!-- Input field for Username with validation on blur (when focus leaves the input) -->
+    <dl>
+        <dt>Username</dt>
+        <dd>
+            <input type="text" name="" id="txtUsername" onblur="verifyCase()">
+        </dd>
+        <dd id="error-msg">
+            <!-- Error message will be shown here -->
+        </dd>
+    </dl>
+</body>
+</html>

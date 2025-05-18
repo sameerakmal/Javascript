@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- Placeholder for displaying username and domain -->
+    <p id="msg"></p>
+    
+    <script type="text/javascript">
+        // Prompt user to enter an email (default is 'salaar@gmail.com')
+        let str = prompt('Enter the email', 'salaar@gmail.com');
+
+        // Reference to the paragraph where result will be shown
+        const msg = document.getElementById('msg');
+
+        // Extract username: substring from start to the '@' symbol
+        let username = str.substring(0, str.indexOf('@'));
+
+        // Extract domain: substring from just after '@' till the end
+        let domain = str.substring(str.indexOf('@') + 1);
+
+        // Display the result using innerHTML and template literals
+        msg.innerHTML = `<b> Username is ${username} </b> <br> <b> Domain name is ${domain} </b> `;
+
+        // Apply font and color style to the message
+        msg.style.cssText = 'font-family : Algerian; color : red';
+    </script>
+</body>
+</html>

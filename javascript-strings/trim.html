@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script type="text/javascript">
+        // Function to add a new name to the list
+        function addNames(){
+            const userName = document.getElementById('txtUserName'); // Input field
+            const ul = document.getElementById('listItem'); // UL element to add list items
+
+            let li = document.createElement('li'); // Create new list item
+            li.textContent = userName.value; // Set text to user input
+            ul.appendChild(li); // Append to list
+
+            // Reset input field and focus again
+            userName.value = '';
+            userName.focus();
+
+            // Enable/Disable buttons accordingly
+            document.getElementById('addItem').disabled = true;
+            document.getElementById('removeChild').disabled = false;
+            document.getElementById('resetList').disabled = false;
+        }
+
+        // Function to reset the entire list
+        function resetList() {
+            const userName = document.getElementById('txtUserName');
+            const ul = document.getElementById('listItem');
+
+            ul.innerHTML = ''; // Clear all list items
+            userName.value = '';
+            userName.focus();
+
+            // Disable reset button as list is now empty
+            document.getElementById('resetList').disabled = true;
+        }
+
+        // Function to enable the 'Add to list' button on input
+        function toggleButton(){
+            document.getElementById('addItem').disabled = false;
+        }
+
+        // Function to remove the last list item
+        function deleteChild(){
+            const ul = document.getElementById('listItem');
+
+            if(ul.lastChild){
+                ul.removeChild(ul.lastElementChild); // Remove last item
+            }
+
+            // Disable buttons if list becomes empty
+            if(ul.childElementCount == 0){
+                document.getElementById('removeChild').disabled = true;
+                document.getElementById('resetList').disabled = true;
+            }
+        }
+    </script>
+</head>
+<body>
+    <!-- Input field with oninput to enable Add button -->
+    <input type="text" name="" id="txtUserName" placeholder="Enter the name" oninput="toggleButton()">
+
+    <!-- Action buttons -->
+    <button onclick="addNames()" id="addItem" disabled>Add to list</button>
+    <button onclick="deleteChild()" id="removeChild" disabled>Remove Element</button>
+    <button onclick="resetList()" id="resetList" disabled>Reset list</button>
+
+    <!-- Unordered list to hold user names -->
+    <ul id="listItem"></ul>
+</body>
+</html>

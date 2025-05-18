@@ -1127,3 +1127,88 @@ Parameters.
 | Swaps indices if `start > end`?    | ❌ No                             | ✅ Yes                              |
 | Takes length instead of end index? | ❌ No                             | ❌ No                               |
 | Recommended for use?               | ✅ Yes                            | ✅ Yes                              |
+
+#### 🧰 Methods of String Object
+===============================
+
+- 🔠 **toUpperCase()** → `string`  
+- 🔍 **startsWith(string)** → `boolean`  
+- 🔚 **endsWith(string)** → `boolean`  
+- 🔡 **charAt(number)** → `string`  
+- 🔢 **charCodeAt(number)** → `number`  
+- 📍 **indexOf(string)** → `number`  
+  - `-1` if not found, otherwise returns the index  
+- ✂️ **slice([start], [end])** → `string`  
+- 🧵 **substring([start], [end])** → `string`  
+
+> 💻 **Related Code**: 
+> [substring-indexOf.html](javascript-strings/substring-indexOf.html)
+
+
+### 🔗 split()
+
+- Used to split the given string based on a delimiter  
+- Accepts two arguments:
+  - 🧵 `string` or `RegEx`: delimiter  
+  - 🔢 `number`: limit (optional)
+
+**Syntax:**  
+```js
+split(delimiter, limit) → string[]
+```
+
+### ⚠️ Corner Cases for `split()`
+
+| Expression                           | Output                 |
+|--------------------------------------|------------------------|
+| `''.split()`                         | `['']`                |
+| `''.split('')`                       | `[]`                  |
+| `'hello user'.split()`               | `['hello user']`      |
+| `'hello user'.split(undefined)`      | `['hello user']`      |
+| `'hello user'.split(null)`           | `['hello user']`      |
+| `'hello user'.split('', 0)`          | `[]`                  |
+| `'P,W,,'.split(',')`                 | `['P', 'W', '', '']`  |
+| `'P,W,'.split(',')`                  | `['P', 'W', '']`      |
+
+> 💻 **Related Code**: 
+>> [split.js](javascript-strings/split.js) <br>
+>> [split.html](javascript-strings/split.html)
+
+### ✂️ `trim()` Method
+
+Removes **leading** and **trailing** spaces from a string.
+
+---
+
+```js
+let str = '   sachin ramesh tendulkar  ';
+console.log(str, str.length);
+// Output: '   sachin ramesh tendulkar  ' 28
+
+console.log(str.length, str.trim(), str.trim().length);
+// Output: 28 'sachin ramesh tendulkar' 23
+```
+> 🔔 **Note:**  
+In JavaScript, you can use conditional statements on methods or properties that return `object` or `null`.
+This works because JavaScript **implicitly** checks the condition like:
+```js
+if (someOutput != null) {
+  // ✅ Truthy case
+} else {
+  // ❌ Falsy case
+}
+```
+```js
+let str = ''.someMethod(input); // returns Object or null
+
+if (str) {
+  // Equivalent to: if (str != null)
+  // ✅ process for true case
+} else {
+  // ❌ process for false case
+}
+```
+
+> 💻 **Related Code**: 
+>> [trim.html](javascript-strings/trim.html)  <br>
+>> [verifyCase.html](javascript-strings/verifyCase.html)

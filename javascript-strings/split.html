@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script type="text/javascript">
+        // Original string with navigation items separated by '|'
+        let details = 'HOME|ABOUT US|CONTACT US|cart|Pages';
+
+        // Split the string into an array using '|' as the delimiter
+        let items = details.split('|');
+
+        // Create a <ul> element to hold the list items
+        let ul = document.createElement('ul');
+
+        // Arrow function to convert each item to uppercase and add to <ul> as <li>
+        let output = item => {
+            let li = document.createElement('li');      // Create a new list item
+            li.textContent = item.toUpperCase();        // Convert to uppercase
+            ul.appendChild(li);                         // Append <li> to <ul>
+        }
+        
+        // let output = function(item){
+        //     let li = document.createElement('li');
+        //     li.textContent = item.toUpperCase();
+        //     ul.appendChild(li);
+        // }
+
+        // Loop through each item and call the output function
+        items.forEach(output);
+
+        // Append the entire <ul> to the document body
+        document.body.appendChild(ul);
+    </script>
+</body>
+</html>
