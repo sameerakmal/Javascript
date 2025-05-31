@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <input type="checkbox" name="" id="checkBox" onchange="enable()"> ENABLE | DISABLE
+
+    <dl>
+        <dt>Username</dt>
+        <dd>
+            <input type="text" name="" id="txtUsername">
+        </dd>
+    </dl>
+    <p id="msg"></p>
+
+    <script type="text/javascript">
+        function enable() {
+            const user = document.getElementById('txtUsername');
+            const checkbox = document.getElementById('checkBox');
+            const msg = document.getElementById('msg');
+    
+            if(checkbox.checked){
+                user.disabled = true;
+                msg.innerHTML = `The input string is : ${user.value}`;
+            }
+            else{
+                user.disabled = false;
+                msg.innerHTML = '';
+            }
+        }
+    </script>
+</body>
+</html>

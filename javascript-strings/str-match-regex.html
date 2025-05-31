@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/Web dev mastery/node_modules/bootstrap/dist/css/bootstrap.css">
+    
+    <link rel="stylesheet" href="/Web dev mastery/node_modules/bootstrap-icons/font/bootstrap-icons.css">
+</head>
+<body>
+    <dl>
+        <dt>Username</dt>
+        <dd><input type="text" name="" id="txtUsername" onblur="matchCase()"></dd>
+        <dd id="error-msg"></dd>
+    </dl>
+
+    <script type="text/javascript">
+        function matchCase() {
+            const pwd = document.getElementById('txtUsername');
+            const msg = document.getElementById('error-msg');
+    
+            if(pwd.value.length < 4){
+                msg.innerHTML = '<span class = "bi bi-star-fill"></span>' ;
+            } 
+            else{
+                let regEx = /^(?=.*[A-Z])\w{4,16}$/;
+                if(pwd.value.match(regEx)){
+                    msg.innerHTML = '<span class = "bi bi-star-fill"></span><span class = "bi bi-star-fill"></span><span class = "bi bi-star-fill"></span><span class = "bi bi-star-fill"></span><span class = "bi bi-star-fill"></span>' ;
+
+                }
+                else{
+                    msg.innerHTML = '<span class = "bi bi-star-fill"></span><span class = "bi bi-star-fill"></span><span class = "bi bi-star-fill"></span>';
+                }
+            } 
+        }
+    </script>
+</body>
+</html>

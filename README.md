@@ -1212,3 +1212,16 @@ if (str) {
 > 💻 **Related Code**: 
 >> [trim.html](javascript-strings/trim.html)  <br>
 >> [verifyCase.html](javascript-strings/verifyCase.html)
+
+match
+//regex  .js
+//str-match-regex.html
+
+boolean
+//enable-disable.html  
+
+how it workd with '+' oper
+
+//ternary.html
+
+FAQs

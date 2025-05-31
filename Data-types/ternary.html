@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/Web dev mastery/node_modules/bootstrap/dist/css/bootstrap.css">
+    
+    <link rel="stylesheet" href="/Web dev mastery/node_modules/bootstrap-icons/font/bootstrap-icons.css">
+    <script type="text/javascript">
+        function toggleButton() {
+            const btn = document.getElementById('alp-but');
+            btn.className = btn.className == 'bi bi-sort-alpha-down' ? 'bi bi-sort-alpha-up' : 'bi bi-sort-alpha-down';
+        }
+        function changeStatus() {
+            const checkBox = document.getElementById("stockCheckBox");
+            const msg = document.getElementById('msg');
+            msg.textContent = checkBox.checked ? 'In Stock' : 'Out of Stock';
+        }
+        function showImg() {
+            const btn = document.getElementById("changeBtn");
+            const img = document.getElementById('poster');
+            btn.textContent = btn.textContent == 'Show' ? 'Hide' : 'Show';
+            img.style.display = img.style.display == 'none' ? 'block' : 'none';     
+        }
+    </script>
+</head>
+<body>
+    <button class="bi bi-sort-alpha-down" id="alp-but" onclick="toggleButton()"></button>
+    <div style="margin-top: 15px;">
+        <input type="checkbox" name="" id="stockCheckBox" onchange="changeStatus()">
+        <span id="msg">Out of stock</span>
+    </div>
+
+    <div style="margin-top: 15px;">
+        <button onclick="showImg()" id="changeBtn">Show</button> <br>
+        <img src="../img/salaar-movie-poster-prabhas-mj3j7sa8kxeq96qr.webp" alt="" width="200px" id="poster" style="display: none;">
+    </div>
+</body>
+</html>
