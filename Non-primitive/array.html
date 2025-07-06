@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <script type="text/javascript">
+        // Creating a mixed-type array (number, string, float, boolean, array, function)
+        let arr = [10, 'sachin', 53.4, true, ['MI', 'IND'], function() { console.log("God of Cricket"); }];
+        
+        console.log(arr);          // Logs the entire array
+        console.log(arr[5]);       // Logs the function
+        console.log(arr[4]);       // Logs the array ['MI', 'IND']
+        console.log(arr[4][1]);    // Logs 'IND' - second element of the nested array
+
+        arr[5](); // Invokes the function stored in index 5 (IIFE-like behavior)
+
+        // Another array with different values
+        let arr1 = [18, 'kohli', 55.4, true];
+        
+        console.log(arr1);         // Logs the entire arr1
+        console.log(arr1[0]);      // Logs 18
+        console.log(arr[-5]);      // Undefined (negative index not valid in JS arrays)
+        console.log(arr1[5]);      // Undefined (index out of range)
+
+        // Looping with traditional for loop
+        console.log("Reading from for loop");
+        for (let i = 0; i < arr1.length; i++) {
+            console.log(arr1[i]);  // Logs each value in arr1
+        }
+
+        // Looping with for...in (iterates over index keys)
+        console.log("Using for..in loop");
+        for (const property in arr1) {
+            console.log(`[${property}]  ${typeof property} : ${arr1[property]} ${typeof arr1[property]}`);
+            // Logs index, type of index (string), value at index, and type of value
+        }
+
+        // Adding a new element at index 5 (array of team names)
+        arr1[5] = ['RCB', 'IND'];
+        console.log(arr1);         // Now arr1 has a new 6th element
+        console.log(arr1[4]);      // Still undefined (nothing explicitly stored at index 4)
+
+        // New array of team names
+        let arr2 = ['RCB', 'GT', 'MI', 'Punjab', 'CSK'];
+        
+        console.log("using for...of loop");
+        // Looping with for...of (iterates over values directly)
+        for (const element of arr2) {
+            console.log(element);  // Logs each team name
+        }
+    </script>
+
+</head>
+<body>
+    
+</body>
+</html>

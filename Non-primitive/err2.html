@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // Log to indicate the start of the program
+        console.log("program started the execution");
+
+        try {
+            // Invalid JSON: key 'name' is not quoted
+            let json = '{name: "Sachin", "age":51}';
+            let user = JSON.parse(json);  // Will throw a SyntaxError
+            console.log(user.name);       // This line will not be reached
+        } catch (err) {
+            // Catch block handles JSON parse errors
+            console.log("Parsing error:", err.name); // SyntaxError
+        } finally {
+            // Will always run
+            console.log("Execution completed");
+        }
+
+        // This line runs regardless of the error
+        console.log("Graceful termination");
+    </script>
+
+    <!-- 
+    Output in Console:
+    -------------------
+    program started the execution
+    Parsing error: SyntaxError
+    Execution completed
+    Graceful termination
+    -->
+
+</body>
+
+</html>

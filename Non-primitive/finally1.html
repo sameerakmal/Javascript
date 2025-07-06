@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Try-Catch-Finally Example</title>
+</head>
+
+<body>
+
+    <script type="text/javascript">
+        try {
+            // Code that might throw an exception
+            console.log("Connecting to database");
+        } catch (error) {
+            // This block is skipped because no error occurs above
+            console.log("Problem of connection is resolved");
+        } finally {
+            // This block always executes regardless of exception
+            console.log("Resource releasing logic");
+        }
+
+        // Note:
+        // In JavaScript, all exceptions are 'Unchecked Exceptions'.
+        // This means you are not forced to handle them with try-catch.
+    </script>
+
+    <!-- 
+    Output in Console:
+    -------------------
+    Connecting to database
+    Resource releasing logic
+
+    Note: All the exceptions in JavaScript belong to 'UncheckedExceptions'
+    -->
+
+</body>
+
+</html>

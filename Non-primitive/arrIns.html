@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    // 🔹 Insert Operation in Arrays
+    // Original array
+    let arr = ['sachin', 'saurav', 'viru', 'yuvi'];
+    console.log(arr); // ['sachin', 'saurav', 'viru', 'yuvi']
+
+    // 🔸 Rear-End Insertion using push()
+    arr.push('kohli', 'dhoni'); // Adds to the end
+    console.log(arr); // ['sachin', ..., 'kohli', 'dhoni']
+
+    // 🔸 Front-End Insertion using unshift()
+    arr.unshift('Gavaskar', 'KapilDev'); // Adds to the start
+    console.log(arr); // ['Gavaskar', 'KapilDev', ..., 'dhoni']
+
+    console.log("***************************************");
+
+    // 🔹 Insertion at a Specific Position using splice()
+    let teamNames = ['RCB', 'Punjab', 'MI', 'CSK', 'GT', 'LSG', 'RR'];
+    console.log("Before Adding:", teamNames);
+
+    // splice(startIndex, deleteCount, items to add...)
+    // 🔸 Replaces 1 item at index 3 ('CSK') with 3 new teams
+    teamNames.splice(3, 1, 'SRH', 'KKR', 'DC');
+
+    console.log("After Adding:", teamNames);
+    // ['RCB', 'Punjab', 'MI', 'SRH', 'KKR', 'DC', 'GT', 'LSG', 'RR']
+  </script>
+</body>
+</html>

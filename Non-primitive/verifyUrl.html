@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script type="text/javascript"> 
+            // Function to verify the given URL and respond accordingly.
+            // Takes 3 arguments:
+            // - URL (string): the input URL to validate
+            // - success (function): called when the URL is correct
+            // - failure (function): called when the URL is incorrect
+        function verifyURL(URL, success, failure) {
+            if (URL === 'http://fakestoreapi.com/products') {
+                // Correct URL: call success with response object
+                success({ 'Status': "Resource Found", 'StatusCode': 200, "Data": ['Electronics', 'MensCloting', 'Mobiles'] });
+            } else {
+                // Incorrect URL: call failure with error response
+                failure({ 'Status': "Resource Not Found", 'StatusCode': 404 });
+            }
+        }
+
+            // Prompt the user to enter a URL, and call verifyURL.
+            // The second argument is the success callback function.
+            // The third argument is the failure callback function.
+        verifyURL(prompt("Enter the URL"), 
+            function (response) {
+                // If URL is valid, display success message
+                document.write(`<h2 style='color:green;'> Response Successful </h2>`);
+
+                // Create a list to show response data
+                const ul = document.createElement("ul");
+                response.Data.forEach((element) => {
+                    let li = document.createElement("li");
+                    li.textContent = element;
+                    ul.appendChild(li);
+                });
+                document.body.appendChild(ul);
+            }, 
+            function () {
+                // If URL is invalid, display failure message
+                document.write(`<h2 style='color:red;'> Response Failed </h2>`);
+            }
+        );
+    </script>
+</body>
+
+</html>

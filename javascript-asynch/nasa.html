@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mars Rover Photos</title>
+
+    <script type="text/javascript">
+        // Function to load Mars Rover data using NASA's public API
+        async function loadData() {
+            try {
+                // API URL to fetch photos taken by Curiosity rover on sol (Martian day) 1000
+                const URL = "https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?sol=1000&api_key=DEMO_KEY";
+
+                // Fetching data from the API (returns a Promise)
+                let response = await fetch(URL);
+
+                // Converting the response into JSON format
+                let data = await response.json();
+
+                // Logging the entire response to console for inspection
+                console.log(data);
+
+                // Loop through each photo object in the array
+                data.photos.forEach((details) => {
+                    // Create a table row for each photo
+                    let tr = document.createElement("tr");
+
+                    // Create table cells (td) for each detail we want to show
+                    let tdId = document.createElement("td");
+                    let tdPreview = document.createElement("td");
+                    let tdCameraName = document.createElement("td");
+                    let tdRoverName = document.createElement("td");
+
+                    // Assign values to each cell
+                    tdId.textContent = details.id; // photo ID
+                    tdPreview.innerHTML = `<img src='${details.img_src}' width='100' height='50'>`; // preview image
+                    tdCameraName.textContent = details.camera.name; // name of the camera used
+                    tdRoverName.textContent = details.rover.name;   // name of the rover
+
+                    // Append cells to the row
+                    tr.appendChild(tdId);
+                    tr.appendChild(tdPreview);
+                    tr.appendChild(tdCameraName);
+                    tr.appendChild(tdRoverName);
+
+                    // Append the row to the table body
+                    document.querySelector("tbody").appendChild(tr);
+                });
+
+            } catch (error) {
+                // If there's an error during fetch or parsing, it will be caught here
+                console.log("API ERROR : ", error);
+            }
+        }
+    </script>
+</head>
+
+<body onload="loadData()"> <!-- Automatically calls loadData when page loads -->
+    <h2 align="center">NASA Mars Rover Photo Gallery</h2>
+
+    <table border="1" width="100%" cellspacing="5" cellpadding="5">
+        <thead>
+            <tr>
+                <th>Photo ID</th>
+                <th>Preview</th>
+                <th>Camera Name</th>
+                <th>Rover Name</th>
+            </tr>
+        </thead>
+        <tbody align="center">
+            <!-- Rows will be added here dynamically by JavaScript -->
+        </tbody>
+    </table>
+</body>
+
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Custom Error Handling</title>
+</head>
+
+<body>
+
+    <script>
+        // Custom error class for divide by zero
+        class DivideByZeroError extends Error {
+            constructor(msg) {
+                super(msg); // Call the parent class constructor
+                this.name = "DivideByZeroError"; // Optional: set custom error name
+            }
+        }
+
+        // Function to divide two numbers
+        function divide(a, b) {
+            if (b === 0) {
+                // Throw custom error if divisor is zero
+                throw new DivideByZeroError("Can't divide by Zero");
+            }
+            // If valid division, print result
+            console.log("result is : ", (a / b));
+        }
+
+        try {
+            divide(10, 0); // This will throw an error
+        } catch (error) {
+            // Catch and print the error message
+            console.log("Cause of Exception is : ", error.message);
+        }
+    </script>
+
+    <!-- 
+    Output in Console:
+    -------------------
+    Cause of Exception is :  Can't divide by Zero
+    -->
+
+</body>
+
+</html>

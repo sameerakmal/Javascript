@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Async/Await Example</title>
+</head>
+
+<body>
+    <script>
+
+        // Function that returns a Promise to simulate food preparation
+        function prepareFood() {
+            return new Promise(function (resolve, reject) {
+                let isCookAvailable = false; // Toggle this to true to simulate success
+
+                // Simulate cooking delay with setTimeout (asynchronous)
+                setTimeout(function () {
+                    if (isCookAvailable) {
+                        resolve("🍽️ Food is ready..."); // Resolve when cook is available
+                    } else {
+                        reject("🧑‍🍳 Chef is not available..."); // Reject when cook is not available
+                    }
+                }, 2000); // 2 second delay to simulate preparation time
+            });
+        }
+
+        // Async function that uses await to handle the asynchronous prepareFood()
+        async function serveCustomer() {
+            try {
+                console.log("Order taken from customer"); // L-1: Executes immediately
+
+                // Await pauses execution here until prepareFood() resolves or rejects
+                let msg = await prepareFood(); // L-2
+
+                // If resolved, control comes here
+                console.log("Status is:", msg);
+            } catch (error) {
+                // If rejected, control jumps here
+                console.log("Error status is:", error);
+            }
+        }
+
+        // Start the asynchronous operation
+        serveCustomer(); // Kicks off the async flow (runs in the background)
+
+        console.log("Waiter served the customer with water..."); // L-3: Runs immediately after serveCustomer() starts
+
+    </script>
+</body>
+
+</html>

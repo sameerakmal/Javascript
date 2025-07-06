@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Promise Example</title>
+</head>
+
+<body>
+    <script type="text/javascript">
+
+        // Synchronous log: runs immediately
+        console.log("Order taken from customer");
+
+        // Creating a Promise to simulate asynchronous cooking process
+        let action = new Promise(function (resolve, reject) {
+            // Simulating whether the chef is available or not
+            let isCookAvailable = false;
+
+            // Delaying the result using setTimeout (asynchronous delay)
+            setTimeout(function () {
+                // If cook is available, resolve the Promise
+                if (isCookAvailable) {
+                    resolve("🍽️ Food is ready...");
+                } else {
+                    // Otherwise, reject the Promise
+                    reject("🧑‍🍳 Chef is not available...");
+                }
+            }, 10000); // 10 second delay to simulate cooking
+        });
+
+        // Handling the Promise result (success or failure)
+        action
+            .then(function (msg) {
+                // If resolved, this callback runs
+                console.log("Status is:", msg);
+            })
+            .catch(function (error) {
+                // If rejected, this callback runs
+                console.log("Error status is:", error);
+            });
+
+        // Synchronous log: this runs immediately after the Promise setup
+        console.log("Waiter served the customer with water...");
+
+    </script>
+</body>
+
+</html>

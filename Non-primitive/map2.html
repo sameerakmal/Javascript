@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Document</title>
+</head>
+<body>
+
+  <ol id="info"></ol> <!-- Will display items as list elements -->
+
+  <select id=""></select> <!-- Will populate dropdown with items -->
+
+  <div></div> <!-- Will contain checkboxes with labels -->
+
+  <ol id="link"></ol> <!-- Will contain links generated from items -->
+
+  <script type="text/javascript">
+
+    // Array of categories/items, usually fetched from an API
+    let items = ["All", "Electornics", "mobiles", "kidsFashion"];
+
+    // 1. Display each item as an <li> inside #info <ol>
+    items.map(function(item) {
+      let li = document.createElement("li");
+      li.textContent = item;
+      document.querySelector("#info").appendChild(li);
+    });
+
+    // 2. Create <option> elements for each item and add to <select>
+    items.map(function(item) {
+      let option = document.createElement("option");
+      option.value = item.toUpperCase(); // Capitalized value for form handling
+      option.textContent = item;         // Displayed text
+      document.querySelector("select").appendChild(option);
+    });
+
+    // 3. Dynamically create checkboxes with labels for each item
+    items.map(function(item) {
+      let userInput = `<input type='checkbox' value='${item}'> 
+                       <label> ${item.toUpperCase()} </label> <br>`;
+      // Append checkbox and label to <div>
+      document.querySelector("div").innerHTML += userInput;
+      // Add spacing from elements above
+      document.querySelector("div").style.marginTop = '25px';
+    });
+
+    // 4. Create navigation links for each item and insert into #link <ol>
+    document.querySelector("#link").style.listStyle = 'none'; // Remove bullets
+
+    items.map(function(item) {
+      let li = document.createElement("li");
+      let a = document.createElement("a");
+      a.href = item + ".html";      // Target HTML page for each item
+      a.textContent = item;         // Link text
+      li.appendChild(a);
+      document.querySelector("#link").appendChild(li);
+    });
+
+  </script>
+</body>
+</html>

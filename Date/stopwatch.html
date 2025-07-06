@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/Web dev mastery/node_modules/bootstrap/dist/css/bootstrap.css">
+    
+    <link rel="stylesheet" href="/Web dev mastery/node_modules/bootstrap-icons/font/bootstrap-icons.css">
+</head>
+<body>
+    <div>
+        <button class="btn btn-success" id="strt">Start</button>
+        <button class="btn btn-danger">Stop</button>
+    </div>
+    <h1 id="time"></h1>
+    <script type="text/javascript">
+        let now = new Date();
+        let msg = document.getElementById('time');
+        function a(){
+            msg.textContent = document.getElementById('strt').addEventListener('click', setInterval(now.getTime(), 1000));
+        }
+    </script>
+</body>
+</html>

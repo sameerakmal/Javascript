@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Array map() with DOM</title>
+</head>
+<body>
+
+  <ol></ol> <!-- Ordered list where user names will be added -->
+
+  <script type="text/javascript">
+
+    // Basic example of map(): transform every number in the array by multiplying it by 2
+    let arr = [1, 2, 3, 4];
+    let newArray = arr.map(function(value) {
+      return value * 2;
+    });
+    console.log(arr);        // Original array remains unchanged
+    console.log(newArray);   // Transformed array [2, 4, 6, 8]
+
+    // Example: converting array of strings into formatted list items with index
+    let apiOutput = ['RCB', 'Punjab', 'MI', 'GT'];
+    let uiOutput = apiOutput.map(function(value, index) {
+      return `${index + 1}. ${value}`; // Add numbering to each team
+    });
+    console.log(uiOutput); // ['1. RCB', '2. Punjab', '3. MI', '4. GT']
+
+    // Array of objects returned from API
+    let userApi = [
+      {
+        userName: 'sachin',
+        age: 51,
+        gender: 'M'
+      },
+      {
+        userName: 'kohli',
+        age: 38,
+        gender: 'M'
+      }
+    ];
+    console.log(userApi);
+
+    // Extracting only userName from each object using map()
+    let userUiOutput = userApi.map(function(user) {
+      return user.userName; // Picks only userName property from each object
+    });
+    console.log(userUiOutput); // ['sachin', 'kohli']
+
+    // Dynamically creating <li> elements and appending them to the <ol> in DOM
+    userUiOutput.map(function(userName) {
+      let li = document.createElement("li");   // Create a new list item
+      li.textContent = userName;               // Set the text content
+      document.querySelector("ol").appendChild(li); // Append to <ol>
+    });
+
+  </script>
+</body>
+</html>

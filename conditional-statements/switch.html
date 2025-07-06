@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mobile Number Verification</title>
+
+    <!-- Bootstrap Icons & CSS -->
+    <link rel="stylesheet" href="../../node_modules/bootstrap-icons/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="../../node_modules/bootstrap/dist/css/bootstrap.css">
+
+    <script type="text/javascript">
+        // Global variables to store regex pattern and placeholder info
+        let regEx = '';
+        let data = '';
+
+        // Function to update UI based on selected country
+        function changeCountry() {
+            console.log("control in function selectCountry()");
+
+            // Get selected country, image and mobile input field
+            const countryName = document.getElementById("lstCountries").value;
+            const poster = document.getElementById("imgFlag");
+            const mobiles = document.getElementById("txtMobile");
+
+            // Based on country, update image, placeholder, and regex pattern
+            switch (countryName) {
+                case 'IND':
+                    poster.src = '../../public/images/india-flag.JPG';
+                    mobiles.placeholder = '+91 and 10digits';
+                    data = mobiles.placeholder;
+                    regEx = /^\+91\d{10}$/;
+                    break;
+
+                case 'UK':
+                    poster.src = '../../public/images/uk-flag.jpg';
+                    mobiles.placeholder = '+44 and 10digits';
+                    data = mobiles.placeholder;
+                    regEx = /^\+44\d{10}$/;
+                    break;
+
+                case 'USA':
+                    poster.src = '../../public/images/us-flag.jpg';
+                    mobiles.placeholder = '+1 and 10digits';
+                    data = mobiles.placeholder;
+                    regEx = /^\+1\d{10}$/;
+                    break;
+
+                default:
+                    poster.src = '';
+                    poster.alt = 'N/A';
+                    mobiles.placeholder = 'N/A';
+                    data = 'Please select a valid country';
+                    regEx = /.*/; // Generic pattern that matches anything
+                    break;
+            }
+        }
+
+        // Function to validate the mobile number based on selected country's pattern
+        function verifyMobileNumber() {
+            // Get user input and error display element
+            const mobile = document.getElementById("txtMobile").value;
+            const msg = document.getElementById("error");
+
+            // Check if input matches regex pattern
+            if (mobile.match(regEx)) {
+                msg.textContent = 'Mobile Number Verified successfully';
+                msg.className = 'text-success h2 text-center';
+            } else {
+                msg.textContent = `Invalid Mobile Number: ${data}`;
+                msg.className = 'text-danger h2 text-center';
+            }
+        }
+    </script>
+</head>
+
+<body class="container-fluid">
+    <!-- Form container -->
+    <div class="w-25 mt-3 border border-2 border-black rounded-2 p-4">
+        <h2>Verify Mobile</h2>
+        <dl>
+            <!-- Country selection -->
+            <dt>Select Your Country</dt>
+            <dd>
+                <img width="50" height="50" id="imgFlag">
+            </dd>
+            <dd>
+                <select id="lstCountries" class="form-select" onchange="changeCountry()">
+                    <option value="">Select Country</option>
+                    <option value="IND">INDIA</option>
+                    <option value="UK">United Kingdom</option>
+                    <option value="USA">United States of America</option>       
+                </select>
+            </dd>
+
+            <!-- Mobile input -->
+            <dt>Your Mobile</dt>
+            <dd>
+                <input type="text" id="txtMobile" class="form-control">
+            </dd>
+
+            <!-- Submit button -->
+            <button class="btn btn-primary w-100" onclick="verifyMobileNumber()">Verify</button>
+        </dl>    
+    </div>
+
+    <!-- Error/Success message display -->
+    <p class="text-center h2" id="error"></p>
+</body>
+</html>

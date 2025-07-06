@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    
+    <link rel="stylesheet" href="/Web dev mastery/node_modules/bootstrap/dist/css/bootstrap.css">
+    <link rel="stylesheet" href="/Web dev mastery/node_modules/bootstrap-icons/font/bootstrap-icons.css">
+
+    <style>
+        #salImg {
+            transition: margin-left 0.5s ease;
+        }
+    </style>
+</head>
+<body>
+
+    <button id="btnLeft" class="btn btn-primary">Move Left</button>
+    <button id="btnRight" class="btn btn-primary">Move Right</button>
+
+    <div>
+        <img src="/Javascript_and_react/img/modern-formula-1-racing-car-design.png" alt="" id="salImg" width="300px">
+    </div>
+
+    <script type="text/javascript">
+        let pos = 0;
+        document.getElementById('btnRight').addEventListener('click', function(){
+            pos += 50; 
+            document.getElementById('salImg').style.marginLeft = `${pos}px`;
+        });
+        
+        document.getElementById('btnLeft').addEventListener('click', function(){
+            pos -= 30; 
+            document.getElementById('salImg').style.marginLeft = `${pos}px`;
+        });
+    </script>
+
+</body>
+</html>

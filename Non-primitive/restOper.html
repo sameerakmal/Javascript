@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Document</title>
+</head>
+<body>
+  <script>
+
+    // Function using rest parameter to accept variable number of arguments
+    function add(...x) {
+      // Array destructuring: first 3 values are individually assigned
+      const [a, b, c, ...otherData] = x;
+
+      console.log(a, b, c); // Logs first 3 values
+      console.log('type of otherData', typeof otherData); // Always 'object' (arrays are objects in JS)
+      console.log(otherData); // Logs remaining values as an array
+    }
+
+    // Function to extract specific object properties using object destructuring
+    function printDetails(person) {
+      // Extract username and age, rest goes to otherData
+      const { username, age, ...otherData } = person;
+
+      console.log(username, age); // Logs the extracted values
+      console.log(otherData);     // Logs the remaining key-value pairs in the object
+    }
+
+    // Function call with more than 3 arguments to test rest behavior
+    add(10, 20, 30, 40, 50, 60);
+
+    // User object for destructuring
+    let user = {
+      username: 'sachin',
+      age: 51,
+      gender: 'M',
+      email: 'sachin@mi.com',
+      isMarried: true
+    };
+
+    // Call with an object to demonstrate object rest/destructuring
+    printDetails(user);
+
+  </script>
+</body>
+</html>

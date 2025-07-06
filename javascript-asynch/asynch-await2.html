@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Meta tags for proper rendering and responsiveness -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Poster Gallery</title>
+
+    <!-- Bootstrap CSS for styling -->
+    <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.css">
+    <link rel="stylesheet" href="../node_modules/bootstrap-icons/font/bootstrap-icons.css">
+</head>
+
+<body onload="loadData()" class="container-fluid">
+    <!-- Container where product images will be displayed -->
+    <div id="poster"></div>
+
+    <script type="text/javascript">
+        // Async function to fetch and display data
+        async function loadData() {
+            try {
+                const URL = '../data/products.json'; // Path to the local JSON file
+                console.log("Data is loaded through", URL);
+
+                // Fetch the product data from the JSON file
+                let response = await fetch(URL);  // Await the HTTP response
+                let products = await response.json(); // Parse the JSON from the response
+
+                console.log(products); // Log the data for debugging
+
+                // Loop through each product and create an image element
+                products.forEach((product) => {
+                    let img = document.createElement("img"); // Create an image element
+
+                    // Add inline styles to the image
+                    img.style.cssText = 'border: 1px solid black;margin: 10px; padding :5px;';
+
+                    // Set image source and attributes
+                    img.src = product.Photo;      // Image source
+                    img.width = '200';            // Set width
+                    img.height = '200';           // Set height
+                    img.title = product.Title;    // Tooltip showing title
+                    img.alt = 'cannot display';   // Alt text if image fails to load
+
+                    // Append the image to the #poster div
+                    document.getElementById("poster").appendChild(img);
+                });
+
+            } catch (error) {
+                // If an error occurs while fetching or processing data, log it
+                console.log("Error : ", error);
+            }
+        }
+    </script>
+
+</body>
+
+</html>

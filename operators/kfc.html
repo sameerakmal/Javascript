@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/Web dev mastery/node_modules/bootstrap/dist/css/bootstrap.css">
+    
+    <link rel="stylesheet" href="/Web dev mastery/node_modules/bootstrap-icons/font/bootstrap-icons.css">
+</head>
+<body>
+    <div>
+        <img src="..\img\kfcbanner.png" alt="" width="1528px" height="300px">
+    </div>
+
+    <div class="accordion" id="accordionExample">
+        <div class="accordion-item">
+            <div class="accordion-header">
+                <button class="accordion-button collapsed bg-danger text-white text-center w-100" data-bs-toggle="collapse" data-bs-target="#collapseOne">Customer Details</button>
+            </div>
+            <div class="accordion-collapse collapse" id="collapseOne" data-bs-parent="#accordionExample">
+                <div class="accordion-body">
+                    <dl>
+                        <dt>Name</dt>
+                        <dd><input type="text" name="" id="txtName"></dd>
+                        <dt>Number</dt>
+                        <dd><input type="tel" name="" id="txtNum"></dd>
+                    </dl>
+                </div>
+            </div>
+        </div>
+        <div class="accordion-item">
+            <div class="accordion-header">
+                <button class="accordion-button collapsed bg-danger text-white" data-bs-toggle="collapse" data-bs-target="#collapseTwo">Select Your Meal</button>
+            </div>
+            <div class="accordion-collapse collapse" id="collapseTwo" data-bs-parent="#accordionExample">
+                <div class="accordion-body">
+                    <div class="d-flex justify-content-around">
+                        <div>
+                            <img src="../img/periperi.png" alt="" width="400px">
+                            <div class="text-center"><input type="radio" name="meal" id="meal1"> Peri Peri 10 Leg Pc & 4 Dips</div>
+
+                            <div class="bi bi-currency-rupee text-center">948</div>
+
+                        </div>
+
+                        <div>
+                            <img src="../img/periperi5.png" alt="" width="400px">
+                            <div class="text-center"> <input type="radio" name="meal" id="meal2">Peri Peri 5 Leg Pc Meal</div> 
+                            <div class="bi bi-currency-rupee text-center">648</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="accordion-item">
+            <div class="accordion-header">
+                <button class="accordion-button collapsed bg-danger text-white" data-bs-toggle="collapse" data-bs-target="#collapseThree">Select Addon's</button>
+            </div>
+            <div class="accordion-collapse collapse" id="collapseThree" data-bs-parent="#accordionExample">
+                <div class="accordion-body">
+                    <div class="d-flex justify-content-around">
+                        <div>
+                            <img src="../img/addon1.png" alt="" width="400px">
+                            <div class="text-center"><input type="checkbox" name="" id="addon1">Classic Zinger</div> 
+                            <div class="bi bi-currency-rupee text-center">199</div>
+                        </div>
+
+                        <div>
+                            <img src="../img/addon2.png" alt="" width="400px">
+                            <div class="text-center"><input type="checkbox" name="" id="addon2">Chicken Popcorn</div> 
+                            <div class="bi bi-currency-rupee text-center">115</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div >
+            <button class="btn btn-danger w-100 p-3" id="placeOrder"  data-bs-toggle="modal"  data-bs-target="#modalEx" disabled>Place Order</button>
+        </div>
+
+        <div class="modal" id="modalEx">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h3 class="modal-title text-danger">Your bill summary</h3>
+                        <button class="btn btn-close" data-bs-dismiss="modal"></button>
+                    </div>
+
+                    <div class="modal-body row w-75">
+                        <div class="col-8">
+                            <dl>
+                                <dt>Customer Name</dt>
+                                <dd id="lblName"></dd>
+
+                                <dt>Mobile</dt>
+                                <dd id="lblNum"></dd>
+
+                                <dt>Meal</dt>
+                                <dd id="lblMeal"></dd>
+
+                                <dt>AddOn</dt>
+                                <dd id="lbladdOn"></dd>
+
+                                <dt>Total</dt>
+                                <dd id="lblTotal"></dd>
+                            </dl>   
+                        </div>
+                        <div class="col-4">
+                            <img src="" alt="" id="billImg" width="200px">
+                        </div>
+                    </div>
+
+                   
+                </div>
+            </div>
+            
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js" integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q" crossorigin="anonymous"></script>
+    <script type="text/javascript">
+        let checkDataCompletion = function(){
+            let custName = document.getElementById('txtName').value.trim();
+            let mobNum = document.getElementById('txtNum').value.trim();
+            let order = document.getElementById('meal1').checked | document.getElementById('meal2').checked;
+
+            document.getElementById('placeOrder').disabled = !(custName && mobNum && order);
+        }
+
+        document.getElementById('txtName').addEventListener('input', checkDataCompletion);
+        document.getElementById('txtNum').addEventListener('input', checkDataCompletion);
+        document.getElementById('meal1').addEventListener('change', checkDataCompletion);
+        document.getElementById('meal2').addEventListener('change', checkDataCompletion);
+
+        document.getElementById('placeOrder').addEventListener('click', function(){
+            document.getElementById('lblName').textContent = document.getElementById('txtName').value.trim();
+            document.getElementById('lblNum').textContent = document.getElementById('txtNum').value.trim();
+            
+            let mealCost = 0;
+            if(document.getElementById('meal1').checked){
+                mealCost = 948;
+                document.getElementById('lblMeal').textContent = 'Peri Peri 10 Leg Pc & 4 Dips';
+                document.getElementById('billImg').src = '../img/periperi.png';
+            }
+            if(document.getElementById('meal2').checked){
+                mealCost = 648;
+                document.getElementById('lblMeal').textContent = 'Peri Peri 5 Leg Pc Meal';
+                document.getElementById('billImg').src = '../img/periperi5.png';
+            }   
+            let addOnCost = 0;
+            if(document.getElementById('addon1').checked){
+                addOnCost = 199;
+                document.getElementById('lbladdOn').innerHTML = `<span>Classic Zinger</span> <br>`;
+            }
+            if(document.getElementById('addon2').checked){
+                addOnCost += 115;
+                document.getElementById('lbladdOn').innerHTML += `<span>Chicken Popcorn</span>`;
+            }
+
+            let totalCost = mealCost + addOnCost;
+            document.getElementById('lblTotal').innerHTML = `<span class = "bi bi-currency-rupee">${totalCost}</span>`;
+
+        })
+    </script>
+</body>
+</html>

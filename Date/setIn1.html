@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- Linking Bootstrap CSS for styling -->
+    <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.css">
+</head>
+
+<body class="container-fluid">
+    <!-- Button section centered on the screen -->
+    <div class="mt-3 d-flex justify-content-center">
+        <!-- Start button triggers the clock -->
+        <button class="btn btn-success" id="btnStart">Start</button>
+        <!-- Stop button stops the clock -->
+        <button class="btn btn-danger ms-3" id="btnStop">Stop</button>
+    </div>
+
+    <!-- This heading will display the current time -->
+    <h1 class="text-secondary text-center"></h1>
+
+    <script type="text/javascript">
+
+        // Function to get current time and display it in the <h1> element
+        function loadTime() {
+            let now = new Date();
+            document.querySelector("h1").textContent = now.toLocaleTimeString();
+        }
+
+        // Variable to hold the interval ID so it can be stopped later
+        var id;
+
+        // When "Start" button is clicked, start a repeating task every 1 second
+        document.querySelector("#btnStart").addEventListener("click", function () {
+            // setInterval runs loadTime every 1000ms (1 second)
+            id = setInterval(loadTime, 1000);
+        });
+
+        // When "Stop" button is clicked, stop the interval using clearInterval
+        document.querySelector("#btnStop").addEventListener("click", function () {
+            clearInterval(id); // Stops the repeating task
+        });
+
+    </script>
+</body>
+
+</html>

@@ -1213,15 +1213,2655 @@ if (str) {
 >> [trim.html](javascript-strings/trim.html)  <br>
 >> [verifyCase.html](javascript-strings/verifyCase.html)
 
-match
-//regex  .js
-//str-match-regex.html
+### 🔍 `match(regEx)` Method
 
-boolean
-//enable-disable.html  
+The `match()` method in JavaScript is used to retrieve the result of matching a string against a **regular expression**.
 
-how it workd with '+' oper
+**Syntax:**
+```javascript
+string.match(regEx)
+```
 
-//ternary.html
+**Return Type:** `Array | null`  
+- If a match is found → returns a non-empty array of matched values.
+- If no match is found → returns `null`.
 
-FAQs
+---
+
+### 📌 Example Usages:
+
+```javascript
+let str = '9998887776';
+let matchInput = /^\d{10}$/;
+console.log(str.match(matchInput)); 
+// ✅ Matches entire 10-digit number → returns non-empty array
+
+let str = '999888777';
+let matchInput = /^\d{10}$/;
+console.log(str.match(matchInput)); 
+// ❌ Doesn't match exactly 10 digits → returns null
+
+let str = '9998887776';
+let matchInput = /\d{10}/;
+console.log(str.match(matchInput)); 
+// ✅ Matches 10 digits anywhere in the string → returns match
+
+let str = '999888777';
+let matchInput = /\d{10}/;
+console.log(str.match(matchInput)); 
+// ❌ Only 9 digits → returns null
+
+let str = '9998887776778';
+let matchInput = /\d{10}/;
+console.log(str.match(matchInput)); 
+// ✅ Finds a 10-digit sequence within a longer string → returns match
+```
+
+---
+
+### ✅ Recommended Practice
+
+To ensure **exact match** from start to end of the string, always use `^` and `$` anchors:
+
+- `^` → Matches the beginning of the string.
+- `$` → Matches the end of the string.
+
+```javascript
+let str = '9998887776';
+let matchInput = /^\d{10}$/;
+console.log(str.match(matchInput)); 
+// Ensures the full string is exactly 10 digits long
+```
+
+> **Note:** If you do not use `^` and `$`, the regex will **partially match** substrings within the input rather than the entire string.
+
+```javascript
+let str = '9998887776778';
+let matchInput = /\d{10}/;
+console.log(str.match(matchInput)); 
+// Finds and returns the first 10-digit match even though the full string is longer
+```
+
+> 💻 **Related Code**: 
+>> [regex.js](javascript-strings/regex.js) <br>
+>> [str-match-regex.html](javascript-strings/str-match-regex.html)
+
+
+# Boolean
+
+## ✅ Boolean Type in JavaScript
+
+In JavaScript, the **boolean** type has only two possible values:
+- `true`
+- `false`
+
+### 🔢 Other values treated as Boolean:
+- Any **non-zero number** (positive or negative): `true`
+- **Zero (`0`)**: `false`
+
+### 📌 Examples:
+```javascript
+console.log(Boolean(true));    // true
+console.log(Boolean(false));   // false
+console.log(Boolean(10));      // true
+console.log(Boolean(-5));      // true
+console.log(Boolean(0));       // false
+```
+
+---
+
+### ✅ Common HTML Attributes That Behave Like Boolean
+
+Certain attributes in HTML act like boolean flags — their mere presence implies `true`, and absence implies `false`.
+
+### 📋 List of Boolean Attributes:
+
+| Attribute   | Description                                      |
+|-------------|--------------------------------------------------|
+| `checked`   | Used in `<input>` (type checkbox/radio) to show it is selected |
+| `readonly`  | Makes an input field non-editable                |
+| `required`  | Specifies that the input must be filled out before submitting |
+| `disabled`  | Disables an element                              |
+| `border`    | (On `<table>` or `<img>`) Indicates if border should be shown |
+
+> ⚠️ `border` is not a standard boolean attribute like others, but behaves similarly in older HTML specifications (e.g., `<table border>`). Modern practice recommends using CSS instead.
+
+> 💻 **Related Code**: 
+[enable-disable.html](Data-types\enable-disable.html) 
+## ➕ How `+` Operator Works in JavaScript
+
+The `+` operator behaves differently based on the types of its operands:
+
+### 🧠 Behavior:
+
+- **If both operands are numbers:** Performs **Addition**
+- **If one operand is a string:** Performs **Concatenation**
+- **If one operand is a number and the other is boolean/null/undefined:** Converts to number and performs **Addition**
+
+---
+
+### 📌 Examples:
+
+```javascript
+console.log(5 + 10);             // 15 (number)
+console.log(3.5 + 2.5);          // 6 (number)
+console.log(-1 + 4);             // 3 (number)
+console.log("3" + 2);            // "32" (string)
+console.log(2 + "3");            // "23" (string)
+console.log("5" + true);         // "5true" (string)
+console.log(10 + "5");           // "105" (string)
+console.log("5" + 10);           // "510" (string)
+console.log("Result: " + 5 + 10);  // "Result: 510"
+console.log(5 + 10 + " is the result"); // "15 is the result"
+```
+
+---
+
+## ❓ Ternary Operator
+
+### 📌 Syntax:
+```javascript
+condition ? value_if_true : value_if_false;
+```
+
+### 📌 Example:
+```javascript
+let age = 20;
+let access = (age >= 18) ? "Allowed" : "Denied";
+console.log(access); // "Allowed"
+```
+
+> 💻 **Related Code**: 
+[ternary.html](Data-types/ternary.html)
+
+# 🧠 Decision Making Operators and Statements
+
+## 🔁 Comparison Operators
+
+| Operator | Description               |
+|----------|---------------------------|
+| `==`     | Equal                     |
+| `===`    | Identical Equal           |
+| `!=`     | Not Equal                 |
+| `!==`    | Identical Not Equal       |
+| `>`      | Greater than              |
+| `<`      | Lesser than               |
+| `>=`     | Greater than or equal     |
+| `<=`     | Less than or equal        |
+| `&&`     | Logical AND               |
+| `||`     | Logical OR                |
+| `!`      | Logical NOT               |
+
+---
+
+#### ❓ FAQ
+
+### Q1: What is the difference between `==` and `===`?
+**A:**  
+- `==` compares **values**, and **performs type conversion** if necessary.  
+- `===` compares **both values and types** strictly — **no type conversion**.
+
+#### ✅ Example:
+```javascript
+2 == '2'   // true  => Number('2') becomes 2
+2 === '2'  // false => number !== string
+```
+
+---
+
+### Q2: How to compare a value with a regular expression?
+
+**A:**  
+Use the `.match()` method of strings.
+
+```javascript
+let mobile = "+91987654210";
+let regExp = /\+91\d{10}/;
+
+mobile == regExp        // ❌ Invalid
+mobile === regExp       // ❌ Invalid
+mobile.match(regExp)    // ✅ Valid
+```
+
+---
+
+### Q3: How to convert string `"true"` to boolean `true`?
+
+**A:**
+Use a comparison:
+
+```javascript
+let boolType = 'true' === 'true' ? true : false;
+console.log(boolType, typeof(boolType)); // true 'boolean'
+```
+
+## 🔤 String Methods
+a. `toLowerCase()` → string  
+b. `toUpperCase()` → string  
+c. `slice(start, end)` → string  
+d. `indexOf(substr)` → number  
+e. `split(delimiter, limit?)` → string[]  
+f. `trim()` → string  
+g. `substring(start, end)` → string  
+h. `charAt(index)` → string  
+i. `charCodeAt(index)` → number  
+j. `match(regex)` → Array | null  
+
+---
+
+## ⚙️ Operators
+
+### 🔹 Ternary Operator  
+- `condition ? valueIfTrue : valueIfFalse`
+
+### 🔹 Arithmetic Operator  
+- `+`, `-`, `*`, `/`, `%`
+
+### 🔹 Comparison Operators  
+- `==` (loose equality)  
+- `===` (strict equality)
+
+---
+
+## 🧾 Statements
+
+### Definition  
+Executable code which determines the control flow of the program.
+
+---
+
+## 🔀 Conditional Statements
+
+a. `if`  
+b. `if else`  
+c. `nested if else`  
+d. `switch | case | default | break`  
+
+### 🔍 Syntax of `if`
+
+```javascript
+if (condition) {
+    // statement of true part
+}
+```
+
+
+### 🔁 if-else
+
+- It is a conditional statement where:
+
+  - The `if` block is executed when the condition evaluates to `true`.
+  - If the condition is `false`, the `else` block is executed.
+  - The `else` block does **not** require a condition — it simply handles all cases where the `if` fails.
+
+#### 🔧 Syntax:
+```javascript
+if (condition) {
+    // true block
+} else {
+    // false block
+}
+```
+
+## 🧩 Nested if-else
+
+- Used when decisions depend on **multiple conditions** — one inside another.
+
+#### 🔧 Syntax:
+```javascript
+if (condition1) {
+    if (condition2) {
+        if (condition3) {
+            // ✅ logic when all conditions are true
+        } else {
+            // ❌ logic when condition3 is false
+        }
+    } else {
+        // ❌ logic when condition2 is false
+    }
+} else {
+    // ❌ logic when condition1 is false
+}
+```
+> 💻 **Related Code**: 
+[nested-condtions.html](conditional-statements/nested-condtions.html)
+
+## ✅ JavaScript Condition Evaluation: Truthy vs Falsy
+
+In JavaScript, conditionals like `if (condition)` evaluate the **truthiness** or **falsiness** of the value.
+
+---
+
+### ❌ Falsy Values
+
+The following values are considered **falsy**, meaning they evaluate to `false` in a conditional statement:
+
+1. `0`
+2. `""` (empty string)
+3. `null`
+4. `undefined`
+5. `NaN`
+6. `-0`
+7. `0n` (BigInt zero)
+
+```javascript
+if (0) console.log("This won't run");
+if ("") console.log("This won't run");
+if (null) console.log("This won't run");
+```
+
+---
+
+### ✅ Truthy Values
+
+The following values are considered **truthy**, meaning they evaluate to `true` in a conditional statement:
+
+1. Any **non-zero number** (positive or negative)  
+2. Any **non-empty string**, including `" "` (a space) or `"sachin"`  
+3. **Arrays** `[]` and **objects** `{}` (even if empty)  
+4. **Functions** like `function() {}`  
+
+```javascript
+if (42) console.log("Truthy!");
+if ("sachin") console.log("Truthy!");
+if ([]) console.log("Truthy!");
+if ({}) console.log("Truthy!");
+```
+
+--- 
+
+✅ *Remember: JavaScript treats empty values, zeros, and undefined-like values as falsy — everything else is truthy!*
+
+```js
+let a = null;
+
+if (a || "" || undefined || NaN) {
+  console.log(true);
+} else {
+  console.log(false); // ➡️ This will print false
+}
+```
+### Tricky 🤔
+a. `NaN == NaN` ➡️ false ❌  
+b. `NaN === NaN` ➡️ false ❌
+
+```js
+if (NaN === NaN) {
+  console.log(true);
+} else {
+  console.log(false); // ✅ Prints false
+}
+if (null == undefined) {
+  console.log("hello"); // ✅ Prints "hello" : null and undefined are reserved literals which would be mapping to same
+} else {
+  console.log("hey");
+}
+if (null === undefined) {
+  console.log("hello"); // ✅ Prints "hey" :null[runtime] and undefined[compile time]
+} else {
+  console.log("hey");
+}
+// ✔️ null and undefined are equal using loose equality (==)
+```
+
+## 📦 Primitive Types in JavaScript
+
+### Memory
+- **Stack (LIFO)**
+- **Fixed size & range**
+- **Immutable**: Changes result in new memory allocation.
+
+---
+
+### 🔢 Number
+- Based on **IEEE 754 (64-bit floating point)**
+- **Type Conversions**:
+  - `Number()`: Returns `NaN` or valid number (strict)
+  - `parseInt()`, `parseFloat()`
+- **Methods**:
+  - `toString()`
+  - `toLocaleString(locale, options)`
+
+---
+
+### 🧵 String
+- **Property**: 
+  - `length`
+- **Common Methods**:
+  - `slice()`
+  - `trim()`
+  - `split()`
+  - `substring()`
+  - `match()`
+  - `charCodeAt()`
+  - `indexOf()`
+
+---
+
+### ✅ Boolean
+- Possible values: `true` or `false`
+- **Falsy values**:
+  - `0`
+  - `""` (empty string)
+  - `null`
+  - `undefined`
+  - `NaN`
+  - `0n` (BigInt zero)
+- **Truthy values**:
+  - `[]` (empty array)
+  - `"sachin"` (non-empty string)
+  - `function(){}`
+  - Any number > 0
+
+---
+
+### 💠 Other Primitive Types
+- `null`
+- `undefined`
+- `BigInt`
+- `Symbol`
+
+---
+
+### 🔎 Equality Checks
+
+| Expression                | Result   |
+|--------------------------|----------|
+| `null === null`          | `true`   |
+| `undefined === undefined`| `true`   |
+| `NaN === NaN`            | `false`  |
+| `NaN == NaN`             | `false`  |
+| `null == undefined`      | `true`   |
+| `null === undefined`     | `false`  |
+
+---
+
+### ❓ Difference: `null` vs `undefined`
+
+| `null`                    | `undefined`                        |
+|--------------------------|------------------------------------|
+| Runtime value             | Compile-time (JS engine generated) |
+| Explicitly assigned       | Automatically assigned by JS       |
+
+---
+
+### ⚙️ Logical Operators
+
+```js
+(condition1) && (condition2)
+(condition1) || (condition2)
+```
+
+### 🧮 Programs
+
+### 🔸 a. Largest of 2 Numbers
+```js
+if (a > b) {
+  console.log("a is greater");
+} else {
+  console.log("b is greater");
+}
+```
+
+### 🔸 b. Largest of 3 Numbers
+```js
+if (a > b && a > c) {
+  console.log("a is greatest");
+} else if (b > c) {
+  console.log("b is greatest");
+} else {
+  console.log("c is greatest");
+}
+```
+
+### 🔸 c. Check if value is within range
+```js
+function inRange(value, min, max) {
+  return value >= min && value <= max;
+}
+```
+
+### 🔸 d. Triangle Type
+```js
+if (a === b && b === c) {
+  console.log("Equilateral");
+} else if (a === b || b === c || a === c) {
+  console.log("Isosceles");
+} else {
+  console.log("Scalene");
+}
+```
+## 🔁 Switch in JavaScript
+
+Used when comparing one input (`type`) against multiple predefined values.
+
+### 🔹 Syntax
+```js
+switch(type) {
+  case label1:
+    // statements
+    break;
+
+  case label2:
+    // statements
+    break;
+
+  default:
+    // fallback
+    break;
+}
+```
+
+---
+
+### 🧠 Important Notes on Switch
+
+1. Comparison is **strict**: `type === label`
+2. `default` block is optional and can appear **anywhere**
+3. `break` prevents **fall through**
+4. If `break` is omitted, **next case also runs**
+5. You can **intentionally allow fall-through** by not using `break`
+6. Only **one** `default` is allowed
+7. **Duplicate cases** are valid
+8. `case` labels can be of **any type** (boolean, string, object, etc.)
+
+---
+
+### ❓ FAQ
+
+1. ✅ Can we define switch without default? — Yes  
+2. ✅ Can default be placed anywhere? — Yes  
+3. ✅ Can we omit `break` in a case? — Yes, but leads to fall-through  
+4. ✅ Can we use `return` instead of `break`? — Yes, inside a function  
+5. 🔄 `break` vs `return` — `break` exits switch, `return` exits function  
+6. ✅ Case values as `"string"` or `true`? — Yes  
+7. ✅ Multiple cases for one block? — Yes (fall-through mechanism)  
+8. ❌ Case with a range? — Not directly, use `if-else` instead
+
+```js
+switch (true) {
+  case (marks >= 90):
+    console.log("A grade");
+    break;
+  case (marks >= 75):
+    console.log("B grade");
+    break;
+  default:
+    console.log("Needs improvement");
+}
+```
+
+> 💻 **Related Code**: 
+[switch.html](conditional-statements/switch.html)
+
+
+## 🧠 Non-Primitive Types in JavaScript
+
+
+## 🗃️ Key Characteristics
+- 🔧 **Memory**: Allocated in the **Heap**
+- 🏗️ **Structure**: Not fixed/predefined
+- ♻️ **Mutable**: Changes reflect in the same memory
+
+### Examples:
+`Array`, `Map`, `Object`, `function(){}`
+
+---
+
+# 📦 Arrays in JavaScript
+
+Arrays are used to store **multiple values** under a single variable name.
+
+> 🔑 Internally stored as **key-value pairs** (index being the key).
+
+> 🧠 Memory is **not** guaranteed to be contiguous.
+
+---
+
+### 🏗️ Array Creation Methods
+
+1. **Dynamic Array**:
+```js
+let arr = new Array(size);  // creates an empty array of given size
+```
+2. **Static Array**:
+```js
+let arr = [val1, val2, val3, ...];  // direct initialization
+```
+> 🔔 **Note:** 
+
+✅ You can store both **primitive** and **non-primitive** types inside an array.
+
+🔢 Indexing in arrays happens internally as **strings** in the form of `key:value` pairs.
+
+### Ways to Create Arrays
+
+1️⃣ **Static Creation**  
+Use square brackets to define an array directly with values.  
+Example:  
+`let arr = [value1, value2, value3];`
+
+2️⃣ **Dynamic Creation**  
+Use the `new Array(size)` constructor to create an array with a specified size.  
+Example:  
+`let arr = new Array(5);`
+
+#### Different ways of reading an element from an array  
+	a. using for loop 🌀  
+		syntax : for(initialization ;condition ;counter){  
+					//read the element using index   
+					array[index]  
+			 }   
+
+	b. using property of the array[key|index] 🗝️  
+		syntax : for(const property in object){  
+				//read element using property  
+				object[property]  
+			 }  
+
+	c. directly reading the value[element] from an array 🎯  
+		syntax : for(const element of object){  
+				console.log(element);  
+			 }  
+
+> 💻 **Related Code**: 
+[array.html](Non-primitive/array.html)
+
+### Array Destructuring  
+➡️ Array destructuring is a syntax that lets you unpack values from arrays into individual variables in a clean and readable way.
+
+🔹 eg#1. Without destructuring technique  
+```js
+let arr = ['sachin', 51, 53.4, true];
+let userName = arr[0]; 
+let userAge = arr[1]; 
+let userAvg = arr[2]; 
+let isMarried = arr[3];
+
+console.log(arr);
+console.log(userName, userAge, userAvg, isMarried);
+```
+
+🔹 eg#2. ✨ Using destructuring technique  
+```js
+let arr = ['sachin', 51, 53.4, true];
+const [myName, myAge, myAvg, maritalStatus] = arr;
+console.log(myName, myAge, myAvg, maritalStatus);
+```
+
+🔹 eg#3. 🧩 Function returning an array
+
+```js
+function presentData() {
+    return ['kohli', 38, '56.5', true];
+}
+
+// Destructuring the array to unpack the values 
+const [name, age, avg, married] = presentData();
+console.log(name, age, avg, married);
+```
+
+🔹 eg#4. 🕵️‍♂️ Array destructuring to get the values not being unpacked  
+```js
+let arr = ['sachin', , 'M'];
+console.log(arr);
+
+const [name, age = 'Not Mentioned', gender, email] = arr;
+console.log(age);      // 🧾 Default value used
+console.log(email);    // ❌ Undefined as no value is provided
+```
+
+🔹 eg#5. Array destructuring to swap two variables without using temp
+
+```js
+let a = 10;
+let b = 20;
+
+console.log("Before swapping");
+console.log("a =", a, "b =", b);
+
+// Traditional way using temp
+let temp = a;
+a = b;
+b = temp;
+
+console.log("After swapping (using temp)");
+console.log("a =", a, "b =", b);
+
+// 🔁 Array destructuring without using temp
+[b, a] = [a, b];
+console.log();
+console.log("After swapping (using destructuring)");
+console.log("a =", a, "b =", b);
+```
+
+### 🧩 Object Destructuring  
+
+1. While binding the object to unpack, the keys of the object should match the variable names used.  
+2. If the variable name is different while unpacking, the value will be `undefined`.  
+3. ✅ You can rename keys while unpacking using this syntax:  
+    ```js
+    const { keyName: newName, ... } = obj;
+    ```
+📦 eg#1. Without Object Destructuring
+
+```js
+let user = {
+    userName: 'sachin',
+    age: 51,
+    gender: 'M',
+    email: 'sachin@mi.com'
+};
+
+console.log(user);
+
+const myName = user.name; // ❌ Incorrect key (should be userName)
+const myAge = user.age;
+const myGender = user.gender;
+const myEmail = user.email;
+
+console.log(myName, myAge, myGender, myEmail); // Output: undefined 51 M sachin@mi.com
+```
+
+📦 eg#2. With Object Destructuring
+
+```js
+let user = {
+    userName: 'sachin',
+    age: 51,
+    gender: 'M',
+    email: 'sachin@mi.com'
+};
+
+console.log("Using object destructuring");
+
+const { userName, age } = user;
+console.log(userName, age); // Output: sachin 51
+```
+🧐 eg#3. Object Destructuring but Key is Not Found While Unpacking
+
+```js
+let user = {
+    userName: 'sachin',
+    age: 51,
+    gender: 'M',
+    email: 'sachin@mi.com'
+};
+
+console.log("Using object destructuring");
+
+// 🛑 'salary' key is not in the object, so we provide a default value
+const { userName, age, salary = 'Not disclosed' } = user;
+
+console.log(userName, age, salary); // Output: sachin 51 Not disclosed
+```
+🎯 eg#4. Using Our Own Keys for Object Destructuring
+
+```js
+let user = {
+    userName: 'sachin',
+    age: 51,
+    gender: 'M',
+    email: 'sachin@mi.com'
+};
+
+console.log("Object destructuring using our own keys");
+
+// 🎭 Using alias names for destructured properties
+const { userName: playerName, age: playerAge } = user;
+
+console.log(playerName, playerAge); // Output: sachin 51
+```
+
+> 🔔 **Note:**
+
+🎯 eg#1.
+```js
+let arr = [1, 2, 3];
+
+// This sets the value at index 2 (as "2" gets converted to a number)
+arr["2"] = 100; // Equivalent to arr[2] = 100
+console.log(arr);        // Output: [1, 2, 100]
+console.log(arr.length); // Output: 3 (length is based on numeric indices only)
+
+// This adds a non-numeric property "sachin" to the array object (like an object property)
+arr["sachin"] = 10;
+console.log(arr);        // Output: [1, 2, 100, sachin: 10]
+// Though it prints like an array with sachin property, this is actually an object key
+console.log(arr.length); // Output: 3 (still only counts numeric indices)
+```
+🎯 eg#2.
+```js
+let arr = [1, 2, 3];
+
+for (const key in arr) {
+    delete arr[key]; // Deletes the value at the index, but not the index itself
+}
+
+console.log(arr);        // Output: [ <3 empty items> ]  OR [empty × 3]
+console.log(arr.length); // Output: 3
+```
+
+#### 🔍 Reading values from array | Reading array elements
+
+- 📜 **toString()** : It returns array elements separated with ","
+- 🔗 **join()** : It returns array elements with custom delimiter
+- 🚀 **map()** : It returns array elements using iterator [Best approach used in real-time coding]
+- 🔁 **forEach()** : It returns array elements and their index references
+- 🔎 **find()** : It returns the first occurrence of the element that matches the condition
+- 🧹 **filter()** : It returns the elements that match the specified condition
+- ✂️ **slice()** : It returns elements between specified indices
+
+
+## 🗺️ Working with `map()`
+
+### 💡 What does `map()` do?
+- Returns a **new array**.
+- Does **not mutate** the original array.
+- Processes **each element** using a callback function.
+- Returns the **same number of elements** as the original array.
+
+### 📘 Syntax
+
+```js
+let newArray = array.map(function(element, index, array) {
+  // return a new value for each element
+});
+```
+
+### ⚡ Using Arrow Function
+```js
+array.map((element, index, array) => {
+  // return new value
+});
+```
+
+#### 🔧 Example
+```js
+let numbers = [1, 2, 3, 4];
+let squares = numbers.map(num => num * num);
+console.log(squares); // [1, 4, 9, 16]
+```
+
+> 💻 Related Code : 
+>> [map1.html](Non-primitive/map1.html) <br>
+>> [map2.html](Non-primitive/map2.html)
+
+
+## 🔄 Working with `forEach()`
+
+### 📘 What is `forEach()` in JavaScript?
+- The `forEach()` method is used to iterate over each element in an array and perform an operation.
+- It does **not return a new array**.
+
+### 🧾 Syntax
+
+```js
+array.forEach(function(element, index, array) {
+  // do something with element
+});
+```
+
+### ⚡ Arrow Function Version
+
+```js
+array.forEach((element, index, array) => {
+  // do something
+});
+```
+
+#### 🌟 Features of forEach()
+- Executes a callback function once for each element in the array.
+
+- Returns undefined (does not return a value).
+
+- Does not modify the original array unless explicitly changed inside the callback.
+
+- Ideal for side effects like logging, DOM updates, etc.
+
+```js
+let items = ["All","Electornics","mobiles","kidsFashion"];
+
+items.forEach(function(item){
+    console.log(item);
+})
+
+console.log("*************************")
+
+items.forEach(function(item,index){
+    console.log(`${index+1}.${item}`)
+});
+
+console.log("*************************")
+items.forEach(function(item,index,arr){
+    arr[index] = item.toUpperCase();
+})
+
+console.log(items);
+```
+
+
+## 📦 Rest Operator in JavaScript
+
+### ❓ What is the Rest Operator (`...`)?
+
+- The **rest operator** is a syntax in JavaScript written as three dots `...`
+- It is used to **collect multiple elements** into a single array or object.
+- It’s like saying: “**Gather all the remaining elements into this variable.**”
+
+---
+
+### 🧠 Usage Contexts
+
+| Context              | Example                         | What It Does                          |
+|----------------------|----------------------------------|----------------------------------------|
+| Function Parameters  | `function fn(...args) {}`       | Collects all arguments into array     |
+| Array Destructuring  | `[a, b, ...rest] = [1,2,3,4]`    | Gathers remaining elements as array   |
+| Object Destructuring | `{x, ...rest} = obj`            | Gathers remaining props as object     |
+
+> 💻 **Related Code**: 
+[restOper.html](Non-primitive/restOper.html)
+
+## ➕ Array Methods for Inserting Elements
+
+- `Array.push(...items)` → `number`  
+  👉 Inserts elements at the **end** of the array.
+
+- `Array.unshift(...items)` → `number`  
+  👉 Inserts elements at the **beginning** of the array.
+
+- `Array.splice(start, deleteCount, ...items)` → `array`  
+  👉 Inserts elements at a specified position.  
+  - If `deleteCount = 0`, no elements are removed.  
+  - Used for inserting or replacing elements in the array.
+
+- `Array.concat(...items)` → `array`  
+  👉 Returns a **new array** with the inserted elements.
+
+> 💻 **Related Code**: 
+[arrIns.html](Non-primitive/arrIns.html)
+
+## ❌ Array Methods for Deletion
+
+- `Array.pop()` → `string | undefined`  
+  👉 Removes the **last** element from an array.
+
+- `Array.shift()` → `string | undefined`  
+  👉 Removes the **first** element from an array.
+
+- `Array.splice(start, deleteCount)` → `array`  
+  👉 Deletes elements from a specified position.  
+  - Returns the **deleted elements** as an array.
+> 💻 **Related Code**: 
+[arrDel.html](Non-primitive/arrDel.html)
+
+## 🔢 Sorting the Elements in an Array
+
+### Syntax
+- `array.sort([compareFunction])` → `[]`
+- `array.reverse()` → `[]`
+
+### Types of Sorting
+
+1. **Default Sorting**  
+   - Sorts elements as **strings** based on Unicode values.  
+   - ⚠️ Can lead to unexpected results with numbers.
+
+2. **Custom Sorting**  
+   Use a compare function:
+   - If `(a - b) < 0` → `a` comes before `b`
+   - If `(a - b) > 0` → `b` comes before `a`
+   - If `(a - b) === 0` → Keep original order
+
+---
+
+### 🧪 Example #1: Default Sort on Numbers
+
+```js
+// Sorting the elements in an Array
+let arr = [10, 5, 2];
+let newArray = arr.sort(); // Sorts as strings: "10", "5", "2"
+console.log(arr);       // Output: [10, 2, 5]
+console.log(newArray);  // Output: [10, 2, 5]
+```
+
+#### 🧠 Explanation:
+- "10" < "2" → true ✅ (No rearrangement)
+
+- "2" < "5" → true ✅ (No rearrangement)
+
+- Final result: [10, 2, 5]
+
+
+> 💻 Related Code : 
+>> [arrSort1.html](Non-primitive/arrSort1.html) <br>
+>> [city-manager.html](Non-primitive/city-manager.html)
+
+## 🧹 `filter()` Method in JavaScript
+
+- Returns a new array containing elements that pass a test (i.e., return `true`) from a callback function.
+
+### 🔧 Syntax
+
+```js
+array.filter(callback(element, index, array));
+```
+
+### 📌 **Parameters**
+
+- **callback**: Function that tests each element.  
+- **element**: The current element being processed.  
+- **index** *(optional)*: The index of the current element.  
+- **array** *(optional)*: The array `filter()` was called on.
+
+> 💻 Related Code : [filter1.js](Non-primitive/filter1.js)
+
+
+### ✅ Rules for Writing Arrow Functions
+1. ❌ Do **not** use the `function` keyword.
+2. 🧑‍💻 If only **one parameter**, omit the parentheses `()`.
+3. 🧱 If only **one statement**, omit the curly braces `{}`.
+4. 🔁 If the function **returns a value** in one statement, omit the `return` keyword.
+
+```js
+// Examples
+const square = x => x * x;
+
+const greet = name => console.log(`Hello, ${name}`);
+
+const add = (a, b) => a + b;
+```
+
+# 🧮 `reduce()` Method in JavaScript
+
+Reduces the array to a single value by applying a function to each element and accumulating the result.
+
+## 🔧 Syntax
+```js
+array.reduce(callback(accumulator, currentValue, index, array), initialValue);
+```
+
+- accumulator: Accumulates the result.
+
+- currentValue: Current element being processed.
+
+- index (optional): Index of the current element.
+
+- array (optional): The array reduce() was called on.
+
+- initialValue: Optional value to start the accumulation.
+
+```js
+let num = [1, 2, 3, 4];
+let answer = num.reduce(function(total, data) {
+    console.log(total, data);
+    return total + data;
+}, 0);
+console.log(answer); // Output: 10
+```
+
+### 🛒 Cart Example with `filter()` and `reduce()`
+
+#### 📌 Initial Setup
+```js
+// Initial shopping cart with objects having id, name, price, and availability status
+let cart = [
+    { id: 1, name: 'Laptop', price: 50000, available: true },
+    { id: 2, name: 'Mouse', price: 500, available: false },
+    { id: 3, name: 'Keyboard', price: 1000, available: true },
+    { id: 4, name: 'Monitor', price: 8000, available: false },
+    { id: 5, name: 'USB Cable', price: 200, available: true }
+];
+
+console.log(cart); // Full cart data
+
+// ✅ filter(): Used to extract items which are available (true)
+let availableItems = cart.filter(item => item.available === true);
+console.log(availableItems); // Only items where available === true
+
+// ✅ reduce(): Used to accumulate total price of available items
+let totalCost = availableItems.reduce(function(total, item) {
+    return total + item.price; // Adds each item's price to running total
+}, 0); // Initial total is 0
+
+console.log(totalCost); // Final payable amount (sum of available items)
+
+```
+#### ⚡ Compact Code
+```js
+let cart = [
+    { id: 1, name: 'Laptop', price: 50000, available: true },
+    { id: 2, name: 'Mouse', price: 500, available: false },
+    { id: 3, name: 'Keyboard', price: 1000, available: true },
+    { id: 4, name: 'Monitor', price: 8000, available: false },
+    { id: 5, name: 'USB Cable', price: 200, available: true }
+];
+
+// 🎯 One-liner: Filter available items & calculate their total price
+let amountToBePaid = cart
+    .filter(item => item.available)        // filters only available items
+    .reduce((total, obj) => total + obj.price, 0); // sums up their prices
+
+console.log(amountToBePaid); // Output: 51200
+```
+
+```js
+let iplTeams = ["CSK","MI","CSK","MI","SRH","RCB","KKR","KKR","MI","CSK"];
+        let result=iplTeams.reduce(function(obj,team){
+                obj[team] = (obj[team]|0)+1
+                return obj;
+        },{})//{"CSK":2,"MI": 1,"SRH": 1,"RCB" : 1, "KKR":2}
+        console.log(result);
+```
+
+# 🧱 Object
+
+- **Object** contains:
+  - **Properties** → data
+  - **Methods** → logic
+
+- **JSON** contains:
+  - Only **properties** (data)
+
+## 🧾 Syntax
+
+```json
+{
+  "K": "V"
+}
+```
+
+- Key must be of string type
+
+- Value can be:
+
+  - number
+
+  - string
+
+  - boolean
+
+  - array
+
+  - another object
+
+
+
+## 📖 Syntax to Read JSON Data
+
+- `product.key` or `product["key"]`
+- `.` is called the **member invoking operator**
+
+---
+
+### 🆚 When to Use `obj.key` vs `obj["key"]`
+
+#### ✅ Use `obj["key"]`:
+- When key is a **variable** or **computed**.
+- When key is **not a valid identifier** (e.g., contains `-`, starts with a number).
+
+```js
+const weirdObj = { "first-name": "sachin", "123": "number" };
+console.log(weirdObj["first-name"]); // "sachin"
+console.log(weirdObj["123"]);        // "number"
+```
+
+#### ✅ Use `obj.key`:
+
+Use when:
+- The key is **known ahead of time**.
+- The key is a **valid identifier**:
+  - ❌ No spaces  
+  - ❌ No special characters  
+  - ❌ Doesn’t start with a number
+
+```js
+const person = { name: "sachin", age: 51 };
+console.log(person.name); // "sachin"
+```
+#### 🔧 Example
+```js
+console.log(user);
+console.log('Username is : ',user.userName);
+console.log('Teams is :');
+user.teams.forEach(function(teamName){
+    console.log(teamName);
+});
+console.log('Centuries is : ',user.records.Centuries);
+console.log('Average   is : ',user.records.average);
+console.log('Brand     is : ',user.records.Brand);
+
+let weirdObj = {"first-Name" : 'kishan','123':'number'};
+console.log(weirdObj);
+console.log(weirdObj['first-Name']);
+console.log(weirdObj['123']);
+```
+
+
+## 📥 Reading Data from JSON File
+
+### 🔧 Syntax
+
+```js
+fetch("url_or_path")
+  .then(function(response) {
+    // ✅ On success: handle response
+  })
+  .catch(function(error) {
+    // ❌ On failure: handle error
+  })
+  .finally(function() {
+    // 🔁 Always executed: success or failure
+  });
+```
+
+
+#### 🔍 Explanation
+- fetch() – Used to retrieve data from a server or file.
+
+- .then() – Called when the fetch is successful.
+
+- .catch() – Called if the fetch fails (e.g., file not found, network error).
+
+- .finally() – Always runs, whether the fetch succeeds or fails (e.g., hide loader).
+
+
+#### 📄 /data/user-data.json
+```json
+{
+  "userName": "sachin",
+  "age": 51,
+  "teams": ["MI", "CSK"],
+  "records": {
+    "Centuries": 100,
+    "average": 53.5,
+    "Brand": "MRF"
+  },
+  "isMarried": true
+}
+```
+
+#### 📜 `<script>` to Fetch JSON
+```js
+const URL = '../data/user-data.json';
+
+fetch(URL)
+  .then(function(response) {
+    console.log(response);          // Logs the raw response object
+    return response.json();         // Converts response to JSON
+  })
+  .then(function(user) {
+    console.log(typeof user);       // "object"
+    console.log(user);              // Logs the parsed JSON data
+  })
+  .catch(function(error) {
+    console.log(error);             // Logs any error (e.g. file not found)
+  });
+
+```
+
+# 📜 Execution Flow of JavaScript Code by the Engine
+
+## ☝️ Nature of JavaScript
+- JavaScript is a **Single-Threaded** and **Synchronous** programming language.
+
+---
+
+## 🔧 JavaScript Components Used During Asynchronous Operations
+
+### a. Call Stack
+- Executes the main thread, line by line (synchronously).
+- Function calls are pushed and popped in LIFO order.
+
+### b. Web APIs (Browser APIs)
+- Provided by the browser (not part of core JavaScript).
+- Handles asynchronous operations like:
+  - `setTimeout()`
+  - `fetch()`
+  - DOM Events (e.g., `onclick`)
+  - AJAX, etc.
+
+### c. Callback Queue (Task Queue / Message Queue)
+- Stores callbacks from completed Web API tasks.
+- Callbacks are **queued** and sent to Call Stack **only when it's empty**.
+
+### d. Event Loop
+- A **traffic cop** between Call Stack and Callback Queue.
+- Continuously checks:
+  - If the Call Stack is empty
+  - Then moves the first task from the queue into the stack
+
+### e. Microtask Queue
+- Holds **Promises** (`.then()`, `.catch()`, `.finally()`)
+- Has **higher priority** than the Callback Queue:
+  - **Executed before** anything in the Callback Queue, once the Call Stack is clear
+---
+
+## 🔁 Flow of Execution (Step-by-Step)
+
+1. **Call Stack** runs synchronous code line-by-line.
+2. If an async function is called:
+   - It is passed to **Web API**
+3. Once async work is done:
+   - **Callback function** is pushed to the **Callback Queue** (or Microtask Queue for Promises).
+4. **Event Loop** checks if the Call Stack is empty:
+   - If yes, it moves tasks from the Microtask Queue (first) or Callback Queue (next) into the Call Stack for execution.
+
+```html
+<script type="text/javascript">
+    console.log("1. Start"); 
+    // Synchronous → printed immediately
+
+    // Asynchronous: setTimeout → goes to Web APIs, scheduled for 2 seconds later
+    setTimeout(function () {
+        console.log("2. Timeout happened");
+    }, 2000);
+
+    // Asynchronous: Promise → goes to Microtask queue
+    Promise.resolve().then(function () {
+        console.log("3. promise executed");
+    });
+
+    console.log("4. End");
+    // Synchronous → printed immediately after "1. Start"
+</script>
+```
+
+
+# 👨‍🍳 JavaScript Execution Analogy: The Chef in a Restaurant
+
+## 🍳 Synchronous (Single-threaded)
+
+- Imagine **one chef** in a kitchen.
+- He can **only prepare one dish at a time**.
+- Steps:
+  1. Prepares Dish A → serves it.
+  2. Then starts Dish B → serves it.
+  3. And so on...
+
+> 📌 This is like JavaScript running code **line-by-line**, **blocking** the next task until the current one is done.
+
+---
+
+## 🔔 Asynchronous (Timers, Tasks, and Event Loop)
+
+- Now, the **chef is smarter**.
+- He can **start cooking multiple dishes**.
+- For each dish:
+  - He sets a **timer** (e.g., oven or boiling water).
+  - While waiting, he **starts another dish**.
+- As soon as a dish is ready (timer rings), the chef **quickly finishes and serves** it — even if it's not in the original order.
+
+> 📌 This is like JavaScript using **Web APIs** and the **Event Loop** to handle tasks **non-blockingly** — like `setTimeout`, `fetch`, etc.
+---
+> 💻 Related Code : 
+[chef.html](javascript-asynch/chef.html)
+
+# ⏳ `setTimeout()` in JavaScript
+
+### 📘 What is it?
+`setTimeout()` is a **Web API** function that lets you **delay the execution** of a function by a specific amount of time (in **milliseconds**).
+
+---
+
+#### 🧠 Syntax:
+```js
+setTimeout(callbackFunction, delayInMilliseconds, arg1, arg2, ...);
+```
+
+- `callbackFunction` ➡️ The function to run after the delay.
+- `delayInMilliseconds` ⏱️ ➡️ Time to wait before running the function.
+- `arg1, arg2, ...` ➕ Optional arguments to pass to the callback.
+
+---
+
+#### 🧪 Example #1
+
+```js
+let id = setTimeout(function (name) {
+    console.log(`Hello : ${name}`);
+}, 2000, 'sachin');
+
+console.log(id);       // 🆔 Logs the timeout ID
+clearTimeout(id);      // ❌ Cancels the timeout before it runs
+```
+
+> **📝 Note: setTimeout() Overview**
+
+| 🔹 Purpose             | Run a function after a delay            |
+|------------------------|-----------------------------------------|
+| 🔄 Async/Sync          | Asynchronous (uses Web API)            |
+| ⛔ Blocks execution?   | No (non-blocking)                      |
+| 💡 Use cases           | Delay, retry, simulate timeouts, UI updates |
+| ❌ Cancel it?          | Yes, using `clearTimeout(timerID)`     |
+
+## What is a Promise?
+
+- A **Promise** is an object representing the eventual completion or failure of an asynchronous operation.
+
+> 📌 You ask for something → It can be **fulfilled** (success) or **rejected** (failure) after some time.
+
+---
+
+### ✅ Fulfilled → Positive result  
+### ❌ Rejected → Failure/Error
+
+---
+
+### 📦 Syntax:
+
+```js
+let action = new Promise(function(resolve, reject) {
+    // Asynchronous code
+    let result = ''; // e.g., result of an API call
+
+    if (result) {
+        resolve(); // fulfilled
+    } else {
+        reject(); // rejected
+    }
+});
+```
+
+> 💻 Related Code : 
+[promise.html](javascript-asynch/promise.html)
+
+## What is `async` and `await`?
+
+- `async` and `await` are modern syntax features in JavaScript that simplify working with **Promises**.  
+They make asynchronous code look and behave more like synchronous code, making it easier to read and debug.
+
+- **`async`**:  
+  It is used to define a function that will be executed in **asynchronous mode**.  
+  It ensures the function **always returns a Promise**.
+
+- **`await`**:  
+  It is used **inside an `async` function** to pause the execution until the Promise is **resolved** or **rejected**.  
+  It tells the function to **wait for the result** before moving to the next line.
+---
+
+### 💡 In Simple Words:
+
+> ✅ It's a cleaner way to **wait for a Promise** and handle the result — without chaining `.then()` and `.catch()`.
+
+---
+
+### 📜 Syntax
+
+```js
+// Function that returns a Promise
+function somePromise() {
+  return new Promise(function(resolve, reject) {
+    // Simulate logic (e.g., API call, DB access)
+        let success = true;
+
+        if (success) {
+          resolve("Success message");
+        } else {
+          reject("Something went wrong");
+        }
+    });
+}
+
+// Using async/await
+async function processLogic() {
+  try {
+    let msg = await somePromise(); // Waits for Promise to settle
+        console.log("Message:", msg);  // Uses the resolved value
+    } catch (error) {
+      console.error("Error:", error); // Catches any rejection
+    }
+}
+
+processLogic();
+```
+> 💻 Related Code : 
+>> [asynch-await.html](javascript-asynch/asynch-await.html) <br>
+>> [asynch-await1.html](javascript-asynch/asynch-await1.html) <br>
+>> [asynch-await2.html](javascript-asynch/asynch-await2.html) <br>
+>> [asynch-await3.html](javascript-asynch/asynch-await3.html)
+
+## FAQ: JavaScript Object Operations
+
+1. **How to read all keys from Object?**  
+**Ans**: `Object.keys(obj)` → returns a string array of keys.
+
+2. **How to know the datatype of value in a Key?**  
+**Ans**: Using `typeof` operator  
+  Syntax: `typeof object[key]`
+
+3. **How to get the count of keys in an Object?**  
+**Ans**: Use the `length` property  
+  `Object.keys(obj).length`
+
+4. **How to read both keys and values in an Object?**  
+**Ans**:  
+`Object.keys(obj).forEach((key) => {`  
+  `console.log(\`\${key} ---> \${user[key]}\`);`  
+`});`
+
+5. **How to remove a key dynamically?**  
+**Ans**: `delete obj.key`  
+> This deletes the key from the object, reducing the number of keys.
+
+6. **How to check the availability of a key in Object?**  
+**Ans**: Using `'in'` operator  
+```js
+if (key in obj) {  
+ // key is part of the object  
+} else {  
+ // key is not part of the object  
+}
+```
+7. **How to retrieve the values from an object?**  
+**Ans**: `Object.values(obj)` → returns an array of values.
+
+8. **How to retrieve both keys and values from an Object?**  
+**Ans**: `Object.entries(obj)` → returns an array of [key, value] pairs.
+
+
+> 💻 Related Code : 
+>> [object1.html](javascript-asynch/object1.html) <br>
+>> [object2.html](javascript-asynch/object2.html)
+
+### Object Holding the Methods
+
+- **Property**: Holds data  
+- **Method**: Controls or manipulates the data
+
+---
+
+> 🔔 **Note:**
+>> In the case of objects, if you assign a **regular function** as the value to a key, you can access the properties of that object using the `this` keyword **inside the function**.
+
+>> However, this rule **does NOT apply** if you're using an **arrow function** as the value to the property.  
+Arrow functions do **not have their own `this`**, so they inherit `this` from the parent scope.
+
+> 💻 Related Code : [object3.html](javascript-asynch/object3.html)
+
+## Reading the Response from an API
+
+### ✅ Using `fetch()`:
+The `fetch()` method is used to make HTTP requests and read responses from an API.
+
+#### Syntax:
+```js
+fetch("url")
+  .then((response) => {
+    return response.json();  // converts response to JSON
+  })
+  .then((data) => {
+    // use the data here
+  })
+  .catch((error) => {
+    // handle errors
+  });
+```
+---
+
+#### ✅ Example:
+```js
+fetch("https://api.example.com/data")
+  .then((response) => {
+    return response.json();
+  })
+  .then((data) => {
+    console.log(data);  // prints the actual data from the API
+  })
+  .catch((err) => {
+    console.log("Error:", err);
+  });
+```
+---
+
+#### ✅ Notes:
+- `response.json()` is asynchronous and returns a **Promise**.
+- You can also use `.text()`, `.blob()`, or `.arrayBuffer()` depending on the response type.
+
+> 💻 Related Code : 
+>> [nasa.html](javascript-asynch/nasa.html) <br>
+>> [jewellery.html](javascript-asynch/jewellery.html)
+
+## Method
+
+### 🔹 `findIndex((value, index, array))` → returns the **index** of the first element that satisfies the condition.  
+- If no match is found, it returns **-1**.
+
+---
+
+#### ✅ Example:
+```js
+let users = [{ id: 10, name: 'sachin' }, { id: 18, name: 'kohli' }];
+
+let index = users.findIndex(user => user.id === 18);
+console.log(index);  // Output: 1
+
+index = users.findIndex(user => user.id === 7);
+console.log(index);  // Output: -1
+```
+---
+
+#### ✅ Use case:
+- Helpful when you want the **position** of an object in an array based on a condition.
+
+> 💻 Related Code : [fakestore-cart.html](javascript-asynch/fakestore-cart.html)
+
+
+## Map, Date, functions
+
+1. What are the limitations of object ? 
+    - Key must be of string type.
+    - No standard api on its own to tell the no of keys present in an object.
+    - Searching and deletion on its own cant be done it should be done with the help of operators
+    - Best suited when data is structured, otherwise it would fail.
+
+#### Map 
+- Syntax : var refName = new Map();
+- Map provides following method for manipulation
+
+|Method name() | Description|
+|---|---|
+|set() | It is used to assign a new key with the value.|
+|get() | It is used to access a value with the key reference|
+|************************|*************************|
+|keys() | It returns all keys|
+|values() | It returns all values|
+|entries() | It returns all keys and values|
+|delete() | It remove a key and value|
+|has() | It checks the availabilty of any key |
+|clear() | It removes all keys |
+|************************|*************************|
+|size | It returns the total count of keys|
+
+> 🔔 **Note:** : use for...of to iterate if we have data in map type.
+
+> 💻 Related Code : 
+>> [map1.html](javascript-asynch/map1.html) <br>
+>> [map2.html](javascript-asynch/map2.html)
+
+## Symbol Type
+
+### What is "Symbol" type in JavaScript?
+
+*Ans:* It is a *primitive datatype* in JavaScript.
+
+- It is used for *unique identification* of any element in an object.
+- It configures a *hidden key, which can be used individually but is **ignored in iterations* like for...in, Object.keys(), etc.
+
+---
+
+### How to configure a Symbol
+
+```js
+var ID = Symbol();
+```
+
+---
+
+### Define key with Symbol type in an Object
+
+```js
+const user = {
+  [ID]: 101,
+  name: "Karthikeya"
+};
+```
+
+---
+
+### Access the Symbol key individually
+
+```js
+console.log(user[ID]); // 101
+```
+
+> 🔔 **Note:**  Symbols are not enumerable and won't appear in regular object iterations.
+
+> 💻 Related code  :  [symbol-type.js](Non-primitive/symbol-type.js)
+
+- we can create a Symbol() with the same key.
+- Even if we create a Symbol() type with the same key still 2 different object would be availabe in memory.
+- If we use == | === operator on Symbol() type with the same key the result would be false.
+- We can use toString() on Symbol() to convert into String type while rendering an UI.
+
+
+> 💻 Related code  :  [symbol2.html](Non-primitive/symbol2.html)
+
+### Working with Date Type
+
+- Date type is defined using JavaScript's `Date()` constructor.
+- It allocates memory to store date-type values.
+- The date is stored in **"Year-Month-Day"** format.
+- It can handle both **date** and **time** values.
+
+#### Syntax
+- Load current system date and time:
+  ```js
+  var departure = new Date();
+  ```
+- Create date with full timestamp:
+  ```js
+  var departure = new Date("YYYY-MM-DD Hrs:Min:Sec.MilliSeconds");
+  ```
+- Create date with only date:
+  ```js
+  var mfd = new Date("YYYY-MM-DD");
+  ```
+##### Example
+```html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script type="text/javascript">
+
+        let now = new Date();
+        console.log(now);
+
+        var mfd = new Date("2025-06-01");
+        console.log(mfd);
+
+        var departureTime = new Date("2025-06-19 20:45:36");
+        console.log(departureTime)
+
+    </script>
+</body>
+
+</html>
+```
+
+### JavaScript Date Object Methods
+
+JavaScript `Date` object provides various methods to work with **date and time** values.
+
+#### ⏰ Time Methods
+- `getHours()` – Returns the hour (0 to 23)
+- `getMinutes()` – Returns the minutes (0 to 59)
+- `getSeconds()` – Returns the seconds (0 to 59)
+- `getMilliseconds()` – Returns the milliseconds (0 to 999)
+
+---
+
+#### 📅 Date Methods
+- `getDay()` – Returns the **weekday** (0 = Sunday, ..., 6 = Saturday)
+- `getDate()` – Returns the **day of the month** (1 to 31)
+- `getMonth()` – Returns the **month** (0 = January, ..., 11 = December)
+- `getFullYear()` – Returns the **full year** (e.g., 2025)
+- `getYear()` – **(Obsolete)** Returns the year minus 1900 (e.g., 125 for 2025)
+
+> 💻 Related Code : 
+[date1.html](date/date1.html)
+
+### Conversion of Date Output as per User Requirements
+- These methods help in formatting the `Date` object output based on locale or readable formats.
+
+  - `toLocaleDateString()`  
+    - Returns the date portion in a format specific to the user's locale.  
+    - Example: `"6/9/2025"` or `"09/06/2025"` depending on locale.
+
+  - `toLocaleTimeString()`  
+    - Returns the time portion in a locale-specific format.  
+    - Example: `"7:35:12 PM"` or `"19:35:12"` depending on locale.
+
+  - `toString()`  
+    - Converts the full date and time to a human-readable string.  
+    - Example: `"Mon Jun 09 2025 19:35:12 GMT+0530 (India Standard Time)"`
+
+> 💻 Related Code : 
+>> [date2.html](date/date2.html) <br>
+>> [date3.html](date/date3.html) 
+
+### What is Closure?
+
+- A **closure** is a function that remembers and has access to variables from its **lexical scope**, even when that function is executed outside that scope.
+
+- In simple terms, an **inner function can access variables of its outer function**, even after the outer function has finished execution.
+
+#### Example:
+
+```js
+function a() {
+    var i = 10;
+    function b() {
+        console.log(i); // inner function accessing outer variable
+    }
+    b();
+}
+a();
+```
+### `setTimeout(callbackFunction, timerInMs, args)`
+- Executes the `callbackFunction` **after** a delay specified by `timerInMs`.
+- Any additional `args` are passed as arguments to the callback.
+
+---
+
+#### Important Notes:
+- ✅ Function inside `setTimeout` **forms a closure** and remembers reference to `i`.
+- ✅ Wherever the function goes, it **carries reference** to `i` along with it.
+- ✅ The lines **after** `setTimeout` will execute **immediately**, without waiting.
+
+---
+
+##### Example:
+
+```html
+<script type="text/javascript">
+    function x() {
+        var i = 10;
+        console.log("***************");
+        setTimeout(function () {
+            console.log(i);
+        }, 3000);
+        console.log("****************");
+    }
+    x();
+</script>
+```
+#### Output : 
+```
+***************
+****************
+10       ← after 3 seconds
+```
+
+### ⏱️ How `setTimeout` Works in JavaScript
+
+- It takes a **callback function** 🧠 and attaches a **timer** ⏳.
+- The callback is stored in the **Web API environment** 🌐.
+- Once the timer expires:
+  - The function is pushed to the **Task Queue** 📥.
+  - The **Event Loop** 🔁 moves it to the **Call Stack** only if it's empty.
+
+---
+
+### 🤔 Tricky Interview Question  
+#### ❓ Print `1` after 1 sec, `2` after 2 sec... up to `5`
+
+```js
+for (var i = 1; i <= 5; i++) {
+    setTimeout(function () {
+        console.log(i);
+    }, i * 1000);
+}
+```
+
+#### ❌ Output:
+```
+6
+6
+6
+6
+6
+```
+
+### 💡 Why Does It Print 6 Every Time?
+
+- 🧠 The callback **remembers reference** to `i`, not its value.  
+- 🏃 The loop runs **completely before** any `setTimeout` executes.  
+- 🔁 By the time callbacks run, `i = 6` for all.
+
+### ❌ Problematic Version Using `var`
+```html
+<body>
+    <script type="text/javascript">
+        function x() {
+            // Loop from 1 to 5
+            for (var i = 1; i <= 5; i++) {
+                // Set a timeout to log 'i' after i * 1000 milliseconds
+                setTimeout(function () {
+                    console.log(i);
+                }, i * 1000);
+            }
+        }
+        x(); // Call the function
+    </script>
+</body>
+```
+
+#### 🔴 Output:
+6  
+6  
+6  
+6  
+6
+
+#### ⚠ Why?
+- `var` is **function-scoped**, not block-scoped.
+- By the time the `setTimeout` callback runs, the loop has already completed and `i` is `6`.
+- So each timeout logs the current (final) value of `i` → which is `6`.
+
+---
+
+### ✅ Fixed Version Using `let`
+
+```html
+<body>
+    <script type="text/javascript">
+        function x() {
+            // Using 'let' creates a new block-scoped 'i' for each iteration
+            for (let i = 1; i <= 5; i++) {
+                // Now 'i' retains the correct value for each timeout
+                setTimeout(function () {
+                    console.log(i);
+                }, i * 1000);
+            }
+        }
+        x(); // Call the function
+    </script>
+</body>
+```
+
+#### 🟢 Output:
+1  *(after 1 second)*  
+2  *(after 2 seconds)*  
+3  *(after 3 seconds)*  
+4  *(after 4 seconds)*  
+5  *(after 5 seconds)*
+
+#### ✅ Why It Works?
+- `let` is **block-scoped**, so each iteration captures its **own version** of `i`.
+- The correct value of `i` is preserved in each `setTimeout` callback.
+
+#### 💡 What if we need to get the functionality of `let` with `var` only?
+
+To simulate `let` (block-scoped) behavior while using `var` (function-scoped), we can use a **closure** to preserve the current value of `i` during each iteration.
+
+```html
+<script type="text/javascript">
+    function x() {
+        for (var i = 1; i <= 5; i++) {
+
+            function close(a) {
+                setTimeout(function () {
+                    console.log(a);
+                }, a * 1000);
+            }
+
+            close(i);
+        }
+    }
+    x();
+</script>
+```
+
+<img src = "img/debouncing.png">
+
+
+#### ⚡ a. What is Debouncing?
+
+- 🟠 **Bouncing**: In electronic devices, it's when a function is released immediately into memory without locking.
+- 🟢 **Debouncing**: It's a technique where the function is **delayed** (locked) for a specific duration.
+- ⏳ This helps in **controlling rapid events** and allows other tasks (like methods or APIs) to execute in the meantime.
+
+---
+
+#### 🛠️ b. How to Control Bouncing?
+
+- 🧩 Use the following JavaScript tools:
+
+  - ⏱️ `setTimeout(function () { }, timeoutMs);`  
+    _(Delays the function execution by `timeoutMs` milliseconds)_
+
+  - ❌ `clearTimeout(refName);`  
+    _(Cancels a timeout set with `setTimeout`)_
+
+  - 🔁 `setInterval(function () { }, intervalMs);`  
+    _(Repeats function every `intervalMs` milliseconds)_
+
+  - ❎ `clearInterval(refName);`  
+    _(Stops the repeated execution set by `setInterval`)_
+
+> 💻 Related Code : [hiiUser.html](date/hiiUser.html) 
+
+
+#### ⏲️ setInterval()
+
+- 🔧 **Syntax**:  
+  `let intervalID = setInterval(function, delay, param1, param2, ...);`
+
+  - `function` — The function to execute.
+  - `delay` — Time in milliseconds between each function call.
+  - `param1, param2, ...` — *(Optional)* Parameters to pass to the function.
+
+- 🧠 **Behavior**:
+  - 📦 Loads the specified task into memory.
+  - 🔁 Repeatedly releases the task into process at regular intervals.
+  - ♾️ Continues executing until manually stopped.
+
+---
+
+#### 🛑 clearInterval()
+
+- 🔧 **Syntax**:  
+  `clearInterval(intervalID);`
+
+- 🧠 **Behavior**:
+  - 🧹 Removes the interval task from memory.
+  - 🛑 Stops further executions of the function associated with the `intervalID`.
+
+> 💻 Related Code : 
+>> [setIn1.html](date/setIn1.html) <br>
+>> [setIn2.html](date/setIn2.html)
+
+#### 🧩 What are Functions?
+
+- 🔁 If we want to use a set of statements repeatedly, we encapsulate those statements using `{}` with the `function` keyword.
+- 🎯 **Advantage**: Reusability
+
+---
+
+#### 🧠 JavaScript Function Execution
+
+- 🧵 Every time a function is executed, a **new Execution Context** is created.
+- 📚 This context becomes part of the **Call Stack**.
+- 📦 Variables used inside functions have **block scope**.
+- 🔄 Functions can return:
+  - ✅ Primitive types (e.g., `number`, `string`)
+  - 🧱 Non-primitive types (e.g., `objects`, other `functions`)
+
+---
+
+#### 📥 Parameters vs Arguments
+
+- 🧾 **Parameters**:  
+  Defined in the function declaration or expression. (Think of them as placeholders)
+
+- 📤 **Arguments**:  
+  Actual values passed while calling the function (like command-line arguments).
+
+- 🧪 In JavaScript, both parameters and arguments can be:
+  - ✅ Primitive values
+  - 🧱 Non-primitive values (objects, arrays, functions)
+
+---
+
+#### 🫀 Functions Are First-Class Citizens
+
+- 🧠 Functions can be:
+  - Assigned to variables
+  - Passed as arguments
+  - Returned from other functions
+
+> Hence, we call them:  
+> **"First-Class Citizens"** or the **"Heart of JavaScript"**
+
+---
+
+#### 📝 Syntax
+
+- 📌 **Function Declaration**:
+  ```js
+  function nameOfFunction(parameters) {
+      // body of the function
+      return ...;
+  }
+  ```
+- 💼 **Function Expression**:
+  ```js
+  let add = function() {
+    // body
+  }
+  ```
+- **⚡ Arrow Function:**
+  ```js
+  let add = () => {
+    // body
+  }
+  ```
+
+#### ⚠️ Function Expression: Memory Behavior & Hoisting
+
+- 📦 In the case of **function expressions**, memory allocation **changes dynamically** based on the state and situation during runtime.
+
+- 🛑 **Note**:
+  - Function expressions **are not hoisted**.
+  - This is because the variable they’re assigned to is in the **Temporal Dead Zone (TDZ)** until the declaration is evaluated.
+
+- 📌 Example:
+  ```js
+  console.log(sum); // ❌ ReferenceError: Cannot access 'sum' before initialization
+  let sum = function(a, b) {
+      return a + b;
+  };
+  ```
+> 🧠 Unlike function declarations (which are hoisted entirely), function expressions behave like regular variables — they are hoisted without their assigned value, and trying to access them before declaration leads to a ReferenceError.
+
+#### 💠 Difference b/w Arrow Functions and Function Expression
+
+---
+
+#### 📝 Syntax
+```js
+// Function Expression
+const add = function(a, b) {
+  return a + b;
+};
+
+// Arrow Function
+const add = (a, b) => a + b;
+```
+
+#### ⚙️ this Behavior (Major Difference)
+
+---
+
+#### 🔹 Function Expression: `this` is dynamic – depends on how the function is called.
+
+```js
+const obj = {
+  name: "Sachin",
+  greet: function() {
+    console.log("Hi " + this.name);
+  }
+};
+obj.greet(); // Hi Sachin
+```
+
+#### 🔸 Arrow Function: this is lexical – it inherits this from the surrounding scope.
+```js
+const obj = {
+  name: "Sachin",
+  greet: () => {
+    console.log("Hi " + this.name);
+  }
+};
+obj.greet(); // Hi undefined (because `this` refers to outer/global)
+```
+```js
+const obj = {
+  name: "Sachin",
+  greet: () => {
+    console.log("Hi " + name);
+  }
+};
+obj.greet(); // ReferenceError: name is not defined [searched in block scope]
+```
+
+#### 📦 What is `arguments` in JavaScript?
+
+---
+
+- `arguments` is a built-in object available **inside regular functions** (not in arrow functions).
+- It contains all the arguments passed to the function — even if the function signature doesn't explicitly declare parameters.
+
+---
+
+#### 🔧 Function Expression Example
+
+```js
+function printArgs() {
+  console.log(arguments);
+}
+printArgs(1, 2, 3); // [1, 2, 3]
+```
+
+#### 📋 `arguments` Object Features
+
+| 🔹 Feature                 | 🔸 Value                                       |
+|---------------------------|-----------------------------------------------|
+| Type                      | Array-like object (not real array)            |
+| Indexable                 | Yes (`arguments[0]`, etc.)                    |
+| `.length` supported       | Yes                                           |
+| Iterable with `for` loop  | Yes                                           |
+| Real array methods        | No (need to convert it)                       |
+
+---
+
+#### 🔁 How to Convert `arguments` to Array
+
+```js
+function printArgs() {
+  let args = Array.from(arguments);
+  console.log(Array.isArray(args));
+  console.log(args.map(x => x * 2));
+}
+printArgs(5, 10);
+```
+
+#### 🚫 Arrow Function Limitation
+```js
+const printArgs = () => {
+  console.log(arguments);
+};
+printArgs(1, 2, 3); // Error: arguments is not defined
+```
+#### 📌 Points to Remember While Writing an Arrow Function (vs Function Expression)
+
+---
+
+- a. ✅ `arguments` inbuilt property is available in **function expressions**, ❌ not in arrow functions.
+- b. ✅ `this` keyword refers to the current object in **function expressions**, ❌ refers to outer/global scope in arrow functions.
+- c. ✅ Function expressions **can be used as constructors**, ❌ arrow functions **cannot** be used as constructors.
+
+---
+
+#### 🧪 Example #1: Constructor with Function Expression vs Arrow Function
+
+```js
+// ✅ Function Expression: works as a constructor
+let Person = function (name) {
+    this.name = name;
+};
+
+let obj = new Person("Sachin");
+console.log(obj.name); // Sachin
+
+// ❌ Arrow Function: not a constructor
+let student = (name) => this.name = name;
+let obj1 = new student("Sathya"); // TypeError: student is not a constructor
+console.log(obj1.name);
+```
+
+#### 🔹 d. Anonymous Function
+
+- a. Refers to a function without a name  
+- b. As per ECMAScript standards, every function should have a name  
+- c. If we want to call an anonymous function, we use **IIFE (Immediately Invoked Function Expression)**
+
+---
+
+#### 🧪 Example #1
+
+```js
+(function () {
+    console.log("I don't have name to call");
+})();
+```
+
+#### 🔹 e. Named Function Expression
+
+```js
+let doLogic = function helloUser() {
+    console.log("I don't have name to call");
+};
+
+doLogic();     // ✅ Works
+helloUser();   // ❌ ReferenceError
+```
+
+#### ❓ FAQ: Can a Function Return Multiple Values?
+
+- ✅ **Ans**: Yes, a function can return multiple values based on conditions (**Conditional Rendering**).
+
+---
+
+#### 🧪 Example
+
+```js
+function getDetails(condition) {
+    if (condition) {
+        return [200, "Success"];
+    } else {
+        return [500, "Error"];
+    }
+}
+
+const [status, message] = getDetails(true);
+console.log(status);  // 200
+console.log(message); // Success
+```
+
+> 💻 Related Code : [conditional-rendering.html](Non-primitive\conditional-rendering.html)
+
+
+#### 🔁 What is a Callback Function?
+
+- A **callback function** is a mechanism in JavaScript where a **function body is passed as an argument** to another function.
+- It is the responsibility of the receiving function to **invoke the callback** whenever needed.
+- Callback functions can be used in both:
+  - ✅ **Synchronous** mode
+  - ⏳ **Asynchronous** mode
+
+---
+
+#### 🛠️ Asynchronous Usage with Web APIs
+
+- Common web APIs where callbacks are used:
+  - `setTimeout()`
+  - `fetch()`
+  - `Promise`
+
+> 💻 Related Code : [verifyUrl.html](Non-primitive/verifyUrl.html)
+
+#### ⏳ Callback Used in Asynchronous Style
+
+---
+
+#### 📘 Promise – Like a Real-Life Promise
+
+- A **Promise** represents the eventual completion (or failure) of an asynchronous operation.
+- It has **3 phases**:
+  - a. **Initial**  : Not yet started, ready to begin
+  - b. **Resolved** : Successfully completed
+  - c. **Rejected** : Unable to fulfill the promise
+
+---
+
+#### 🚀 Behavior
+
+- Promises are **implicitly asynchronous**.
+- They allow other tasks to execute without blocking the main thread.
+- Promises offer **better performance** compared to synchronous callbacks.
+
+---
+
+#### 🔁 Replacing Callbacks with Promises
+
+- Promises can be used **instead of callbacks** to handle asynchronous operations more cleanly.
+
+---
+
+#### 🔧 Promise Utility Methods
+
+- `.then()` — Executes when the promise is **fulfilled**
+- `.catch()` — Executes when the promise is **rejected**
+- `.finally()` — Executes **in all situations**, whether fulfilled or rejected
+
+> 💻 Related Code : [finally.html](Non-primitive/finally.html)
+
+> 📝 **Note**:  
+> The `finally` block of Promise handling will be executed **irrespective of** whether the promise is resolved (`resolve()`) or rejected (`reject()`).
+
+<img src = "img/exe.png">
+
+<img src = "img/runtime.png">
+
+
+#### 📦 Promise
+
+```js
+let promiseApi = new Promise(function (resolve, reject) {
+    if (condition) {
+        resolve();
+    } else {
+        reject();
+    }		
+});
+```
+
+#### 📲 Consuming the Promise
+```js
+promiseApi
+  .then(function () {
+      // successful
+  })
+  .catch(function (error) {
+      // error handling
+  })
+  .finally(function () {
+      // always runs
+  });
+```
+
+#### ❓ Q: What is Exception and What is Exception Handling?
+
+---
+
+- ⚠️ **Exception**:  
+  Exceptions are **runtime mistakes** that occur due to **faulty inputs** given by the user to the application.
+
+- 💥 These mistakes can lead to **abnormal termination** of the application.
+
+---
+
+- 🛠️ **Exception Handling**:  
+  To prevent abnormal termination, we use **exception handling mechanisms**.
+
+- ✅ Exception handling promotes **graceful termination** of a program:
+  - The program handles the error safely.
+  - It does **not affect the OS** or the **hardware** of the user.
+#### 🧾 Syntax: Exception Handling in JavaScript
+
+```js
+try {
+    // risky code
+} catch (error) {
+    // handling code
+} finally {
+    // resource releasing code
+}
+```
+> 📝 **Note**: Details in the `error` object
+
+| Property | Description                        |
+|----------|------------------------------------|
+| `name`   | Type of error (e.g. `TypeError`)   |
+| `message`| Description of the error           |
+| `stack`  | Stack trace (developer information)|
+
+> 💻 Related Code : 
+>> [err1.html](Non-primitive/err1.html) <br>
+>> [err2.html](Non-primitive/err2.html) <br>
+>> [err3.html](Non-primitive/err3.html)
+
+#### 🔁 Usage of `finally` Block
+
+---
+
+- ✅ It is a block that gets executed **irrespective of whether an exception occurs or not**.
+- 🔐 Inside the `finally` block, we usually write the logic for **closing or releasing resources**.
+
+---
+
+```js
+try {
+    // risky code
+} catch (error) {
+    // handling code
+} finally {
+    // resource releasing code
+}
+```
+> 💻 Related Code : [finally1.html](Non-primitive/finally1.html)
+
+> 📝 **Note**:  
+> All exceptions in JavaScript belong to **Unchecked Exceptions**.
+
+#### ☸️ Rest Operator
+
+---
+
+- 📌 This operator is used to **bind multiple values** under a **single variable**.
+
+---
+
+#### 🧾 Syntax
+
+```js
+function collectData(...variable) {
+    console.log(variable);
+}
+
+collectData(10, 'sachin', 53.5, true);
+```
+
+#### 📦 Object Destructuring with Rest
+```js
+let userData = {
+    name: 'sachin',
+    age: 51,
+    gender: 'M'
+};
+
+const { name, ...otherDetails } = userData;
+console.log(name);         // sachin
+console.log(otherDetails); // { age: 51, gender: 'M' }
+```
+
+#### 🔄 Spread Operator
+
+---
+
+- ✅ It is used to **spread elements** into **multiple values**.
+
+---
+
+#### 🧾 Syntax
+
+```js
+function collectData(...variable) {
+    console.log(variable);
+}
+
+let data = [10, 'sachin', 53.5, true];
+collectData(...data);
+```
+> 💻 Related Code : [spread1.html](Non-primitive/spread1.html)
+
+
+
+<!-- 28 -->
+> Note : 
+```js
+catch(error){
+  if(error instanceOf TypeError){
+    // handling logic of TypeError
+  }
+  if(error instanceOf SyntaxError){
+    // handling logic of SyntaxError
+  }
+  if(error instanceOf ReferenceError){
+    // handling logic of ReferenceError
+  }
+}
+```
+
+- All exceptions in js are 'unchecked' exceptions (these exceptions are not checked by compiler during memory allocation phase).
+
+<!-->30<!-->
+### What is Shallow Copy?
+- Shallow copy copies the top-level properties of an object only. If the object has nested objects or arrays, the references to those nested structures are copied - not the actual inner content.
+
+```js
+let obj = {
+    'id' :  10,
+    'name' : 'kohli',
+    'gender' : 'M',
+    'address' : {
+        'city' : 'delhi'
+    }
+};
+
+let cloneObj = {...obj};
+
+cloneObj.name = 'sachin';
+cloneObj.address.city = 'mumbai';
+
+console.log(cloneObj); // { id: 10, name: 'sachin', gender: 'M', address: { city: 'mumbai' } }
+console.log(obj); // { id: 10, name: 'kohli', gender: 'M', address: { city: 'mumbai' } }
+```
+
+### What is Deep Copy?
+- A deep copy creates a completely independent clone of the object, including all nested objects and arrays. No shared references. To create a deep copy, we use method called 
+
+### 📘 Rules of Rest Operators (`...rest`)
+
+1. ✅ A function **can have only one rest parameter**.
+
+   ```js
+   function example(...a, ...b) {} // ❌ Invalid
+   ```
+2. ✅ You can combine normal parameters and a rest parameter, but:
+
+- ❌ The rest parameter must be last.
+
+- ✅ Example:
+
+  ```js
+  function greet(name, ...messages) {} // ✅ Valid
+  function greet(...messages, name) {} // ❌ Invalid
+  ```
+
+3. ✅ Rest parameter reads all remaining arguments, so placing it last ensures correct behavior.
+
+> ⚠️ Improper order or multiple rest parameters will throw a syntax error.
+
+```js
+function printData({id, ...otherData}){
+    console.log(id);
+    const{name, gender, isMarried, salary = 'NOT DISPLAYED'} = otherData;
+    console.log(otherData);
+    console.log(salary);
+}
+let userData = {id : '10', 'name' : 'sachin', 'gender' : 'M', 'isMarried' : true};
+printData(userData)
+```
+### Function generator
+- **Syntax :**
+  ```js
+    function* generatorFunction(){
+      yield value1;
+      yield value2;
+    }
+  ```
+
+
+- `function*` → Declares a **generator function**.
+- `yield` → **Pauses** the function and **returns a value**.
+- `.next()` → **Resumes** the function and returns the **next `yield`ed value**
+
+📌 Example:
+```js
+function* generateValues(){
+    yield "sachin";
+    yield "saurav";
+    yield "shashu";
+    yield "jumma";
+}
+
+let gen = generateValues();
+console.log(gen);
+
+let result = gen.next();
+
+while(!result.done){
+    console.log(result);//sachin, ....
+    result = gen.next();//undefined, done : true
+}
+```
+
+### Higher Order Functions
+A function which accepts function as the parameter is called "Higher Order Function".
+
+```js
+const radius = [3, 4, 1, 2];
+
+const area = function(radius){
+    return (Math.PI * radius * radius).toFixed(2);
+}
+const circum = function(radius){
+    return (2 * Math.PI * radius).toFixed(2);
+}
+const diam = function(radius){
+    return (2 * radius);
+}
+
+//DRY : Don't repeat yourself
+
+function calculate(radius, logic){
+    let output = [];
+    for(let i = 0; i < radius.length; i++){
+        output.push(logic(radius[i]));
+    }
+    return output;
+}
+
+console.log(calculate(radius, area));
+console.log(calculate(radius, circum));
+console.log(calculate(radius, diam));
+```
+
+> Note : It is possible to make any user defined function to be a part of any inbuilt class.
+>> ClassName.prototype.key = value[function(){}]
+
+```js
+
+
+```
+

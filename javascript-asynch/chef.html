@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script type="text/javascript">
+
+        // Log that customers have placed the order
+        console.log("Customers ordering the food");
+
+        // Synchronous version of serving food (not called here)
+        function syncServeFood() {
+            console.log("🧑‍🍳Chef is preparing the food");
+
+            // Blocking loop - dishes prepared one after the other, synchronously
+            for (let i = 0; i < 3; i++) {
+                console.log(`🍽️ Dish is getting ready : ${i + 1}`);
+            }
+
+            console.log("Dish is served to customer");
+        }
+
+        // Asynchronous version of serving food
+        function asynchServeFood() {
+            console.log("🧑‍🍳Chef is preparing the food");
+
+            // Asynchronous task - dish1 preparation scheduled to run after 2s
+            setTimeout(() => {
+                console.log("Dish1 is getting ready");
+            }, 2000);
+
+            // Asynchronous task - dish2 preparation scheduled to run after 1s
+            setTimeout(() => {
+                console.log("Dish2 is getting ready");
+            }, 1000);
+
+            // Asynchronous task - dish3 preparation scheduled to run after 3s
+            setTimeout(() => {
+                console.log("Dish3 is getting ready");
+            }, 3000);
+
+            // This line executes immediately after scheduling all timeouts
+            console.log("🧑‍🍳 is doing some other work");
+        }
+
+        // Calling the asynchronous version (non-blocking)
+        asynchServeFood();
+
+        // This line also executes immediately (not waiting for dishes)
+        console.log("Waiter is serving customer by giving water");
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>
+
+<!-- callstack		:  chef.
+webapi			:  waiter(background)
+callback queue		:  kitchen(chef sets the timer)
+eventloop		:  manager who controls the hotel
+microtask queue		:  known person to the manager. -->

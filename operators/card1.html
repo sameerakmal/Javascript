@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/Web dev mastery/node_modules/bootstrap/dist/css/bootstrap.css">
+    
+    <link rel="stylesheet" href="/Web dev mastery/node_modules/bootstrap-icons/font/bootstrap-icons.css">
+    <style type="text/css">
+        body{
+            height: 100vh;
+        }
+    </style>
+</head>
+<body class="d-flex justify-content-center align-items-center" onload="loadData()">
+    <div class="card text-center">
+        <div class="card-header">
+            <div id="lblTitle"></div>
+        </div>
+        <div class="card-body">
+            <div id="lblPrice" class="text-end"></div>
+            <img src="" alt="" height="200px" width="300px" id="imgProduct">
+        </div>
+        <div class="card-footer">
+            <button class="btn btn-primary" id="prevBtn"><</button>
+            <button class="btn btn-primary" id="nxtBtn">></button>
+        </div>
+        </div>
+    </div>
+
+    <script type="text/javascript">
+        let productId = 1;
+        function loadData() {
+            loadProduct(productId);
+
+            document.getElementById('nxtBtn').addEventListener('click', function(){
+                if(productId < 20){
+                    productId++;
+                    loadProduct(productId);
+                }
+            })
+            document.getElementById('prevBtn').addEventListener('click', function(){
+                if(productId > 1){
+                    productId--;
+                    loadProduct(productId);
+                }
+            })
+        }
+        async function loadProduct(productId){
+
+            // document.getElementById('lblTitle').textContent = 'Loading...';
+            // document.getElementById('imgProduct').src = '';
+            let url = `https://fakestoreapi.com/products/${productId}`;
+
+            let response = await fetch(url);
+            let products = await response.json();
+
+            document.getElementById('lblTitle').textContent = products.title;
+            document.getElementById('imgProduct').src = products.image;
+            document.getElementById('lblPrice').innerHTML = `<span class = "bi bi-tag-fill bg-danger text-dark badge"><\span><span class = "bi bi-currency-dollar">${products.price}<span>`; 
+            document.getElementById('nxtBtn').disabled = (productId == 20);
+            document.getElementById('prevBtn').disabled = (productId == 1);
+        }
+    </script>
+</body>
+</html>

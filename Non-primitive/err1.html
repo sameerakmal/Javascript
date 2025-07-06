@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // Log to indicate the start of the program
+        console.log("program started the execution");
+
+        try {
+            let a = 10;
+            // The variable `undeclaredVar` is not defined, so this will throw a ReferenceError
+            let b = a + undeclaredVar;
+            console.log(b); // This line will not be reached
+        } catch (error) {
+            // Catch block handles the error gracefully and logs details
+            console.log("Error Name is : ", error.name);       // e.g., ReferenceError
+            console.log("Error Message is : ", error.message); // e.g., undeclaredVar is not defined
+            console.log("Stack trace is : ", error.stack);     // Stack trace showing where the error occurred
+        }
+
+        // This line runs regardless of the error
+        console.log("Graceful termination");
+    </script>
+
+    <!-- 
+    Output in Console:
+    -------------------
+    program started the execution
+    Error Name is :  ReferenceError
+    Error Message is :  undeclaredVar is not defined
+    Stack trace is :  ReferenceError: undeclaredVar is not defined
+        at http://127.0.0.1:5500/Exception%20handling/index.html:15:25
+    Graceful termination
+    -->
+
+</body>
+
+</html>

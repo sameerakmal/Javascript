@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <script type="text/javascript">
+        /*
+            Create a new Promise to verify the API URL.
+            - If the URL matches exactly, resolve the promise.
+            - If not, reject it with an error message.
+        */
+        const promiseApi = new Promise(function (resolve, reject) {
+            const url = prompt("Enter the URL"); // Prompt user to enter URL
+            if (url === 'https://fakestoreapi.com/products') {
+                resolve(url); // Correct URL -> resolve the promise
+            } else {
+                reject("Can't be called"); // Incorrect URL -> reject the promise
+            }
+        });
+
+        // This logs immediately, before the Promise settles
+        console.log("Script not waiting for the promise");
+
+        // Handling the resolved or rejected promise
+        promiseApi.then(function (url) {
+            // ✅ Promise resolved successfully
+
+            // Call fetch() to get data from the resolved URL
+            let apiResult = fetch(url);
+            console.log(apiResult); // Logs the Promise returned by fetch()
+
+            // Parse the JSON response
+            apiResult.then(function (response) {
+                return response.json(); // Convert response to JSON
+            }).then(function (data) {
+                console.log(data); // Log the actual data received from API
+            });
+
+        }).catch(function (error) {
+            // ❌ If URL is wrong, promise is rejected
+            console.log("Error:", error); // Display error message
+        }).finally(function () {
+            // This block always runs no matter what
+            console.log("Executed successfully"); // Final cleanup/logging
+        });
+
+        // This log also runs immediately
+        console.log("Script is doing some other job");
+    </script>
+
+</body>
+
+</html>

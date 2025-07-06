@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    // 🔹 Delete Operation in Arrays
+
+    console.log("***************************************");
+
+    // Initial team list
+    let teamNames = ['DC', 'RCB', 'Punjab', 'MI', 'CSK', 'GT', 'LSG', 'RR'];
+    console.log("Original:", teamNames); 
+    // ['DC','RCB','Punjab','MI','CSK','GT','LSG','RR']
+
+    // 🔸 Rear-End Deletion using pop()
+    teamNames.pop(); // Removes last element ('RR')
+    console.log("After pop():", teamNames); 
+    // ['DC','RCB','Punjab','MI','CSK','GT','LSG']
+
+    // 🔸 Front-End Deletion using shift()
+    teamNames.shift(); // Removes first element ('DC')
+    console.log("After shift():", teamNames); 
+    // ['RCB','Punjab','MI','CSK','GT','LSG']
+
+    // 🔸 Deletion at a Specific Index using splice()
+    teamNames.splice(3, 1); // Removes 1 item at index 3 ('CSK')
+    console.log("After splice(3, 1):", teamNames); 
+    // ['RCB','Punjab','MI','GT','LSG']
+  </script>
+</body>
+</html>

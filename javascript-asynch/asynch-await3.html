@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Character encoding and responsive layout setup -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- Page title -->
+    <title>Product Viewer</title>
+
+    <!-- Bootstrap CSS for layout and styling -->
+    <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.css">
+    
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="../node_modules/bootstrap-icons/font/bootstrap-icons.css">
+</head>
+
+<!-- Call loadData() when the page is loaded -->
+<body onload="loadData()" class="container-fluid">
+    <!-- Body is empty initially; content will be inserted by JavaScript -->
+</body>
+
+<script type="text/javascript">
+    // Function to load data from JSON and display it dynamically
+    function loadData() {
+        const URL = '../data/products.json'; // Local JSON file path
+        console.log("Data is loaded through", URL); // Debug log
+
+        // Fetch the JSON data asynchronously
+        fetch(URL)
+            .then(function (response) {
+                return response.json(); // Parse JSON from response
+            })
+            .then(function (product) {
+                // Create a <div> element to hold product details
+                let div = document.createElement("div");
+
+                // Use template literals to embed product data into HTML
+                div.innerHTML = `
+                    <dl class="row mt-3">
+                        <!-- Product Image -->
+                        <dt class="col-2">
+                            <img width="200" height="200" src='${product.Photo}' alt="${product.Title}">
+                        </dt>
+
+                        <!-- Product Description, Ratings, and Features -->
+                        <dt class="col-8">
+                            <h3>${product.Title}</h3>
+                            
+                            <!-- Ratings Display -->
+                            <p class='text-white p-2'>
+                                <span class='bg-success'>${product.Ratings.Rate}</span>
+                                <span class='bi bi-star-fill bg bg-success'></span> 
+                                <span class='text-secondary'>${product.Ratings.Count} ${product.Ratings.Review}</span>
+                            </p>
+
+                            <!-- List of Features -->
+                            <ul class='fw-light'>
+                                <li>${product.Features[0]}</li>
+                                <li>${product.Features[1]}</li>
+                                <li>${product.Features[2]}</li>
+                                <li>${product.Features[3]}</li>
+                                <li>${product.Features[4]}</li>
+                            </ul>
+                        </dt>
+
+                        <!-- Product Price -->
+                        <dt class="col-2">
+                            <p class='fw-bold'>
+                                <span class='bi bi-currency-rupee'> ${product.Price}</span>
+                            </p>
+                        </dt>
+                    </dl>
+                `;
+
+                // Append the product detail block to the body
+                document.body.appendChild(div);
+            })
+            .catch(function (error) {
+                // Log any error that occurs during fetch or processing
+                console.log(error);
+            });
+    }
+</script>
+
+</html>

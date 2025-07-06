@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fake Store - Jewelery</title>
+</head>
+
+<body onload="loadData()">
+    <h2 align="center">🪙 Jewelery Products</h2>
+
+    <!-- Table to display product data -->
+    <table border="1" width="100%" cellspacing="5" cellpadding="5">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Price ($)</th>
+                <th>Image</th>
+                <th>Ratings</th>
+            </tr>
+        </thead>
+        <tbody align="center">
+            <!-- Data will be inserted here dynamically -->
+        </tbody>
+    </table>
+
+    <script type="text/javascript">
+        // Function to load data from the API
+        async function loadData() {
+            try {
+                // API URL for products in the 'jewelery' category
+                const URL = "https://fakestoreapi.com/products/category/jewelery";
+
+                // Fetching the data from the API
+                let response = await fetch(URL);
+
+                // Parsing the response into JSON
+                let products = await response.json();
+
+                // Logging to console for debugging
+                console.log(products);
+
+                // Looping through each product
+                products.forEach(product => {
+                    // Creating a table row for each product
+                    let tr = document.createElement("tr");
+
+                    // Creating individual table cells
+                    let tdId = document.createElement("td");
+                    let tdPrice = document.createElement("td");
+                    let tdImg = document.createElement("td");
+                    let tdRatings = document.createElement("td");
+
+                    // Assigning values to the cells
+                    tdId.textContent = product.id;
+                    tdPrice.textContent = product.price;
+                    tdImg.innerHTML = `<img src='${product.image}' width='50' height='50'>`;
+                    tdRatings.textContent = product.rating.rate;
+
+                    // Appending cells to the row
+                    tr.appendChild(tdId);
+                    tr.appendChild(tdPrice);
+                    tr.appendChild(tdImg);
+                    tr.appendChild(tdRatings);
+
+                    // Appending the row to the table body
+                    document.querySelector("tbody").appendChild(tr);
+                });
+
+            } catch (error) {
+                // Catch and display any error during fetch or processing
+                console.log("API ERROR: ", error);
+            }
+        }
+    </script>
+</body>
+
+</html>

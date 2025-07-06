@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    // 🔹 Sorting Numbers in an Array
+    let arr = [10, 5, 2]; // Example input, could represent preorder traversal in binary tree
+
+    // Custom sort function for numeric descending order
+    arr.sort(function(a, b) {
+      return b - a; // Descending: higher numbers come first
+    });
+    console.log(arr); // Output: [10, 5, 2]
+
+    // 🔹 Sorting Strings in an Array
+    let fruits = ['apple', 'cherry', 'bannana'];
+
+    // Default sort: alphabetical (lexicographical) order
+    fruits.sort();
+    console.log(fruits); // Output: ['apple', 'bannana', 'cherry']
+
+    // Reverse the sorted array (to get descending alphabetical order)
+    fruits.reverse();
+    console.log(fruits); // Output: ['cherry', 'bannana', 'apple']
+  </script>
+</body>
+</html>

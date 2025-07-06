@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spread Operator Example</title>
+</head>
+
+<body>
+    <script type="text/javascript">
+        // Using spread operator with an array
+        let userData = [10, 'sachin', 53.5, true];
+
+        // Create a new array by copying all elements of userData and appending 'M'
+        let updatedData = [...userData, 'M'];
+        console.log(updatedData);
+
+        // Using spread operator with an object
+        let obj = { 'name': 'kohli', 'age': 37, 'gender': 'M' };
+
+        // Create a new object by copying obj's properties and overriding 'name', then adding 'isMarried'
+        let updatedObj = { ...obj, 'name': 'viratKohli', 'isMarried': true };
+        console.log(updatedObj);
+    </script>
+
+    <!-- 
+    Output in Console:
+    -------------------
+    [10, 'sachin', 53.5, true, 'M']
+    {name: 'viratKohli', age: 37, gender: 'M', isMarried: true}
+
+    Explanation:
+    - The spread operator (...) is used to clone or merge arrays/objects.
+    - For objects, properties appearing later (e.g., 'name') overwrite earlier ones.
+    -->
+</body>
+
+</html>

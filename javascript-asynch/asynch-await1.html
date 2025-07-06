@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Load Product Data</title>
+</head>
+
+<body class="container-fluid mt-3" onload="loadData()">
+    <!-- Table to display product data -->
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Title</th>
+                <th>Preview</th>
+                <th>Price</th>
+            </tr>
+        </thead>
+        <tbody id="data" cellspacing="5" cellpadding="5">
+            <!-- Dynamic rows will be added here -->
+        </tbody>
+    </table>
+
+    <script type="text/javascript">
+        // Asynchronously load product data when the page loads
+        async function loadData() {
+            try {
+                const URL = '../data/products.json'; // Path to JSON data file
+                console.log("Data is loaded through", URL);
+
+                // Fetch the JSON file (asynchronous HTTP request)
+                let response = await fetch(URL); // Wait until the response is received
+                let products = await response.json(); // Parse response body as JSON
+
+                console.log(products); // Log the full product list
+
+                const data = document.getElementById("data"); // Target tbody element
+
+                // Loop through each product and create a table row
+                products.forEach((product) => {
+                    let tr = document.createElement("tr"); // Create new row
+
+                    // Create cells for title, image, and price
+                    let tdTitle = document.createElement("td");
+                    let tdImg = document.createElement("td");
+                    let tdPrice = document.createElement("td");
+
+                    // Fill each cell with product data
+                    tdTitle.textContent = product.Title; // Product title
+                    tdImg.innerHTML = `<img src='${product.Photo}' width='100' height='100'>`; // Product image
+                    tdPrice.textContent = product.Price; // Product price
+
+                    // Append cells to the row
+                    tr.appendChild(tdTitle);
+                    tr.appendChild(tdImg);
+                    tr.appendChild(tdPrice);
+
+                    // Append the row to the table body
+                    data.appendChild(tr);
+                });
+
+            } catch (error) {
+                // Catch any errors in fetch or JSON parsing
+                console.log("Error :", error);
+            }
+        }
+    </script>
+</body>
+
+</html>

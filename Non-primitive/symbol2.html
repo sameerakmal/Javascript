@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Symbol Example</title>
+</head>
+
+<body>
+    <script type="text/javascript">
+        // Create two Symbols with the same description
+        let id1 = Symbol("PW");
+        let id2 = Symbol("PW");
+
+        // Create an object with Symbol keys
+        let obj = {
+            [id1]: "B42C",
+            [id2]: "A43C"
+        }
+
+        // Log the full object
+        console.log(obj);
+
+        // Access individual Symbol-keyed values
+        console.log(obj[id1]);  // Output: B42C
+        console.log(obj[id2]);  // Output: A43C
+
+        // Compare the two Symbols (even with the same description, they're unique)
+        console.log(id1 == id2);   // false
+        console.log(id1 === id2);  // false
+
+        // Create another Symbol
+        let data = Symbol("Hello");
+
+        // Output the Symbol
+        console.log(data);                  // Symbol(Hello)
+
+        // Print Symbol in a string context (will not print properly without converting)
+        console.log("The data is ", data); // Symbol(Hello)
+
+        // Properly convert Symbol to string using toString()
+        console.log("The data is : ", data.toString()); // The data is :  Symbol(Hello)
+    </script>
+</body>
+
+</html>

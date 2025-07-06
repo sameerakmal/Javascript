@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <!-- Bootstrap CSS for styling -->
+    <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.css">
+
+    <!-- Bootstrap Icons (not used here, but included) -->
+    <link rel="stylesheet" href="../node_modules/bootstrap-icons/font/bootstrap-icons.css">
+
+    <style type="text/css">
+        /* Style for the progress bar */
+        progress {
+            width: 300px;
+            height: 30px;
+        }
+
+        /* Keyframe animation for zoom-in and rotation effect */
+        @keyframes Zoomin {
+            from {
+                width: 50px;
+                height: 50px;
+                transform: rotate(0deg);
+            }
+
+            to {
+                width: 300px;
+                height: 300px;
+                transform: rotate(360deg);
+            }
+        }
+    </style>
+
+    <script type="text/javascript">
+        var count = 1;  // initial progress count
+        var timer;      // will hold setInterval ID
+
+        // This function is called every 10ms to increase progress
+        function loadProgressBar() {
+            count++; // increment the counter
+            document.querySelector("progress").value = count; // update progress bar
+            document.querySelector("#status").textContent = `${count}% progressed`; // update text status
+
+            // When count reaches 100, stop the timer and load image
+            if (count === 100) {
+                clearInterval(timer); // stop progress
+
+                // Hide the progress bar
+                document.querySelector("#progressContainer").style.display = 'none';
+
+                // Show the image with animation
+                document.getElementById("imageContainer").style.display = 'block';
+                document.getElementById("poster").src = '../public/images/iphone15.png';
+                document.getElementById("poster").style.animationName = "Zoomin";
+                document.getElementById("poster").style.animationDuration = "10s";
+            }
+        }
+
+        // Called when Load Image button is clicked
+        function loadData() {
+            // Show progress bar container
+            document.getElementById("progressContainer").style.display = 'block';
+
+            // Hide the button
+            document.getElementById("buttonContainer").style.display = 'none';
+
+            // Start the interval timer to simulate loading
+            timer = setInterval(loadProgressBar, 10); // calls loadProgressBar every 10ms
+        }
+    </script>
+</head>
+
+<body class="d-flex justify-content-center align-items-center" style="height: 100vh;">
+    <div class="text-center">
+
+        <!-- Button to start loading -->
+        <div id="buttonContainer">
+            <button class="btn btn-primary" onclick="loadData()">Load Image</button>
+        </div>
+
+        <!-- Progress bar (hidden initially) -->
+        <div id="progressContainer" style="display: none;">
+            <progress min="1" max="100" id="progress" value="1"></progress>
+            <p id="status"></p>
+        </div>
+
+        <!-- Image container (hidden initially) -->
+        <div id="imageContainer" style="display: none;">
+            <img border="1" alt="" width="300" height="300" id="poster">
+        </div>
+
+    </div>
+</body>
+
+</html>

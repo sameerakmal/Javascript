@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <!-- Linking Bootstrap CSS for styling -->
+    <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.css">
+    <!-- Linking Bootstrap Icons for icons like calendar and clock -->
+    <link rel="stylesheet" href="../node_modules/bootstrap-icons/font/bootstrap-icons.css">
+
+    <script type="text/javascript">
+        // This function runs when the page loads
+        function loadPage() {
+            let now = new Date();  // Create a new Date object with the current date and time
+
+            // Set the current date in the element with id="cal"
+            document.getElementById("cal").textContent = now.toLocaleDateString();
+
+            // Set the current time in the element with id="clock"
+            document.getElementById("clock").textContent = now.toLocaleTimeString();
+        }
+    </script>
+</head>
+
+<!-- Run loadPage() as soon as the body loads -->
+<body class="container-fluid" onload="loadPage()">
+
+    <!-- Top header section styled using Bootstrap classes -->
+    <header class="bg-dark text-white d-flex justify-content-between p-1 mt-3">
+        
+        <!-- Left side: Brand name -->
+        <div>
+            <span class="fw-bold">Shopper.</span>
+        </div>
+
+        <!-- Center navigation links -->
+        <nav>
+            <span class="ms-3">Home</span>
+            <span class="ms-3">About</span>
+            <span class="ms-3">Contact</span>
+        </nav>
+
+        <!-- Right side: Calendar and Clock icons with live date/time -->
+        <div>
+            <!-- Date will appear here -->
+            <span class="bi bi-calendar me-3" id="cal"></span>
+
+            <!-- Time will appear here -->
+            <span class="bi bi-clock me-3" id="clock"></span>
+        </div>
+    </header>
+
+</body>
+
+</html>

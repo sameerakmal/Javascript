@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/Web dev mastery/node_modules/bootstrap/dist/css/bootstrap.css">
+    
+    <link rel="stylesheet" href="/Web dev mastery/node_modules/bootstrap-icons/font/bootstrap-icons.css">
+    <style type="text/css">
+        body{
+            height: 100vh;
+        }
+    </style>
+</head>
+<body class="d-flex justify-content-center align-items-center" onload="loadBody()">
+    <div class="card text-center">
+        <div class="card-header">
+            <div id="lblTitle"></div>
+            <div id="lblStatus"></div>
+        </div>
+        <div class="card-body">
+            <div id="lblPrice" class="text-end"></div>
+            <img src="" alt="" height="200px" width="300px" id="imgProduct">
+        </div>
+        <div class="card-footer">
+            <button class="btn btn-danger" id="pauseBtn"><span class="bi bi-pause"></span></button>
+            <button class="btn btn-primary" id="playBtn"><span class="bi bi-play"></span></button>
+        </div>
+        </div>
+    </div>
+
+    <script type="text/javascript">
+
+
+        let productId = 1;
+        var timer = null;
+        function loadBody(){
+            timer = setTimeout(loadProduct, 3000);
+
+            document.getElementById('pauseBtn').addEventListener('click', function(){
+                clearTimeout(timer);
+                document.getElementById('lblStatus').innerHTML = '<h2>Slide show paused</h2>';
+            })
+
+            document.getElementById('playBtn').addEventListener('click', function(){
+                timer = setTimeout(loadProduct, 3000);
+                document.getElementById('lblStatus').innerHTML = '<h2>Slide Show resumed</h2>';
+            })
+        }
+
+        async function loadProduct(){
+
+            // document.getElementById('lblTitle').textContent = 'Loading...';
+            // document.getElementById('imgProduct').src = '';
+
+            if(productId > 20){
+                productId = 1;
+            }
+            try{
+                let url = `https://fakestoreapi.com/products/${productId}`;
+
+                let response = await fetch(url);
+                if(!response.ok){
+                    throw new Error("Product not found...sorry");
+                }
+                let products = await response.json();
+
+                document.getElementById('lblStatus').innerHTML = '<h2> Slide Show Started</h2>';
+                document.getElementById('lblTitle').textContent = products.title;
+                document.getElementById('imgProduct').src = products.image;
+                document.getElementById('lblPrice').innerHTML = `<span class = "bi bi-tag-fill bg-danger text-dark badge"><\span><span class = "bi bi-currency-dollar">${products.price}<span>`; 
+            }
+            catch(error){
+                document.getElementById('lblTitle').textContent = error.message;
+            }
+            finally{
+                productId++;
+                timer = setTimeout(loadProduct, 3000);
+            }
+        }
+    </script>
+</body>
+</html>

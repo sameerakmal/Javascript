@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Object Operations</title>
+</head>
+
+<body>
+    <script type="text/javascript">
+        // Defining a user object with keys: name, age, isMarried, and Salary
+        const user = {
+            'name': 'sachin',
+            'age': 51,
+            isMarried: true,
+            Salary: 45456.756
+        }
+
+        console.log("********Before Deleting the Key *************");
+
+        // Iterating over all keys of the object and displaying their values and types
+        Object.keys(user).forEach((key) => {
+            console.log(`${key}-----> ${user[key]} ----> ${typeof user[key]}`);
+        });
+
+        // Displaying total number of keys before deletion
+        console.log("No of keys is : ", Object.keys(user).length);
+
+        // Deleting the 'isMarried' property from the object
+        delete user.isMarried;
+
+        console.log("********After Deleting the Key *************");
+
+        // Iterating again to show the updated object after deletion
+        Object.keys(user).forEach((key) => {
+            console.log(`${key}-----> ${user[key]} ----> ${typeof user[key]}`);
+        });
+
+        // Displaying total number of keys after deletion
+        console.log("No of keys is : ", Object.keys(user).length);
+
+        // Checking if 'Salary' key still exists in the object using 'in' operator
+        if ("Salary" in user) {
+            console.log("Data is ", user["Salary"]);
+        } else {
+            console.log("Salary details are not disclosed");
+        }
+    </script>
+</body>
+
+</html>

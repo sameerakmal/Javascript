@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Billing</title>
+</head>
+
+<body>
+    <script type="text/javascript">
+        // Creating a product object with relevant details
+        var product = {
+            'ProductName': 'Samsung TV',     // Product name
+            'Quantity': 2,                   // Initial quantity (can be updated)
+            'Price': 35000,                  // Initial price (can be updated)
+            'isAvailable': true,            // Availability status
+
+            // Method to calculate total price (quantity * price)
+            'Total': function () {
+                return this.Quantity * this.Price;
+            },
+
+            // Method to print product details using template literals
+            'Print': function () {
+                document.write(`
+                    <h2>Product Details</h2>
+                    Product Name is : ${this.ProductName} <br>
+                    Quantity is : ${this.Quantity} <br>
+                    Price    is : ${this.Price.toLocaleString('en-IN', { style: 'currency', currency: 'INR' })} <br>
+                    Total    is : ${this.Total().toLocaleString('en-IN', { style: 'currency', currency: 'INR' })}
+                `);
+            }
+        };
+
+        // Prompting user to input quantity (converted to integer)
+        product.Quantity = parseInt(prompt("Enter the quantity: "));
+
+        // Prompting user to input price (converted to float)
+        product.Price = parseFloat(prompt("Enter the price: "));
+
+        // Calling the Print method to display the product info on the webpage
+        product.Print();
+
+    </script>
+</body>
+
+</html>
