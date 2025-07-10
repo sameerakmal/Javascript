@@ -42,16 +42,32 @@
 // console.log(calculate(radius, circum));
 // console.log(calculate(radius, diam));
 
-const radius = [3, 4, 1, 2];
+// const radius = [3, 4, 1, 2];
 
-Array.prototype.calculate = function(logic){
-    let output = [];
+// Array.prototype.calculate = function(logic){
+//     let output = [];
     
-    for(let i = 0; i < radius.length; i++){
-        output.push(logic(radius[i]));
-    }
-    return output;
+//     for(let i = 0; i < radius.length; i++){
+//         output.push(logic(radius[i]));
+//     }
+//     return output;
+// }
+
+// console.log(radius.map(radius, area));
+// console.log(radius.calculate(radius, area));
+
+
+class Animal{
+
 }
 
-console.log(radius.map(radius, area));
-console.log(radius.calculate(radius, area));
+class Dog extends Animal{
+
+}
+
+let a = new Dog();
+console.log(a instanceof Animal); //true
+console.log(a instanceof Dog); //true
+console.log(a instanceof Object); //true
+console.log(a instanceof Array); //false
+console.log(a instanceof Date); //false

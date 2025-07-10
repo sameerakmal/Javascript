@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script type="text/javascript">
+      let maxAttempts = 3;
+      let currAttempts = 0;
+      let flag = false;
+
+      while(currAttempts <= maxAttempts-1){
+        let str = prompt(`Enter the userName. Attempts reamining : ${3 - currAttempts}`);
+        if(str === 'sachin'){
+            flag = true;
+            break;
+        } 
+        currAttempts++;
+      }
+
+      if(flag){
+        console.log("Logged in succesfully");
+      }
+      else{
+        console.log("Contact Administrator");
+      }
+    </script>
+</body>
+</html>

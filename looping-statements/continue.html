@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/Web dev mastery/node_modules/bootstrap/dist/css/bootstrap.css">
+    
+    <link rel="stylesheet" href="/Web dev mastery/node_modules/bootstrap-icons/font/bootstrap-icons.css">
+</head>
+<body onload="loadBody()">
+    <table class="table" style="display: none;">
+        <h1 style="color: red;"></h1>
+        <thead>
+            <th>Id</th>
+            <th>Category</th>
+            <th>Price</th>
+        </thead>
+
+        <tbody>
+        </tbody>
+    </table>
+
+    <script type="text/javascript">
+        function loadBody(){
+            let url = 'https://fakestoreapi.com/products';
+            loadProducts(url);
+        }
+
+        async function loadProducts(url){
+            try{
+                let response = await fetch(url);
+                let products = await response.json();
+
+                if(products.length > 0){
+                    document.querySelector('table').style.display = 'block';
+                }
+
+                for(const product of products){
+                    if((product.category === 'jewelery') || (product.category === 'electronics')) continue;
+
+                    let tr = document.createElement('tr');
+                    let id = document.createElement('td');
+                    let cat = document.createElement('td');
+                    let price = document.createElement('td');
+
+                    id.textContent = product.id;
+                    cat.textContent = product.category;
+                    price.textContent = product.price;
+
+                    tr.appendChild(id);
+                    tr.appendChild(cat);
+                    tr.appendChild(price);
+                    document.querySelector('tbody').appendChild(tr);
+                }
+            }
+            catch(error){
+                if(error instanceof SyntaxError){
+                    document.querySelector('h1').innerHTML = `Invalid Url`;
+                }
+            }
+            
+
+        }
+    </script>
+</body>
+</html>

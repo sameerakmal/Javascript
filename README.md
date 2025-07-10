@@ -3570,6 +3570,17 @@ console.log(message); // Success
 
 <img src = "img/exe.png">
 
+### ⚠️ Exception Handling in JavaScript
+
+- At runtime, problems may occur due to **faulty inputs** given by the user to the application.  
+As a result, the **OS might crash** or a **hardware device** might be affected.
+
+- To resolve this issue, the **runtime engine** provides a feature to handle such situations gracefully.
+
+- ✅ This feature is known as **Exception Handling**.
+
+- 📌 It helps ensure that the program does not terminate abnormally and instead **handles errors smoothly**.
+
 <img src = "img/runtime.png">
 
 
@@ -3716,25 +3727,23 @@ collectData(...data);
 
 
 
-<!-- 28 -->
 > Note : 
-```js
-catch(error){
-  if(error instanceOf TypeError){
-    // handling logic of TypeError
+  ```js
+  catch(error){
+    if(error instanceOf TypeError){
+      // handling logic of TypeError
+    }
+    if(error instanceOf SyntaxError){
+      // handling logic of SyntaxError
+    }
+    if(error instanceOf ReferenceError){
+      // handling logic of ReferenceError
+    }
   }
-  if(error instanceOf SyntaxError){
-    // handling logic of SyntaxError
-  }
-  if(error instanceOf ReferenceError){
-    // handling logic of ReferenceError
-  }
-}
-```
+  ```
 
 - All exceptions in js are 'unchecked' exceptions (these exceptions are not checked by compiler during memory allocation phase).
 
-<!-->30<!-->
 ### What is Shallow Copy?
 - Shallow copy copies the top-level properties of an object only. If the object has nested objects or arrays, the references to those nested structures are copied - not the actual inner content.
 
@@ -3861,7 +3870,69 @@ console.log(calculate(radius, diam));
 >> ClassName.prototype.key = value[function(){}]
 
 ```js
+Array.prototype.calculate = function (logic) {
+let output = []
 
+for (let i = 0; i < radius.length; i++) {
+    output.push(logic(radius[i]));
+}
+return output;
+}
 
+console.log(radius.map(area));
+console.log(radius.calculate(area));
 ```
+
+### Javascript Operators
+1. Arithmetic operators.
+2. Logical operator.
+3. Comparison operator
+4. Unary operator
+5. Special operator
+    1. delete
+    2. instanceOf
+    3. in 
+    4. typeOf
+    5. new 
+    6. void
+    7. ternary operator
+    8. yield[function generators]
+    9. of
+
+#### instanceOf
+- This operator is used to check wether the reference is of particular type or not. If the reference is of sametype, childtype or Objecttype. <!--pending-->
+
+  ```js
+  class Animal{
+
+  }
+
+  class Dog extends Animal{
+
+  }
+
+  let a = new Dog();
+  console.log(a instanceof Animal); //true
+  console.log(a instanceof Dog); //true
+  console.log(a instanceof Object); //true
+  console.log(a instanceof Array); //false
+  console.log(a instanceof String); //false
+  console.log(a instanceof Date); //false
+  ```
+
+### Looping Statements
+
+#### for :
+- If we are aware of how many iterations to do, then we go for **for loop**.
+
+#### while : 
+- When we are not aware of how many iterations to do, where the iteration count is decided dynamically from external resource then we go for while loop.
+<!-- while.html-->
+
+#### dowhile:
+- If we want the statement to execute atleast once irrespective of the condition then we go for dowhile loop.
+
+<!-- diag -->
+
+<!-- continue.html-->
 
