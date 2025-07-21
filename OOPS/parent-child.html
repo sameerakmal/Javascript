@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script type="text/javascript">
+        class Parent{
+            constructor(name, age, gender){
+                this.name = name;
+                this.age = age;
+                this.gender = gender;
+            }
+        }
+        class Child extends Parent{
+            constructor(name, age, gender, profession){
+                super(name, age, gender);
+                this.profession = profession;
+            }
+        }
+        let obj = new Child("Shashu", "69", "Sigma-Male", "All-rounder")
+        console.log(obj);
+        
+    </script>
+</body>
+</html>

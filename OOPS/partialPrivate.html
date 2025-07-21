@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <script type="text/javascript">
+        // Prompt user for their name, role, and the product name
+        let userName = prompt("Enter the userName");
+        let role = prompt("Enter the Role");
+        let productName = prompt("Enter the productName");
+
+        // Define the Product class
+        class Product {
+            _productName; // Private variable (by naming convention)
+
+            // Setter for productName
+            set productName(newName) {
+                // Only allow if role is 'admin'
+                if (role === 'admin') {
+                    this._productName = newName;
+                } else {
+                    // If not admin, display a message
+                    document.write(`User ${userName} is not privileged to change`);
+                }
+            }
+
+            // Getter for productName
+            get productName() {
+                return this._productName;
+            }
+        }
+
+        // Create a new Product instance
+        let p = new Product();
+
+        // Attempt to set the product name
+        p.productName = productName;
+
+        // If product name was successfully set, log it
+        if (p.productName) {
+            console.log(p.productName);
+        }
+
+    </script>
+
+</body>
+</html>

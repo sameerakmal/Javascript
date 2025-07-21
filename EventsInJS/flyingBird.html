@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Follow the Bird</title>
+    <style>
+        body {
+            position: relative;
+            margin: 0;
+            height: 100vh; 
+            cursor: none;
+            overflow: hidden;
+        }
+
+        #tree-image {
+            position: absolute;
+            bottom: 0;
+            right: 0;
+        }
+
+        #bird {
+            position: absolute;
+            transition: top 0.1s, left 0.1s;
+        }
+    </style>
+</head>
+
+<body onmousemove="helpReachBirdHome(event)">
+    
+    <img src="../img/bird.gif" alt="Bird" width="200px" id="bird">
+    <img src="../img/tree.gif" alt="Tree" id="tree-image">
+
+    <script type="text/javascript">
+        const bird = document.getElementById("bird");
+
+        function helpReachBirdHome(e) {
+            bird.style.left = e.clientX + "px";
+            bird.style.top = e.clientY + "px";
+        }
+    </script>
+
+</body>
+
+</html>

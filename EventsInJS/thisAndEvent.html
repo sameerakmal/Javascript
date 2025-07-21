@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button onclick="someEvent(event,this)"> PAY </button>
+    <p id="emsg"></p>
+    <p id="objmsg" class="btn btn-primary"></p>
+    <script type="text/javascript">
+        function someEvent(e,obj)
+        {
+            let emsg = document.getElementById("emsg");
+            let objmsg = document.getElementById("objmsg");
+            emsg.textContent = e + " ";
+            emsg.textContent = e.ctrlKey;
+            console.log(obj);
+            
+            objmsg.textContent = obj.id + " ";
+            
+            
+            
+            
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button onclick="showDetails('Iphone', ['HYD', 'BLR'], {Ratings : '4.5[45000]'}, this.className)" class="btn btn-primary">Show Details</button>
+    <script type="text/javascript">
+        function showDetails(...args){
+            var[productName, cities, ratings, classes] = args;
+            let ul = document.createElement("ul");
+
+            let liProduct = document.createElement("li");
+            liProduct.textContent = productName;
+            ul.appendChild(liProduct);
+
+            let liCities = document.createElement("li");
+            liCities.textContent = cities;
+            ul.appendChild(liCities);
+
+
+            let liRatings = document.createElement("li");
+            liRatings.textContent = ratings.Ratings;
+            ul.appendChild(liRatings);
+
+            document.body.append(ul);
+            console.log(classes);
+            
+        }
+    </script>
+</body>
+</html>

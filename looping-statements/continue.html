@@ -4,64 +4,102 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+
+    <!-- Linking Bootstrap CSS for styling -->
     <link rel="stylesheet" href="/Web dev mastery/node_modules/bootstrap/dist/css/bootstrap.css">
-    
+
+    <!-- Linking Bootstrap Icons -->
     <link rel="stylesheet" href="/Web dev mastery/node_modules/bootstrap-icons/font/bootstrap-icons.css">
 </head>
-<body onload="loadBody()">
-    <table class="table" style="display: none;">
-        <h1 style="color: red;"></h1>
+<body onload="loadBody()"> <!-- Runs loadBody() when the page finishes loading -->
+
+    <!-- 
+        ⚠️ Problem 1:
+        <h1> is placed inside <table> but not inside a valid <td> or <caption>. This is invalid HTML.
+        Suggestion: Move <h1> outside the table or use a caption for table headings.
+    -->
+    <table class="table" style="display: none;"> <!-- Hidden initially -->
+        <h1 style="color: red;"></h1> <!-- ❌ Invalid placement -->
         <thead>
             <th>Id</th>
             <th>Category</th>
             <th>Price</th>
         </thead>
-
         <tbody>
+            <!-- Product rows will be appended here dynamically -->
         </tbody>
     </table>
 
     <script type="text/javascript">
-        function loadBody(){
-            let url = 'https://fakestoreapi.com/products';
+        // Called when the body finishes loading
+        function loadBody() {
+            let url = 'https://fakestoreapi.com/products'; // API endpoint
             loadProducts(url);
         }
 
-        async function loadProducts(url){
-            try{
-                let response = await fetch(url);
-                let products = await response.json();
+        // Asynchronous function to fetch and display product data
+        async function loadProducts(url) {
+            try {
+                let response = await fetch(url); // Fetching product data from API
+                let products = await response.json(); // Parsing response as JSON
 
-                if(products.length > 0){
+                // If products exist, make the table visible
+                if (products.length > 0) {
                     document.querySelector('table').style.display = 'block';
                 }
 
-                for(const product of products){
-                    if((product.category === 'jewelery') || (product.category === 'electronics')) continue;
+                for (const product of products) {
+                    // Skip categories that are not needed
+                    if ((product.category === 'jewelery') || (product.category === 'electronics')) continue;
 
+                    // Create row and cells
                     let tr = document.createElement('tr');
                     let id = document.createElement('td');
                     let cat = document.createElement('td');
                     let price = document.createElement('td');
 
+                    // Set cell contents
                     id.textContent = product.id;
                     cat.textContent = product.category;
                     price.textContent = product.price;
 
+                    // Append cells to the row
                     tr.appendChild(id);
                     tr.appendChild(cat);
                     tr.appendChild(price);
+
+                    // Append row to table body
                     document.querySelector('tbody').appendChild(tr);
                 }
-            }
-            catch(error){
-                if(error instanceof SyntaxError){
+            } catch (error) {
+                // Handle JSON parsing error
+                if (error instanceof SyntaxError) {
+                    // Display error message in the misplaced <h1>
                     document.querySelector('h1').innerHTML = `Invalid Url`;
                 }
-            }
-            
 
+                // 
+                // ⚠️ Problem 2:
+                // If the URL is incorrect or server doesn't respond, no message will show unless it's a SyntaxError.
+                // Suggestion: add a generic catch block or `console.log(error)` for better debugging.
+                //
+            }
         }
     </script>
+
+    <!-- 
+        ✅ What it does:
+        ----------------
+        - On page load, fetches products from API.
+        - Displays only products that are NOT in the 'jewelery' or 'electronics' category.
+        - Adds those products to a table dynamically.
+        - If API fails or returns invalid JSON, shows "Invalid URL".
+
+        ⚠️ Summary of Issues:
+        ----------------------
+        1. <h1> is wrongly placed inside <table>. Move it outside.
+        2. Error handling only catches SyntaxError. Should catch other fetch failures too.
+        3. Uses innerHTML and inline styles; better to use classes and textContent for safety and maintainability.
+    -->
 </body>
 </html>

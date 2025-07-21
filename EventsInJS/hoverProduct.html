@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/Web dev mastery/node_modules/bootstrap/dist/css/bootstrap.css">
+    
+    <link rel="stylesheet" href="/Web dev mastery/node_modules/bootstrap-icons/font/bootstrap-icons.css">
+    <style type="text/css">
+        *{
+            margin-left: 20px;
+        }
+        #products img{
+            /* border: 1px solid blue; */
+            padding: 10px;
+            margin-top: 20px;
+        }
+        #mainDiv{
+            display: grid;
+            grid-template-columns: 2fr 10fr;
+        }
+        #products img.active{
+            border: 2px solid blue;
+        }
+    </style>
+</head>
+<body>
+    <div class="" id="mainDiv">
+        <div class="d-flex flex-column" id="products">
+            <img src="../img/moto2.jpg" onmouseover="dsiplayImg(this)" alt="" width="80px">
+            <img src="../img/moto3.jpg" onmouseover="dsiplayImg(this)" alt="" width="80px">
+            <img src="../img/moto4.jpg" onmouseover="dsiplayImg(this)" alt="" width="70px">
+            <img src="../img/moto1.jpg" onmouseover="dsiplayImg(this)" alt="" width="70px">
+        </div>
+
+        <div id="imgBlock" class="mt-5">
+            <img src="" alt="" width="180px" height="400px" id="previewImg">
+        </div>
+    </div>
+
+    <script type="text/javascript">
+        function dsiplayImg(img){
+            document.getElementById("previewImg").src = img.src;
+            document.querySelectorAll("#products img").forEach(img => img.classList.remove("active"));
+            img.classList.add("active")
+        }
+
+    </script>
+</body>
+</html>

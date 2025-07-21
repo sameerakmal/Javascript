@@ -3,48 +3,76 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Username Availability Check</title>
 </head>
 <body>
     <dl>
         <dt>Username</dt>
         <dd><input type="text" id="userName"></dd>
 
+        <!-- Message displayed below input when user types -->
         <h3 id="msg"></h3>
     </dl>
 
     <script type="text/javascript">
-
-        document.addEventListener('DOMContentLoaded', function(){
-            document.getElementById('userName').addEventListener('keyup', function(){
+        // Wait until the DOM is fully loaded before attaching event handlers
+        document.addEventListener('DOMContentLoaded', function() {
+            // Listen for keyup event on the username input field
+            document.getElementById('userName').addEventListener('keyup', function() {
+                // Get reference to message element
                 let msg = document.getElementById('msg');
 
+                // Read and trim user input
                 let data = this.value.trim();
+
+                // Boolean flag to check if username is found
                 let flag = false;
 
+                // File containing list of existing usernames
                 let url = 'data.json';
 
-                fetch(url).then(function(response){
-                    return response.json();
-                }).then(function (users){
-
-                    for(const user of users){
-                        if(user.username === data){
-                            flag = true;
-                            break;
+                // Fetch the JSON file asynchronously
+                fetch(url)
+                    .then(function(response) {
+                        // Parse the JSON content from the file
+                        return response.json();
+                    })
+                    .then(function(users) {
+                        // Loop through user list to check for a match
+                        for (const user of users) {
+                            if (user.username === data) {
+                                flag = true;  // username already exists
+                                break;
+                            }
                         }
-                    }
 
-                    if(flag){
-                        msg.innerHTML = 'Username is alreay taken. Try another'.fontcolor('red');
-                    }
-                    else{
-                        msg.innerHTML = 'Username is available'.fontcolor('green');
-                    }
-                })
-            })
-        })
-
+                        // Display result message based on flag
+                        if (flag) {
+                            msg.innerHTML = 'Username is already taken. Try another'.fontcolor('red');
+                        } else {
+                            msg.innerHTML = 'Username is available'.fontcolor('green');
+                        }
+                    });
+            });
+        });
     </script>
+
+    <!-- 
+    ✅ Functionality:
+    ------------------
+    - On every keyup in the input field, the code:
+        1. Fetches 'data.json' (which should be an array of user objects like [{ "username": "sam" }, ...])
+        2. Checks if the entered username exists
+        3. Displays:
+            🔴 "Username is already taken" — if match found
+            🟢 "Username is available" — if no match found
+
+    ⚠️ Problems/Requirements:
+    --------------------------
+    - `data.json` must exist in the same directory and contain a valid JSON array of usernames.
+    - `fontcolor()` is outdated but works in most browsers; prefer using CSS classes instead.
+    - For real projects, debounce the input or add delay to reduce unnecessary fetch calls.
+    - Doesn’t handle fetch errors (like file not found); could add `.catch()` for robustness.
+    -->
 </body>
 </html>

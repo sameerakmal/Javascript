@@ -3927,12 +3927,288 @@ console.log(radius.calculate(area));
 
 #### while : 
 - When we are not aware of how many iterations to do, where the iteration count is decided dynamically from external resource then we go for while loop.
-<!-- while.html-->
+> 💻 Related Code : [while.html](looping-statements\while.html)
 
 #### dowhile:
 - If we want the statement to execute atleast once irrespective of the condition then we go for dowhile loop.
 
 <!-- diag -->
+#### break & continue:
+> 💻 Related Code : 
+>> [break.html](looping-statements\break.html) <br>
+>> [continue.html](looping-statements\continue.html)
 
-<!-- continue.html-->
 
+### Difference between return and error?
+|Feature|return|throw(error)|
+|---|---|----|
+|Purpose|Give output to the caller|Signal a problem occured|
+|Behaviour|Ends function, passes a value|Ends function, throws an error|
+|Control flow|Continues normally|Jump to nearest catch block|
+|Used in |Normal logic|Error handling|
+|Example use case|return totalAmount;|throw new Error("Invalid input");|
+
+# OOPS in JavaScript
+## What is class?
+- It is a program template that provides logic and data which we can implement and customize according to the requirement.
+- Class have the behaviour of Entity when it comprises of business related interactions.
+- Class have the behaviour of Modal when it comprises of data related interactions.
+- Class is used as a blueprint to customize and create multiple copies according to the requirement[Creation of multiple objects].
+
+<img src = "img/entity.png">
+
+```html
+    <script type="text/javascript">
+        // Define a Student class with properties name, age, and email
+        class Student {
+            name;
+            age;
+            email;
+        }
+
+        // Create an instance of the Student class
+        let std = new Student();
+
+        // Assign values to the object properties
+        std.name = 'Shashu';
+        std.age = 99;
+        std.email = 'shashu@salaar.com';
+
+        // Log the student object to the console
+        console.log(std);
+    </script>
+```
+
+> 💻 Related Code : [constructor.html](OOPS\constructor.html)
+
+
+### Code reusability and extensibility
+- **Code reusabilty** : It is the process of accessing code from one module and use it in another module.
+- **Code extensibility** : It is the process of extending the module without disturbing the other features.
+
+
+- You can acheive Code reusabilty and extensibilty using two techniques.
+  - Aggregation[HAS-A]
+  - Inheritance[IS-A]
+
+### Aggregation 
+- It is the process of accesing the members of one class in another class without configuring any relationship b/w the classes.
+- It uses Object to Object communication, it is often termed as "HAS-A" relation.
+- We can access members of existing class in another class by using the instance of the class which is know as "Aggregation".
+
+#### HAS-A relationship advantages are : 
+- **Backward compatibilty** : 💻 Related Code : [has-a.html](OOPS/has-a.html)
+- **Multi-versioning environment**
+
+## Inheritance
+- Configuring the relationship b/w classes to access members of one class in another class.
+- Mechanism is termed as "IS-A" relationship.
+- Newly created class extends existing class.
+- Existing class(super|parent), Newly created class(sub|child).
+- To access the members of parent class in child class we use **"super"** keyword.
+- Instance of parent class is not needed to access the members of parent class.  
+- A derived-class constructor must call base-class constructor called.
+- In many OOP language calling parent class constructor from child class is implicit, but in javascript it is explicit.
+
+## Style Binding in Javascript
+- `element.style.property` = value;
+- `element.style.cssText` = 'cssAttri : cssValue; cssAttri : cssValue;'
+- `element.className` = 'userdefined | predefined';
+
+```html
+<div id = "root" class = "box-red" style = "">
+``` 
+
+> 🔔 **Note:** : In all the above class, stylebinding will override the `inline-css`, so to avoid overriding use "**classList**" property on an element.
+
+- classList property holds the complete details of class binding in a arraytype variable.
+
+- #eg1
+```html
+<div class = "red" id = "box">
+
+</div>
+<script>
+  console.log(document.getELementById("box").classList);
+</script>
+<!--Output : ['red']-->
+```
+
+- #eg2 
+- `classList.add("className")` : it would add the classname to the class attribute.
+```html
+<div class = "red blue" id ="box"> </div>
+```
+- #eg3
+- `classList.remove("className")` : it would remove the classname from the  class attribute if present otherwise that statement would be neglected by jsengine.
+```js
+const box = document.getElementById("box")
+		box.classList.remove("red");
+
+	//output: <div class ='blue' id='box'> </div>
+```
+
+- eg#4
+- `classlist.contains("className")` : boolean
+```js
+const box = document.getElementById("box")
+        if (box.classList.contains("red")) {
+            box.classList.remove("red")
+        } else {
+            box.classList.add("red");
+        }
+	//output: <div id='box' class='red'>
+```
+
+#### 🧪 Example #5: Using `classList.toggle()`
+
+```js
+const box = document.getElementById("box");
+box.classList.toggle("red");
+```
+
+- ✅ `classList.toggle("className")` will:
+  - 🔁 Add the class if it’s not already present.
+  - 🔁 Remove the class if it is present.
+
+```html
+<div id='box' class='red'>
+```
+
+#### 🧪 Example #6: Using `classList.replace()`
+
+```js
+const box = document.getElementById("box");
+box.classList.add("blue");
+
+if (box.classList.contains("red")) {
+    box.classList.replace("red", "yellow");
+} else {
+    box.classList.add("red");
+}
+```
+
+## Browser Heading
+<img src = "img/js30.png">
+
+### Javascript Browser Events
+- Event is a message sent by the sender to its subscriber in order to notify change.
+- Event follows a softare design pattern called **"Observer"**. 
+- Observation is a communication pattern.
+- Event uses a function pointer mechanism.[Delegate = function pointer].
+
+#### Syntax
+```js
+function InsertClick(){
+
+}
+<button onclick = "InsertClick()">
+```
+- `function InsertClick {}`=> Subscriber
+- `onclick = "InsertClick()"` => Sender
+- Sender triggers the action.
+- Subscriber defines the action to perform.
+
+### What is Event Handler? What is Event?
+```
+onclick        => Event
+onclick        => InsertClick() => EventHandler
+```
+### What is EventListener?
+```js
+document.querySelector("button").addEventListener("event", function(){})
+```
+- It allows an event to configure dynamically.
+- For dynamically created element to configure the event we use eventlistener.
+
+Of course\! Here is the explanation with some emojis to make it more interactive.
+
+### 💡 Event Handler Arguments
+
+Every event handler in JavaScript has access to two default arguments:
+
+1.  `this`
+2.  `event`
+
+-----
+
+#### a) `this` 🔘
+
+The `this` keyword refers to the current HTML element that the event was triggered on. It sends information about that element.
+
+**Properties of `this` include:**
+
+  * 🆔 `id`
+  * 📛 `name`
+  * 🎨 `class`
+  * ↔️ `width`
+  * ↕️ `height`
+  * 🔡 `value`
+  * ...and more.
+
+-----
+
+#### b) `event` ⚡
+
+The `event` object contains information about the specific event that occurred.
+
+**Properties of `event` for an `onclick` event include:**
+
+  * 🖱️ `clientX`, `clientY` (the coordinates of the mouse click)
+  * ⬆️ `shiftKey` (boolean, true if the Shift key was pressed)
+  * 🎛️ `ctrlKey` (boolean, true if the Ctrl key was pressed)
+  * ⌥ `altKey` (boolean, true if the Alt key was pressed)
+  * ...and more.
+
+-----
+
+### 💻 Syntax
+
+Here is the basic syntax for passing these arguments to a function from an HTML element:
+
+```html
+<button onclick="insert(this, event)">Click Me</button>
+```
+
+```javascript
+function insert(obj, e) {
+  // obj refers to 'this' (the button element) 👍
+  // e refers to the 'event' object ⚡
+}
+```
+
+-----
+
+### 📌 Notes
+
+1.  **Argument Order Flexibility:** The arguments can be passed in any order in the HTML, as long as the function definition handles them accordingly. You can also choose to use only one of them.
+
+      * Passing both, reversed:
+        ```html
+        <button onclick="insert(event, this)">Click Me</button>
+        ```
+      * Passing only `this`:
+        ```html
+        <button onclick="insert(this)">Click Me</button>
+        ```
+      * Passing only `event`:
+        ```html
+        <button onclick="insert(event)">Click Me</button>
+        ```
+
+2.  **Sending Specific Details:** It's also possible to send specific properties of the `event` or `this` object directly.
+
+      * Sending the element's `id`:
+        ```html
+        <button onclick="insert(this.id)">Click Me</button>
+        ```
+> 🔔 **Note:** this, event...<!--complete this-->
+
+
+> 💻 Related Code : 
+>> [thisAndEvent.html](EventsInJS/thisAndEvent.html) <br>
+>> [color-change.html](EventsInJS/color-change.html) <br>
+>> [naruto.html](EventsInJS/naruto.html)
+
+
+- **`onmousemove`** 

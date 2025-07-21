@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Document</title>
+  <link rel="stylesheet" href="/Web dev mastery/node_modules/bootstrap/dist/css/bootstrap.css" />
+  <link rel="stylesheet" href="/Web dev mastery/node_modules/bootstrap-icons/font/bootstrap-icons.css" />
+</head>
+<body class="vh-100 d-flex flex-column justify-content-center align-items-center">
+  <fieldset class="w-25 border border-2 p-3 border-black">
+    <legend>Connect with Database</legend>
+    <dl>
+      <dt>Select Database</dt>
+      <dd>
+        <select name="" id="database" class="form-select">
+          <option value="" disabled selected>Select Database</option>
+          <option value="MySQL">MySQL</option>
+          <option value="MongoDB">MongoDB</option>
+          <option value="Oracle">Oracle</option>
+        </select>
+      </dd>
+
+      <dt>Select Action</dt>
+      <dd>
+        <button class="btn btn-success" id="insertBtn" onclick="insertClick()";>Insert</button>
+        <button class="btn btn-warning" id="updateBtn" onclick="updateClick()";>Update</button>
+        <button class="btn btn-danger" id="deleteBtn" onclick="deleteClick()">Delete</button>
+      </dd>
+    </dl>
+  </fieldset>
+
+  <h3 class="mt-4" id="msg" style="color: red;"></h1>
+
+  <script type="text/javascript">
+    class Database{
+        constructor(databaseName){
+            this.databaseName = databaseName;
+        }
+        insert(){
+            return `Action performed on ${this.databaseName} : Record inserted successfuly`;
+        }
+        update(){
+            return `Action performed on ${this.databaseName} : Record updated successfuly`;
+        }
+        delete(){
+            return `Action performed on ${this.databaseName} : Record deleted successfuly`;
+        }
+    }
+
+    function insertClick(action){
+        let db = new Database(document.getElementById('database').value);
+        document.getElementById('msg').textContent = db.insert();
+    }
+    function updateClick(action){
+        let db = new Database(document.getElementById('database').value);
+        document.getElementById('msg').textContent = db.update();
+    }
+    function deleteClick(action){
+        let db = new Database(document.getElementById('database').value);
+        document.getElementById('msg').textContent = db.delete();
+    }
+  </script>
+</body>
+</html>

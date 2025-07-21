@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1 style="text-align: center;"></h1>
+    <h3></h3>
+    <dl>
+        <dt>Mobile</dt>
+        <dd>
+            <select name="" id="mobile">
+                <option value="45000">Oneplus</option>
+                <option value="65000">Samsung</option>
+                <option value="95000">Iphone</option>
+            </select>
+        </dd>
+
+        <dt>Price</dt>
+        <dd id="price">
+            
+        </dd>
+
+        <dt>Quantity</dt>
+        <dd id="">
+            <select name="" id="quantity">
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+            </select>
+        </dd>
+
+        <dt>Total</dt>
+        <dd id="tot"></dd>
+    </dl>   
+    <script type="module">
+        import cHeading, {cSubtitle} from "./heading.js";
+        document.querySelector("h1").textContent = cHeading();
+        document.querySelector("h3").textContent = cSubtitle();
+
+        import {total} from "./total.js";
+        total();
+    </script> 
+</body>
+</html>

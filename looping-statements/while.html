@@ -3,29 +3,54 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Login Attempt</title>
 </head>
 <body>
     <script type="text/javascript">
-      let maxAttempts = 3;
-      let currAttempts = 0;
-      let flag = false;
+        // Maximum number of login attempts
+        let maxAttempts = 3;
 
-      while(currAttempts <= maxAttempts-1){
-        let str = prompt(`Enter the userName. Attempts reamining : ${3 - currAttempts}`);
-        if(str === 'sachin'){
-            flag = true;
-            break;
-        } 
-        currAttempts++;
-      }
+        // Tracks current number of attempts
+        let currAttempts = 0;
 
-      if(flag){
-        console.log("Logged in succesfully");
-      }
-      else{
-        console.log("Contact Administrator");
-      }
+        // Flag to track successful login
+        let flag = false;
+
+        // While user still has attempts left
+        while (currAttempts <= maxAttempts - 1) {
+            // Prompt user for input
+            let str = prompt(`Enter the userName. Attempts remaining: ${3 - currAttempts}`);
+
+            // Check if input matches expected username
+            if (str === 'sachin') {
+                flag = true; // login successful
+                break;       // exit loop
+            }
+
+            // Increment attempt count
+            currAttempts++;
+        }
+
+        // Final decision based on flag
+        if (flag) {
+            console.log("Logged in successfully");
+        } else {
+            console.log("Contact Administrator");
+        }
     </script>
+
+    <!-- 
+    ✅ Expected Behavior:
+    -----------------------
+    - User has 3 attempts to enter the correct username ("sachin").
+    - If correct username is entered within the attempts:
+        Output: "Logged in successfully"
+    - If not:
+        Output: "Contact Administrator"
+
+    🔔 Note:
+    - prompt() is used for input (works in browser environment).
+    - console.log() outputs go to the browser console, not the page.
+    -->
 </body>
 </html>

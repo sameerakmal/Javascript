@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <img src="/Javascript_and_react/img/naruto.png" alt="" onclick="guessChar(event)">
+    <h1 id="msg"></h1>
+
+    <script type="text/javascript">
+        function guessChar(e){
+            console.log(e.clientX, e.clientY);   
+            const msg = document.getElementById("msg");
+            if((e.clientX >= 197 && e.clientX <= 279) && (e.clientY >= 84 && e.clientY <=253)) msg.textContent = "Naruto";
+            else if((e.clientX >= 24 && e.clientX <= 285) && (e.clientY >= 11 && e.clientY <=115)) msg.textContent = "Kakashi";
+            else if((e.clientX >= 112 && e.clientX <= 193) && (e.clientY >= 123 && e.clientY <=247)) msg.textContent = "Pink Trash";
+            else if((e.clientX >= 9 && e.clientX <= 99) && (e.clientY >= 89 && e.clientY <=250)) msg.textContent = "Sasuke";
+        }
+    </script>
+</body>
+</html>

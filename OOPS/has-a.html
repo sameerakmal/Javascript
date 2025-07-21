@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <fieldset>
+        <legend>Install HDFC App</legend>
+
+        <select name="" id="lstVersions">
+            <option value="-1">Select version</option>
+            <option value="ver-1">Version-1-2023</option>
+            <option value="ver-2">Version-2-2024[Loans]</option>
+            <option value="ver-3">Version-3-2025[NRI Banking]</option>
+        </select>
+        <button id="btnInstall">Install</button>
+    </fieldset>
+    <script type="text/javascript">
+        class Version1{
+            cred = "personal banking <br>";
+            pymt= "credit card payments <br>";
+            print(){
+                document.write(`${this.cred} ${this.pymt}`);
+            }
+        }
+        class Version2 extends Version1{
+            loan = 'House loan, education loan, car loan <br>';
+            print(){
+                super.print();
+                document.write(`${this.loan}`);
+            }
+        }
+        class Version3 extends Version2{
+            nri = "Non residental Indian Services offered";
+            print(){
+                super.print();
+                document.write(`${this.nri}`);
+            }
+        }
+
+        document.getElementById("btnInstall").addEventListener("click", function(){
+            let obj = null;
+            let options = document.getElementById("lstVersions").value;
+            switch(options) {
+                case "ver-1":
+                    obj = new Version1();
+                    document.write("<h2> Version 1 installed successfully </h2>");
+                    obj.print();
+                    break;
+                case "ver-2":
+                    obj = new Version2();
+                    document.write("<h2> Version 2 installed successfully </h2>");
+                    obj.print();
+                    break;
+                case "ver-3":
+                    obj = new Version3();
+                    document.write("<h2> Version 3 installed successfully </h2>");
+                    obj.print();
+                    break;
+
+                default :
+                    document.wirte("Plz select the proper version");
+            }
+        })
+    </script>
+</body>
+</html>

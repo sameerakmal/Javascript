@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <script type="text/javascript">
+        // Define a Student class
+        class Student {
+            name;   // Property for student's name
+            age;    // Property for student's age
+            email;  // Property for student's email
+
+            // Constructor to initialize properties
+            constructor(name, age, email) {
+                this.name = name;     // Assign name to the object
+                this.age = age;       // Assign age to the object
+                this.email = email;   // Assign email to the object
+            }
+            // Method
+            printData(){
+                console.log(`Name is ${this.name}, age is ${this.age}, email is ${this.email}`);
+            }
+        }
+
+        // Create a new Student object with values
+        let std = new Student('Shashu', 99, 'shashu@salaar.com');
+        std.printData();
+
+        // Print the object to the console
+        console.log(std);
+    </script>
+
+</body>
+</html>
