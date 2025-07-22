@@ -1597,9 +1597,9 @@ if (null == undefined) {
   console.log("hey");
 }
 if (null === undefined) {
-  console.log("hello"); // ✅ Prints "hey" :null[runtime] and undefined[compile time]
+  console.log("hello");
 } else {
-  console.log("hey");
+  console.log("hey");  // ✅ Prints "hey" :null[runtime] and undefined[compile time]
 }
 // ✔️ null and undefined are equal using loose equality (==)
 ```
@@ -2421,6 +2421,15 @@ console.log(person.name); // "sachin"
 ```
 #### 🔧 Example
 ```js
+let user = {
+  userName: "Virat Kohli",
+  teams: ["India", "RCB"],
+  records: {
+    Centuries: 76,
+    average: 57.32,
+    Brand: "MRF"
+  }
+};
 console.log(user);
 console.log('Username is : ',user.userName);
 console.log('Teams is :');
@@ -2876,8 +2885,8 @@ console.log(index);  // Output: -1
 > 🔔 **Note:** : use for...of to iterate if we have data in map type.
 
 > 💻 Related Code : 
->> [map1.html](javascript-asynch/map1.html) <br>
->> [map2.html](javascript-asynch/map2.html)
+>> [map1.html](Non-primitive/map1.html) <br>
+>> [map2.html](Non-primitive/map2.html)
 
 ## Symbol Type
 
@@ -3507,7 +3516,7 @@ console.log(status);  // 200
 console.log(message); // Success
 ```
 
-> 💻 Related Code : [conditional-rendering.html](Non-primitive\conditional-rendering.html)
+> 💻 Related Code : [conditional-rendering.html](Non-primitive/conditional-rendering.html)
 
 
 #### 🔁 What is a Callback Function?
